@@ -1,0 +1,142 @@
+{
+  "id": "102901",
+  "question": "question-27",
+  "body": "A developer wants to expand an application to run in multiple AWS Regions. The developer wants to copy Amazon Machine Images (AMIs) with the latest changes and create a new application stack in the destination Region. According to company requirements, all AMIs must be encrypted in all Regions. However, not all the AMIs that the company uses are encrypted.\nHow can the developer expand the application to run in the destination Region while meeting the encryption requirement?\nA. Create new AMIs, and specify encryption parameters. Copy the encrypted AMIs to the destination Region. Delete the unencrypted AMIs.\nB. Use AWS Key Management Service (AWS KMS) to enable encryption on the unencrypted AMIs. Copy the encrypted AMIs to the destination Region.\nC. Use AWS Certificate Manager (ACM) to enable encryption on the unencrypted AMIs. Copy the encrypted AMIs to the destination Region.\nD. Copy the unencrypted AMIs to the destination Region. Enable encryption by default in the destination Region.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Bibay",
+      "selectedAnswer": "",
+      "body": "A. Create new AMIs, and specify encryption parameters. Copy the encrypted AMIs to the destination Region. Delete the unencrypted AMIs.\n\nThe best solution for meeting the encryption requirement is to create new AMIs with encryption enabled and copy them to the destination Region. By default, when an AMI is copied to another Region, it is not encrypted in the destination Region even if it is encrypted in the source Region. Therefore, the developer must create new encrypted AMIs that can be used in the destination Region. Once the new encrypted AMIs have been created, they can be copied to the destination Region. The unencrypted AMIs can then be deleted to ensure that all instances running in all Regions are using only encrypted AMIs.",
+      "reply": []
+    },
+    {
+      "user": "Rameez1",
+      "selectedAnswer": "A",
+      "body": "A is correct. \nUnencrypted AMI can't be encrypted after creation. Need to create new encrypted AMI then it can be copied to other regions.",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "A",
+      "body": "A) Amazon Machine Images (AMIs) can be encrypted at creation time\n\nB) Eliminated - AWS KMS does not allow you to encrypt an existing unencrypted AMI directly.\n\nC) Eliminated - AWS Certificate Manager (ACM) is used for managing SSL/TLS certificates, not for encrypting AMIs.\n\nD) Eliminated - It does not retroactively encrypt existing AMIs.",
+      "reply": [
+        {
+          "user": "sumanshu",
+          "body": "D) Eliminated - Though we have the option while copying the AMI to different region , we can encrypt at that time. But It will only encrypt in destination region. What about the Source region. As per question - It should be encrypted in all regions."
+        }
+      ]
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "",
+      "body": "D) Eliminated - Though we have the option while copying the AMI to different region , we can encrypt at that time. But It will only encrypt in destination region. What about the Source region. As per question - It should be encrypted in all regions.",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "A",
+      "body": "==> Discard B: Once an AMI is created, encryption configuration cannot be changed,\n==> Discard C: ACM use for SSL/ TLS connection manager\n==> Discard D: Even if assumed that \"encryption by default\" is enabled in the destination before copy, original AMI is still not encrypted, so condition \"AMIs must be encrypted in all Regions\" is not met.\n\nA is popular pattern:\n1. Create a snapshot from the original AMI.\n2. Encrypt the snapshot using an AWS KMS key.\n3. Create a new AMI from the encrypted snapshot.\n4. Copy the encrypted AMI to the destination region",
+      "reply": []
+    },
+    {
+      "user": "Venky786",
+      "selectedAnswer": "",
+      "body": "Answer is A\nWhile AWS KMS is used to manage encryption keys, it cannot retroactively encrypt an existing unencrypted AMI. Encryption must be specified when creating or copying the AMI.",
+      "reply": []
+    },
+    {
+      "user": "wh1t4k3r",
+      "selectedAnswer": "A",
+      "body": "Regarding B: Once an AMI is created, encryption configuration cannot be changed, you need to create a new one and enable encryption. Another point: if you are planning to share the AMI between accounts, you cannot use AWS managed keys",
+      "reply": []
+    },
+    {
+      "user": "tomchandler077",
+      "selectedAnswer": "",
+      "body": "Option A ensures all AMIs are encrypted before they are copied to the destination region, meeting the encryption requirement and providing a clear and compliant process for expanding the application to multiple AWS Regions.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "TheFivePips",
+      "selectedAnswer": "A",
+      "body": "Encryption of an Amazon Machine Image (AMI) is typically tied to the underlying Amazon Elastic Block Store (EBS) snapshots that are associated with the AMI.\n\nWhen you create an AMI, you have the option to specify encryption parameters. If you choose to encrypt the root volume, the resulting AMI will be encrypted. This encryption setting applies to both the root volume and any additional EBS volumes attached to the instance.\n\nThe encryption status of an EBS snapshot is determined at the time of snapshot creation. Once a snapshot is created, its encryption status remains constant. If you want to encrypt a snapshot, you typically need to create a new snapshot from an encrypted volume.\n\nOnce an AMI is created, you generally cannot modify its encryption status directly. If you need to change the encryption status, you might need to create a new AMI from an encrypted snapshot.",
+      "reply": []
+    },
+    {
+      "user": "SerialiDr",
+      "selectedAnswer": "A",
+      "body": "A.This approach ensures that all AMIs are encrypted using specified encryption parameters before they are copied to the destination Region, aligning with the company's encryption requirement. AWS provides the capability to encrypt AMIs during the AMI creation process and when copying AMIs between Regions. You can specify an AWS Key Management Service (AWS KMS) customer master key (CMK) during these processes to use for encryption, meeting the requirement to use a company-generated key.",
+      "reply": []
+    },
+    {
+      "user": "gqs3119",
+      "selectedAnswer": "",
+      "body": "C ACM is about SSL/TLS\nD Even if assumed that \"encryption by default\" is enabled in the destination before copy, original AMI is still not encrypted, so condition \"AMIs must be encrypted in all Regions\" is not met.\nB I don't see any option in AWS Console or docs to encrypt in place existing AMI. It can be done when copying it. Option B doesn't handle existing unencrypted AMIs.\nA I think, A is the best description of the procedure.",
+      "reply": []
+    },
+    {
+      "user": "BluntFarmer",
+      "selectedAnswer": "",
+      "body": "I would go with D: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default\nSolves must be encrypted issue once and for all plus you can copy unencrypted to encrypted",
+      "reply": [
+        {
+          "user": "maurice2005",
+          "body": "it still keeps the unencrypted AMI untouched. You have to delete them but not mentioned as explicit as A"
+        }
+      ]
+    },
+    {
+      "user": "maurice2005",
+      "selectedAnswer": "",
+      "body": "it still keeps the unencrypted AMI untouched. You have to delete them but not mentioned as explicit as A",
+      "reply": []
+    },
+    {
+      "user": "walala97",
+      "selectedAnswer": "A",
+      "body": "kms keys is regional,so when you use kms before you copy to another region,the second region still has the unencryed AMIs.so B is not correct",
+      "reply": []
+    },
+    {
+      "user": "ronn555",
+      "selectedAnswer": "",
+      "body": "A\nWhen you create an encrypted AMI and do not specify the KMS key, AWS will use the default Customer Managed Key which is the only multi-region key. If you select a KMS key from the origin region it will not work in the destination region (presently) so B is not correct.",
+      "reply": []
+    },
+    {
+      "user": "Cerakoted",
+      "selectedAnswer": "B",
+      "body": "Answer is B\ncheck this link\nhttps://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html#ami-copy-encryption",
+      "reply": [
+        {
+          "user": "[Removed]",
+          "body": "If you read this link carefully it actually proves that B is wrong. The correct answer is A. You cannot enable encryption on an unencrypted AMI. ---> an AMI backed by an unencrypted root snapshot is copied to an AMI with an encrypted root snapshot. The CopyImage action is invoked with two encryption parameters, including a customer managed key. As a result, the encryption status of the root snapshot changes, so that the target AMI is backed by a root snapshot containing the same data as the source snapshot, but encrypted using the specified key."
+        }
+      ]
+    },
+    {
+      "user": "[Removed]",
+      "selectedAnswer": "",
+      "body": "If you read this link carefully it actually proves that B is wrong. The correct answer is A. You cannot enable encryption on an unencrypted AMI. ---> an AMI backed by an unencrypted root snapshot is copied to an AMI with an encrypted root snapshot. The CopyImage action is invoked with two encryption parameters, including a customer managed key. As a result, the encryption status of the root snapshot changes, so that the target AMI is backed by a root snapshot containing the same data as the source snapshot, but encrypted using the specified key.",
+      "reply": []
+    },
+    {
+      "user": "manikantaJ",
+      "selectedAnswer": "B",
+      "body": "Here's why option B is the appropriate choice:\n\nAWS KMS Encryption: AWS KMS is a service that allows you to easily enable encryption for your resources, including Amazon Machine Images (AMIs). You can create a customer managed key (CMK) in AWS KMS and use it to encrypt your AMIs.\n\nEnable Encryption on Unencrypted AMIs: You can enable encryption for unencrypted AMIs by creating a copy of the AMI and specifying the AWS KMS key to use for encryption during the copy process. This ensures that your new AMIs in the destination Region are encrypted.\n\nMaintain Data Integrity: This approach allows you to maintain data integrity and ensure that all AMIs are encrypted in compliance with company requirements.",
+      "reply": []
+    },
+    {
+      "user": "sofiatian",
+      "selectedAnswer": "B",
+      "body": "Copy an unencrypted source AMI to an encrypted target AMI\n\nIn this scenario, an AMI backed by an unencrypted root snapshot is copied to an AMI with an encrypted root snapshot. The CopyImage action is invoked with two encryption parameters, including a customer managed key. As a result, the encryption status of the root snapshot changes, so that the target AMI is backed by a root snapshot containing the same data as the source snapshot, but encrypted using the specified key. \nhttps://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html",
+      "reply": []
+    }
+  ]
+}

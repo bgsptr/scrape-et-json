@@ -1,0 +1,55 @@
+{
+  "id": "102902",
+  "question": "question-28",
+  "body": "A company hosts a client-side web application for one of its subsidiaries on Amazon S3. The web application can be accessed through Amazon CloudFront from https://www.example.com. After a successful rollout, the company wants to host three more client-side web applications for its remaining subsidiaries on three separate S3 buckets.\nTo achieve this goal, a developer moves all the common JavaScript files and web fonts to a central S3 bucket that serves the web applications. However, during testing, the developer notices that the browser blocks the JavaScript files and web fonts.\nWhat should the developer do to prevent the browser from blocking the JavaScript files and web fonts?\nA. Create four access points that allow access to the central S3 bucket. Assign an access point to each web application bucket.\nB. Create a bucket policy that allows access to the central S3 bucket. Attach the bucket policy to the central S3 bucket\nC. Create a cross-origin resource sharing (CORS) configuration that allows access to the central S3 bucket. Add the CORS configuration to the central S3 bucket.\nD. Create a Content-MD5 header that provides a message integrity check for the central S3 bucket. Insert the Content-MD5 header for each web application request.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Untamables",
+      "selectedAnswer": "C",
+      "body": "C\nThis is a frequent trouble. Web applications cannot access the resources in other domains by default, except some exceptions. You must configure CORS on the resources to be accessed.\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "C",
+      "body": "The issue described is related to Cross-Origin Resource Sharing (CORS).\n\nA) Eliminated - S3 access points deals with permissions, not with resolving cross-origin issues.\n\nB) Eliminated - A bucket policy defines access rules for an S3 bucket (e.g., which users or accounts can access it).Bucket policies define access permissions, but they do not address the cross-origin issue.\n\nC) By adding a CORS configuration to the central bucket, you instruct the browser to allow requests from the web application’s domains (origins).\n\nD) Eliminated - Content-MD5 is a header used to ensure that data was not corrupted during transmission. it is unrelated to the browser’s blocking behavior due to CORS.",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "C",
+      "body": "==> Discard A. Access points manage S3 access but don't address browser's cross-origin restrictions.\n==> Discard B. Bucket policies control permissions but don't override browser Same-Origin Policy.\n==> Discard D. Content-MD5 ensures data integrity but doesn't affect cross-origin resource sharing.\n\nC is useful when cross site access",
+      "reply": []
+    },
+    {
+      "user": "tomchandler077",
+      "selectedAnswer": "",
+      "body": "C\nThe question described is a classic case of Cross-Origin Resource Sharing (CORS) where the browser blocks resources (like JavaScript files and web fonts) that are loaded from a different origin (the central S3 bucket) than the web application. To resolve this, a CORS configuration needs to be added to the central S3 bucket to allow these resources to be accessed from the different origins of the web applications.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "badsati",
+      "selectedAnswer": "C",
+      "body": "The answer is C for cat",
+      "reply": []
+    },
+    {
+      "user": "svrnvtr",
+      "selectedAnswer": "C",
+      "body": "It is C",
+      "reply": []
+    },
+    {
+      "user": "aragon_saa",
+      "selectedAnswer": "",
+      "body": "C\nhttps://www.examtopics.com/discussions/amazon/view/88856-exam-aws-certified-developer-associate-topic-1-question-302/",
+      "reply": []
+    }
+  ]
+}

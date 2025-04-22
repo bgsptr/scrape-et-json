@@ -1,0 +1,104 @@
+{
+  "id": "102903",
+  "question": "question-29",
+  "body": "An application is processing clickstream data using Amazon Kinesis. The clickstream data feed into Kinesis experiences periodic spikes. The PutRecords API call occasionally fails and the logs show that the failed call returns the response shown below:\n\nWhich techniques will help mitigate this exception? (Choose two.)\nA. Implement retries with exponential backoff.\nB. Use a PutRecord API instead of PutRecords.\nC. Reduce the frequency and/or size of the requests.\nD. Use Amazon SNS instead of Kinesis.\nE. Reduce the number of KCL consumers.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "eboehm2",
+      "selectedAnswer": "AC",
+      "body": "100% AC as per AWS : ProvisionedThroughputExceededException\nThe request rate for the stream is too high, or the requested data is too large for the available throughput. Reduce the frequency or size of your requests. For more information, see Streams Limits in the Amazon Kinesis Data Streams Developer Guide, and Error Retries and Exponential Backoff in AWS in the AWS General Reference.\n\nhttps://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecords.html",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "AC",
+      "body": "A) Correct - Retries with exponential backoff help manage temporary spikes by delaying subsequent retry attempts progressively\n\nB) Eliminated - Switching to PutRecord would increase API calls, worsening the throughput issue\n\nC) Correct - Reducing request size or frequency directly addresses the throughput limits by spreading out the data more evenly.\n\nD) Eliminated - Amazon SNS is a messaging service, not designed for streaming data with high throughput like Kinesis.",
+      "reply": [
+        {
+          "user": "sumanshu",
+          "body": "E) Eliminated - KCL consumers consume data from Kinesis streams; reducing their number will not address the write throughput limits causing the ProvisionedThroughputExceededException"
+        }
+      ]
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "",
+      "body": "E) Eliminated - KCL consumers consume data from Kinesis streams; reducing their number will not address the write throughput limits causing the ProvisionedThroughputExceededException",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "AC",
+      "body": "==> Discard B: PutRecord doesn't reduce throughput issues as it sends one record at a time, increasing API calls.\n==> Discard D: SNS isn't designed for streaming data; it handles pub/sub messaging.\n==> Discard E: Reducing KCL consumers affects reading, not writing throughput.\n\n- A: Exponential backoff reduces retries during peak usage, easing shard throughput pressure. \n- C: Lowering request frequency or size directly mitigates throughput exceedance on shards.",
+      "reply": []
+    },
+    {
+      "user": "Venky786",
+      "selectedAnswer": "",
+      "body": "Answer is A and C\nBatch Efficiency: The `PutRecords` API allows you to send multiple records in a single request, which is generally more efficient than sending individual records with `PutRecord`. Using `PutRecords` can help optimize throughput by reducing the number of API calls and better utilizing the available capacity.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "AC",
+      "body": "AC is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Baba_Eni",
+      "selectedAnswer": "AC",
+      "body": "AC is the best answer. When there is throttling, it is best practise to implement retries with exponential backoff.",
+      "reply": []
+    },
+    {
+      "user": "ezredame",
+      "selectedAnswer": "BC",
+      "body": "I think this is really tricky question. To get this exception, the request rate for the stream is too high, or the requested data is too large for the available throughput. Reduce the frequency or size of your requests. So we can \"Reduce the frequency and/or size of the requests\" also decrease the size with \"Use a PutRecord API instead of PutRecords\"\n\nThe API already implements retries with exponential backoff. So there is no need for A.",
+      "reply": [
+        {
+          "user": "eboehm2",
+          "body": "I thought this at first too, but I was doing some additional reading and using the PutRecord API over PutRecords is wrong as it could actually make the problem worse as producers may make too many rapid requests to write to the stream\nhttps://repost.aws/knowledge-center/kinesis-data-stream-throttling"
+        },
+        {
+          "user": "Majong",
+          "body": "Can you please add a link where I can find this information. From what I can read on AWS is that you can implement exponential backoff but it is not by default."
+        }
+      ]
+    },
+    {
+      "user": "eboehm2",
+      "selectedAnswer": "",
+      "body": "I thought this at first too, but I was doing some additional reading and using the PutRecord API over PutRecords is wrong as it could actually make the problem worse as producers may make too many rapid requests to write to the stream\nhttps://repost.aws/knowledge-center/kinesis-data-stream-throttling",
+      "reply": []
+    },
+    {
+      "user": "Majong",
+      "selectedAnswer": "",
+      "body": "Can you please add a link where I can find this information. From what I can read on AWS is that you can implement exponential backoff but it is not by default.",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "AC",
+      "body": "A and C\nhttps://aws.amazon.com/premiumsupport/knowledge-center/kinesis-data-stream-throttling-errors/",
+      "reply": []
+    },
+    {
+      "user": "aragon_saa",
+      "selectedAnswer": "",
+      "body": "AC\nhttps://www.examtopics.com/discussions/amazon/view/69142-exam-aws-certified-developer-associate-topic-1-question-370/",
+      "reply": [
+        {
+          "user": "yashika2005",
+          "body": "thanks a lotttt!"
+        }
+      ]
+    },
+    {
+      "user": "yashika2005",
+      "selectedAnswer": "",
+      "body": "thanks a lotttt!",
+      "reply": []
+    }
+  ]
+}

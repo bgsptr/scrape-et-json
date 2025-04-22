@@ -1,0 +1,253 @@
+{
+  "id": "102900",
+  "question": "question-23",
+  "body": "A company has a multi-node Windows legacy application that runs on premises. The application uses a network shared folder as a centralized configuration repository to store configuration files in .xml format. The company is migrating the application to Amazon EC2 instances. As part of the migration to AWS, a developer must identify a solution that provides high availability for the repository.\nWhich solution will meet this requirement MOST cost-effectively?\nA. Mount an Amazon Elastic Block Store (Amazon EBS) volume onto one of the EC2 instances. Deploy a file system on the EBS volume. Use the host operating system to share a folder. Update the application code to read and write configuration files from the shared folder.\nB. Deploy a micro EC2 instance with an instance store volume. Use the host operating system to share a folder. Update the application code to read and write configuration files from the shared folder.\nC. Create an Amazon S3 bucket to host the repository. Migrate the existing .xml files to the S3 bucket. Update the application code to use the AWS SDK to read and write configuration files from Amazon S3.\nD. Create an Amazon S3 bucket to host the repository. Migrate the existing .xml files to the S3 bucket. Mount the S3 bucket to the EC2 instances as a local volume. Update the application code to read and write configuration files from the disk.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "shahs10",
+      "selectedAnswer": "",
+      "body": "Why is not there EFS to replace shared file system",
+      "reply": [
+        {
+          "user": "albert_kuo",
+          "body": "Windows legacy application"
+        },
+        {
+          "user": "[Removed]",
+          "body": "This is what I was looking for - but not an option"
+        },
+        {
+          "user": "alexandru_tata",
+          "body": "EFS would not have been an option. It does not work for Linux: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/AmazonEFS.html"
+        },
+        {
+          "user": "serverlessme",
+          "body": "It does not work for Windows you meant to say?"
+        },
+        {
+          "user": "nmc12",
+          "body": "it is best solution. But we can use S3 without EFS"
+        }
+      ]
+    },
+    {
+      "user": "albert_kuo",
+      "selectedAnswer": "",
+      "body": "Windows legacy application",
+      "reply": []
+    },
+    {
+      "user": "[Removed]",
+      "selectedAnswer": "",
+      "body": "This is what I was looking for - but not an option",
+      "reply": [
+        {
+          "user": "alexandru_tata",
+          "body": "EFS would not have been an option. It does not work for Linux: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/AmazonEFS.html"
+        },
+        {
+          "user": "serverlessme",
+          "body": "It does not work for Windows you meant to say?"
+        }
+      ]
+    },
+    {
+      "user": "alexandru_tata",
+      "selectedAnswer": "",
+      "body": "EFS would not have been an option. It does not work for Linux: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/AmazonEFS.html",
+      "reply": [
+        {
+          "user": "serverlessme",
+          "body": "It does not work for Windows you meant to say?"
+        }
+      ]
+    },
+    {
+      "user": "serverlessme",
+      "selectedAnswer": "",
+      "body": "It does not work for Windows you meant to say?",
+      "reply": []
+    },
+    {
+      "user": "nmc12",
+      "selectedAnswer": "",
+      "body": "it is best solution. But we can use S3 without EFS",
+      "reply": []
+    },
+    {
+      "user": "Bibay",
+      "selectedAnswer": "",
+      "body": "c\nOption C is the most cost-effective solution to provide high availability for the centralized configuration repository. Amazon S3 provides a highly durable and available object storage service. S3 stores objects redundantly across multiple devices and multiple facilities within a region, making it highly available. The developer can migrate the existing .xml files to an S3 bucket and update the application code to use the AWS SDK to read and write configuration files from Amazon S3.\n\nOption A and B are not the best solutions as they require the developer to use the host operating system to share a folder, which can lead to a single point of failure.\n\nOption D is not a recommended solution as it is not a direct way of accessing an S3 bucket. While it is possible to use third-party tools to mount an S3 bucket as a local disk, it can lead to performance issues and additional complexity.",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "C",
+      "body": "A) Eliminated - We need to deploy and maintain a file system on EBS, which could lead to additional complexity\n\nB) Eliminated - Instance store volumes are ephemeral and will be lost if the EC2 instance is stopped or terminated.\n\nD) Eliminated - Mounting S3 directly as a volume is not natively supported without third-party solutions or tools like s3fs, which could add unnecessary complexity and overhead.",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "C",
+      "body": "Keyword: multi-node, Windows legacy application, shared folder as a centralized configuration repository, high availability, MOST cost-effectively\n\nmaybe many of you think EFS first when reach 'shared folder', but EFS is not work with 'Windows legacy application', it depnds on OS, MOST cost-effectively\n\n==> discard B: when you reboot or turn off EC2, data in 'instance store volumn will be lost, violate 'high availability '\n==> discard A: EBS at time, can link only one EC2, violate 'shared folder'\n==> discard D: complexity than option C, you must setup more, then maintain many things afterward, violate 'MOST cost-effectively'\n\nC is match with all requirement",
+      "reply": []
+    },
+    {
+      "user": "f271c23",
+      "selectedAnswer": "D",
+      "body": "I am not sure why D is not the best option. This could give a no code solution to legacy application.",
+      "reply": []
+    },
+    {
+      "user": "Venky786",
+      "selectedAnswer": "",
+      "body": "Why A is not correct answer ?",
+      "reply": [
+        {
+          "user": "AWSArt",
+          "body": "Because EBS is way more costly than s3"
+        }
+      ]
+    },
+    {
+      "user": "AWSArt",
+      "selectedAnswer": "",
+      "body": "Because EBS is way more costly than s3",
+      "reply": []
+    },
+    {
+      "user": "tgood",
+      "selectedAnswer": "C",
+      "body": "i think EFS should be added to answer",
+      "reply": [
+        {
+          "user": "serverlessme",
+          "body": "EFS does not work for Windows."
+        }
+      ]
+    },
+    {
+      "user": "serverlessme",
+      "selectedAnswer": "",
+      "body": "EFS does not work for Windows.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "teddyjr",
+      "selectedAnswer": "",
+      "body": "S3 mountpoint does not support editing files or deleting directories. \nSo the answer is C",
+      "reply": []
+    },
+    {
+      "user": "Dikshika",
+      "selectedAnswer": "",
+      "body": "D since we have s3 mountpoint available now\nhttps://aws.amazon.com/about-aws/whats-new/2023/03/mountpoint-amazon-s3/\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/mountpoint.html",
+      "reply": []
+    },
+    {
+      "user": "someone234",
+      "selectedAnswer": "C",
+      "body": "Option C is the most cost-effective solution to provide high availability for the centralized configuration repository. Amazon S3 provides a highly durable and available object storage service. S3 stores objects redundantly across multiple devices and multiple facilities within a region, making it highly available. The developer can migrate the existing .xml files to an S3 bucket and update the application code to use the AWS SDK to read and write configuration files from Amazon S3.",
+      "reply": []
+    },
+    {
+      "user": "gqs3119",
+      "selectedAnswer": "D",
+      "body": "Today It's D.\nFew months ago I'd pick C, but since then amazon released mountpoint for linux, so it's possible to mount S3 on any major Linux distro, by using WSL 2 it is also possible to mount S3 on Windows. Doing so cuts the cost of modifying the legacy application. \nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/mountpoint-installation.html\nhttps://aws.plainenglish.io/mounting-amazon-s3-buckets-on-windows-52b5f1434cd7",
+      "reply": [
+        {
+          "user": "letsLearn_001",
+          "body": "Mount doesn't support for Windows."
+        },
+        {
+          "user": "squeeze_talus0y",
+          "body": "Your solution overcomplicates things."
+        },
+        {
+          "user": "SD_CS",
+          "body": "But the apps are legacy windows app so mountpoints will not help - my opinion"
+        }
+      ]
+    },
+    {
+      "user": "letsLearn_001",
+      "selectedAnswer": "",
+      "body": "Mount doesn't support for Windows.",
+      "reply": []
+    },
+    {
+      "user": "squeeze_talus0y",
+      "selectedAnswer": "",
+      "body": "Your solution overcomplicates things.",
+      "reply": []
+    },
+    {
+      "user": "SD_CS",
+      "selectedAnswer": "",
+      "body": "But the apps are legacy windows app so mountpoints will not help - my opinion",
+      "reply": []
+    },
+    {
+      "user": "leonardoliveros",
+      "selectedAnswer": "C",
+      "body": "EBS and Instance Store just attached one instance so these's expense and don't scalable, and S3 it's the best option to handle the repository of .xml because it's very scalable and low-cost",
+      "reply": []
+    },
+    {
+      "user": "HanTran0795",
+      "selectedAnswer": "D",
+      "body": "It is a Windows legacy application. What if the sdk doesn't support the app? I choose D.",
+      "reply": [
+        {
+          "user": "ronn555",
+          "body": "C\nS3 Buckets can only be mounted directly to Linux EC2 instances"
+        },
+        {
+          "user": "gqs3119",
+          "body": "It can be mounted to many distros today, and using WSL2 also to Windows. \nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/mountpoint-installation.html"
+        }
+      ]
+    },
+    {
+      "user": "ronn555",
+      "selectedAnswer": "",
+      "body": "C\nS3 Buckets can only be mounted directly to Linux EC2 instances",
+      "reply": [
+        {
+          "user": "gqs3119",
+          "body": "It can be mounted to many distros today, and using WSL2 also to Windows. \nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/mountpoint-installation.html"
+        }
+      ]
+    },
+    {
+      "user": "gqs3119",
+      "selectedAnswer": "",
+      "body": "It can be mounted to many distros today, and using WSL2 also to Windows. \nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/mountpoint-installation.html",
+      "reply": []
+    },
+    {
+      "user": "AhmedAliHashmi",
+      "selectedAnswer": "",
+      "body": "Correct answer is C",
+      "reply": []
+    },
+    {
+      "user": "senadevtrd",
+      "selectedAnswer": "C",
+      "body": "In theses options, this is more correct",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "C",
+      "body": "C\nhttps://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/AmazonS3.html\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingAWSSDK.html",
+      "reply": []
+    }
+  ]
+}
