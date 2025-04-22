@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   push:
     branch: main
-  schedule:
-    - cron: "0 6 * * *"
+  # schedule:
+  #   - cron: "0 6 * * *"
 
 jobs:
   scrape-and-push:
