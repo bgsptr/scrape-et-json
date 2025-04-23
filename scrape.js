@@ -23,7 +23,7 @@ async function scraper() {
   const scrapedQuestions = [];
 
   const startId = 68000; // set as you want
-  const latestId = 69000; // latest updated id in exam web
+  const latestId = 69000; // latest updated id in exam web topic
 
   try {
     for (let i = startId; i <= latestId; i++) {
