@@ -1,0 +1,60 @@
+{
+  "id": "103517",
+  "question": "question-34",
+  "body": "A developer is creating a template that uses AWS CloudFormation to deploy an application. The application is serverless and uses Amazon API Gateway, Amazon DynamoDB, and AWS Lambda.\nWhich AWS service or tool should the developer use to define serverless resources in YAML?\nA. CloudFormation serverless intrinsic functions\nB. AWS Elastic Beanstalk\nC. AWS Serverless Application Model (AWS SAM)\nD. AWS Cloud Development Kit (AWS CDK)\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Bibay",
+      "selectedAnswer": "",
+      "body": "The recommended AWS service for defining serverless resources in YAML is the AWS Serverless Application Model (AWS SAM).\n\nAWS SAM is an open-source framework that extends AWS CloudFormation to provide a simplified way to define the Amazon API Gateway APIs, AWS Lambda functions, and Amazon DynamoDB tables needed by your serverless application. You can define your serverless resources in a YAML template and then use the AWS SAM CLI to package and deploy your application.\n\nAWS CloudFormation serverless intrinsic functions can also be used to define serverless resources in YAML, but they have some limitations compared to AWS SAM. AWS Elastic Beanstalk is a platform as a service (PaaS) that is not serverless specific, while the AWS Cloud Development Kit (AWS CDK) is an alternative to YAML-based templates that uses familiar programming languages like TypeScript, Python, and Java to define AWS infrastructure.",
+      "reply": [
+        {
+          "user": "jipark",
+          "body": "your explanation helps me a lot !"
+        }
+      ]
+    },
+    {
+      "user": "jipark",
+      "selectedAnswer": "",
+      "body": "your explanation helps me a lot !",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "C",
+      "body": "C\nhttps://aws.amazon.com/serverless/sam/",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "C",
+      "body": "AWS SAM is specifically designed for serverless applications.",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "C",
+      "body": "==> Discard A. CloudFormation serverless intrinsic functions: Does not exist; CloudFormation has no intrinsic functions specifically for serverless. \n==> Discard B. AWS Elastic Beanstalk: Not serverless; used for managing EC2-based applications. \n==> Discard D. AWS Cloud Development Kit (AWS CDK): Does not use YAML; CDK defines infrastructure using programming languages.\n\n\nC. AWS Serverless Application Model (AWS SAM): Extends CloudFormation, specifically designed for defining and deploying serverless resources (API Gateway, DynamoDB, Lambda) in YAML with simplified syntax. It perfectly aligns with the requirements in the question: serverless resources, YAML, and CloudFormation",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Jonalb",
+      "selectedAnswer": "",
+      "body": "O AWS Serverless Application Model (AWS SAM) é uma extensão do AWS CloudFormation que facilita a definição de aplicações sem servidor. AWS SAM fornece modelos mais simples para configurar recursos sem servidor como AWS Lambda, Amazon API Gateway e Amazon DynamoDB. Os modelos podem ser definidos em YAML ou JSON.\nC",
+      "reply": []
+    },
+    {
+      "user": "svrnvtr",
+      "selectedAnswer": "C",
+      "body": "C is the answer",
+      "reply": []
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "id": "103515",
+  "question": "question-32",
+  "body": "A developer needs to perform geographic load testing of an API. The developer must deploy resources to multiple AWS Regions to support the load testing of the API.\nHow can the developer meet these requirements without additional application code?\nA. Create and deploy an AWS Lambda function in each desired Region. Configure the Lambda function to create a stack from an AWS CloudFormation template in that Region when the function is invoked.\nB. Create an AWS CloudFormation template that defines the load test resources. Use the AWS CLI create-stack-set command to create a stack set in the desired Regions.\nC. Create an AWS Systems Manager document that defines the resources. Use the document to create the resources in the desired Regions.\nD. Create an AWS CloudFormation template that defines the load test resources. Use the AWS CLI deploy command to create a stack from the template in each Region.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Bibay",
+      "selectedAnswer": "B",
+      "body": "B. Create an AWS CloudFormation template that defines the load test resources. Use the AWS CLI create-stack-set command to create a stack set in the desired Regions.\n\nAWS CloudFormation StackSets allow developers to deploy CloudFormation stacks across multiple AWS accounts and regions with a single CloudFormation template. By using the AWS CLI create-stack-set command, the developer can deploy the same CloudFormation stack to multiple regions without additional application code, thereby meeting the requirement for geographic load testing of an API.",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "B",
+      "body": "B\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html\nhttps://awscli.amazonaws.com/v2/documentation/api/2.1.30/reference/cloudformation/create-stack-set.html",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "A) Eliminated: Requires extra steps (deploying Lambda functions) and additional code, making it not optimal.\n\nB) Correct - CloudFormation stack sets are specifically designed for deploying resources across multiple Regions and accounts.\n\nC) Eliminated - AWS Systems Manager documents are used to automate tasks and manage instances, not specifically for deploying infrastructure across multiple Regions.",
+      "reply": [
+        {
+          "user": "sumanshu",
+          "body": "D) Eliminated - Requires you to manually deploy the CloudFormation stack in each Region individually using the deploy command."
+        },
+        {
+          "user": "sumanshu",
+          "body": "D) Eliminated - the deploy command is designed for deploying a single CloudFormation stack in a specific region. If you need to deploy the same stack in multiple regions, you would have to run the deploy command separately for each region, specifying the appropriate region each time"
+        },
+        {
+          "user": "sumanshu",
+          "body": "B) Correct - Using the create-stack-set command in AWS CloudFormation allows you to deploy resources across multiple AWS Regions with a single command. This is achieved by creating a stack set, which is a collection of AWS CloudFormation stacks that can be managed as a single unit across multiple accounts and regions. Once the stack set is created, you can add stack instances in the desired regions,"
+        }
+      ]
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "",
+      "body": "D) Eliminated - Requires you to manually deploy the CloudFormation stack in each Region individually using the deploy command.",
+      "reply": [
+        {
+          "user": "sumanshu",
+          "body": "D) Eliminated - the deploy command is designed for deploying a single CloudFormation stack in a specific region. If you need to deploy the same stack in multiple regions, you would have to run the deploy command separately for each region, specifying the appropriate region each time"
+        },
+        {
+          "user": "sumanshu",
+          "body": "B) Correct - Using the create-stack-set command in AWS CloudFormation allows you to deploy resources across multiple AWS Regions with a single command. This is achieved by creating a stack set, which is a collection of AWS CloudFormation stacks that can be managed as a single unit across multiple accounts and regions. Once the stack set is created, you can add stack instances in the desired regions,"
+        }
+      ]
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "",
+      "body": "D) Eliminated - the deploy command is designed for deploying a single CloudFormation stack in a specific region. If you need to deploy the same stack in multiple regions, you would have to run the deploy command separately for each region, specifying the appropriate region each time",
+      "reply": [
+        {
+          "user": "sumanshu",
+          "body": "B) Correct - Using the create-stack-set command in AWS CloudFormation allows you to deploy resources across multiple AWS Regions with a single command. This is achieved by creating a stack set, which is a collection of AWS CloudFormation stacks that can be managed as a single unit across multiple accounts and regions. Once the stack set is created, you can add stack instances in the desired regions,"
+        }
+      ]
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "",
+      "body": "B) Correct - Using the create-stack-set command in AWS CloudFormation allows you to deploy resources across multiple AWS Regions with a single command. This is achieved by creating a stack set, which is a collection of AWS CloudFormation stacks that can be managed as a single unit across multiple accounts and regions. Once the stack set is created, you can add stack instances in the desired regions,",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "B",
+      "body": "==> Discard A: Requires additional application code (Lambda), violating \"without additional application code.\". Beside, Creating and managing multiple Lambda functions increases workload and is inefficient for large-scale deployment.\n==> Discard C: AWS Systems Manager is not designed for infrastructure deployment, violating \"deploy resources to multiple AWS Regions.\"\n==> Discard D: Requires manual deployment per Region, violating \"deploy resources to multiple AWS Regions\" efficiently. This means you have to repeat the deployment process manually for each region, which is time-consuming and error-prone.\n\nB: CloudFormation StackSet automates multi-region deployments, meeting \"deploy resources to multiple AWS Regions\" efficiently without additional application code.",
+      "reply": []
+    },
+    {
+      "user": "ltfalcon",
+      "selectedAnswer": "",
+      "body": "B according to chatgpt :)",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "hsinchang",
+      "selectedAnswer": "",
+      "body": "in desired Regions better than in each Region.",
+      "reply": []
+    },
+    {
+      "user": "rlnd2000",
+      "selectedAnswer": "C",
+      "body": "If using Edge-Optimized endpoint, then the certificate must be in us-east-1\nIf using Regional endpoint, the certificate must be in the API Gateway region",
+      "reply": []
+    },
+    {
+      "user": "svrnvtr",
+      "selectedAnswer": "B",
+      "body": "B\nhttps://aws.amazon.com/ru/about-aws/whats-new/2021/04/deploy-cloudformation-stacks-concurrently-across-multiple-aws-regions-using-aws-cloudformation-stacksets/",
+      "reply": []
+    }
+  ]
+}

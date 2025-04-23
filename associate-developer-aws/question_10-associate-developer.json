@@ -1,0 +1,120 @@
+{
+  "id": "103335",
+  "question": "question-10",
+  "body": "A developer is deploying a new application to Amazon Elastic Container Service (Amazon ECS). The developer needs to securely store and retrieve different types of variables. These variables include authentication information for a remote API, the URL for the API, and credentials. The authentication information and API URL must be available to all current and future deployed versions of the application across development, testing, and production environments.\nHow should the developer retrieve the variables with the FEWEST application changes?\nA. Update the application to retrieve the variables from AWS Systems Manager Parameter Store. Use unique paths in Parameter Store for each variable in each environment. Store the credentials in AWS Secrets Manager in each environment.\nB. Update the application to retrieve the variables from AWS Key Management Service (AWS KMS). Store the API URL and credentials as unique keys for each environment.\nC. Update the application to retrieve the variables from an encrypted file that is stored with the application. Store the API URL and credentials in unique files for each environment.\nD. Update the application to retrieve the variables from each of the deployed environments. Define the authentication information and API URL in the ECS task definition as unique names during the deployment process.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "geekdamsel",
+      "selectedAnswer": "",
+      "body": "Correct answer is A.",
+      "reply": []
+    },
+    {
+      "user": "Warlord_92",
+      "selectedAnswer": "A",
+      "body": "The application has credentials and URL, so it’s convenient to store them in ssm parameter store restive them.",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "A",
+      "body": "B) Eliminated - It cannot directly store variables such as the API URL or credentials\nD) Eliminated - Storing sensitive information like credentials directly in ECS task definitions is not secure",
+      "reply": [
+        {
+          "user": "sumanshu",
+          "body": "C) Eliminated - Storing variables in encrypted files adds operational overhead. Managing separate files for each environment can quickly become cumbersome."
+        }
+      ]
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "",
+      "body": "C) Eliminated - Storing variables in encrypted files adds operational overhead. Managing separate files for each environment can quickly become cumbersome.",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "A",
+      "body": "keyword: FEWEST application changes\n\n==> A: This minimizes code changes as the retrieval method remains consistent across environments; only the Parameter Store paths need updating. Secrets Manager securely stores sensitive credentials.",
+      "reply": []
+    },
+    {
+      "user": "Tee400",
+      "selectedAnswer": "A",
+      "body": "AWS Systems Manager Parameter Store is a service that allows you to securely store configuration data such as API URLs, credentials, and other variables. By updating the application to retrieve the variables from Parameter Store, you can separate the configuration from the application code, making it easier to manage and update the variables without modifying the application itself. Storing the credentials in AWS Secrets Manager provides an additional layer of security for sensitive information.",
+      "reply": []
+    },
+    {
+      "user": "badsati",
+      "selectedAnswer": "",
+      "body": "Answer is A\n\nAWS Systems Manager Parameter Store and AWS Secrets Manager are designed for securely storing and managing sensitive information such as credentials, API URLs, and configuration variables.\nUsing AWS Systems Manager Parameter Store allows the developer to centrally manage configuration variables across different environments (development, testing, production) without requiring application code changes. Each variable can have a unique path in Parameter Store, ensuring separation and organization.",
+      "reply": []
+    },
+    {
+      "user": "ez_24",
+      "selectedAnswer": "",
+      "body": "Correct Answer is A \n\nOption B, using AWS Key Management Service (AWS KMS), is not ideal for this scenario primarily because AWS KMS is designed for creating and controlling encryption keys, not for storing configuration data or credentials. KMS keys are used to encrypt and decrypt data, rather than directly storing or managing it. For securely managing and retrieving application configuration data and sensitive information like API credentials, Systems Manager Parameter Store and AWS Secrets Manager are more appropriate, offering direct support for these use cases with better integration for applications.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Prosen2522",
+      "selectedAnswer": "A",
+      "body": "SSM parameter store with proper posh is the answer.",
+      "reply": []
+    },
+    {
+      "user": "leonardoliveros",
+      "selectedAnswer": "A",
+      "body": "You put the different variables for each environment, is the best solution because it's isolated between environment",
+      "reply": []
+    },
+    {
+      "user": "vmintam",
+      "selectedAnswer": "",
+      "body": "i think corrent is A, but why is B ?",
+      "reply": []
+    },
+    {
+      "user": "alihaider907",
+      "selectedAnswer": "",
+      "body": "I think the wording of option A has a typo first it mentioned \" Update the application to retrieve the variables from AWS Systems Manager Parameter Store\" then it says \"Store the credentials in AWS Secrets Manager in each environment.\"",
+      "reply": []
+    },
+    {
+      "user": "meetparag81",
+      "selectedAnswer": "",
+      "body": "A is correct",
+      "reply": []
+    },
+    {
+      "user": "jayvarma",
+      "selectedAnswer": "",
+      "body": "Option A is correct. The AWS Systems Manager Paramter Store's primary purpose is to secure sensitive information such as API URLs, credentials and the variables that we store in it.",
+      "reply": []
+    },
+    {
+      "user": "MrTee",
+      "selectedAnswer": "A",
+      "body": "his solution allows the developer to securely store and retrieve different types of variables, including authentication information for a remote API, the URL for the API, and credentials.",
+      "reply": []
+    },
+    {
+      "user": "qsergii",
+      "selectedAnswer": "",
+      "body": "Definitely A",
+      "reply": []
+    },
+    {
+      "user": "fqmark",
+      "selectedAnswer": "",
+      "body": "it should be a, kms is used for encryption: https://aws.amazon.com/kms/",
+      "reply": []
+    }
+  ]
+}

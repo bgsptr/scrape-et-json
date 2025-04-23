@@ -1,0 +1,73 @@
+{
+  "id": "103467",
+  "question": "question-19",
+  "body": "A company is offering APIs as a service over the internet to provide unauthenticated read access to statistical information that is updated daily. The company uses Amazon API Gateway and AWS Lambda to develop the APIs. The service has become popular, and the company wants to enhance the responsiveness of the APIs.\nWhich action can help the company achieve this goal?\nA. Enable API caching in API Gateway.\nB. Configure API Gateway to use an interface VPC endpoint.\nC. Enable cross-origin resource sharing (CORS) for the APIs.\nD. Configure usage plans and API keys in API Gateway.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Bibay",
+      "selectedAnswer": "A",
+      "body": "A. Enable API caching in API Gateway can help the company enhance the responsiveness of the APIs. By enabling caching, API Gateway stores the responses from the API and returns them for subsequent requests instead of forwarding the requests to Lambda. This reduces the number of requests to Lambda, improves API performance, and reduces latency for users.",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "A",
+      "body": "A) Cached data reduces calls to the backend (in this case, Lambda) and serves responses directly from the cache. Since the data updates only once per day, caching is highly effective\n\nB) Eliminated - This is useful for securing private APIs inside a VPC, but the scenario involves public, unauthenticated APIs over the internet\n\nC) Eliminated - CORS is related to resolving client-side browser compatibility issues\n\nD) Eliminated - Usage plans and API keys manage access control and rate limiting, which are useful for monetization",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "A",
+      "body": "keyword: updated daily, enhance the responsiveness\n\n=> A",
+      "reply": []
+    },
+    {
+      "user": "ahadh7621",
+      "selectedAnswer": "A",
+      "body": "Answer is A",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "badsati",
+      "selectedAnswer": "A",
+      "body": "Answer is A. Caching will enhance the responsiveness of the APIs.",
+      "reply": []
+    },
+    {
+      "user": "leonardoliveros",
+      "selectedAnswer": "A",
+      "body": "Caching the request is the best option because the request don't forwared to Lambda Function and this reduces latency and also recude costs",
+      "reply": []
+    },
+    {
+      "user": "Tony88",
+      "selectedAnswer": "A",
+      "body": "Go with A.\nA. Caching is the general solution to improve performance of non-frequently change data. (in this case, daily, not really frequent)\nB. interface endpoint is a VPC concept, in this architect we don't need to concern with VPC. For those who are interested, go check with interface endpoint and gateway endpoint.\nC. CORS is short for cross origin resource share. it is a distractor here. You may consider CORS when your client cannot access to your API Gateway resource, not when you want to improve the performance.\nD. usage plan is used when your API client's behaviour is predictable, and it can avoid anormal usage.",
+      "reply": []
+    },
+    {
+      "user": "yuruyenucakc",
+      "selectedAnswer": "",
+      "body": "A-> Caching frequently accessed api calls allows reducing process time every time api is called. \n\nB-> You shloud configure VPC if you want to change network security of your application. So it does not neccessarily increase the performance. \n\nC-> CORS (Cross Origin Resource Sharing), allows you to proccess the api calls that comes from outside of your AWS organization.\n Again nothing to do with the performance. One of the use case of this feature is if you want to keep your web app apis reachable from public internet you should enable CORS for it.\nD→ This is mainly for throttling and controlling who can access the API and at what rate. While it's useful for controlling and metering access, it doesn't enhance the responsiveness of the API",
+      "reply": []
+    },
+    {
+      "user": "svrnvtr",
+      "selectedAnswer": "A",
+      "body": "I vote for A",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "A",
+      "body": "A\nhttps://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html",
+      "reply": []
+    }
+  ]
+}

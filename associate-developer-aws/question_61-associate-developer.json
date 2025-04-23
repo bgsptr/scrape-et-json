@@ -1,0 +1,72 @@
+{
+  "id": "103904",
+  "question": "question-61",
+  "body": "A company is building a web application on AWS. When a customer sends a request, the application will generate reports and then make the reports available to the customer within one hour. Reports should be accessible to the customer for 8 hours. Some reports are larger than 1 MB. Each report is unique to the customer. The application should delete all reports that are older than 2 days.\nWhich solution will meet these requirements with the LEAST operational overhead?\nA. Generate the reports and then store the reports as Amazon DynamoDB items that have a specified TTL. Generate a URL that retrieves the reports from DynamoDB. Provide the URL to customers through the web application.\nB. Generate the reports and then store the reports in an Amazon S3 bucket that uses server-side encryption. Attach the reports to an Amazon Simple Notification Service (Amazon SNS) message. Subscribe the customer to email notifications from Amazon SNS.\nC. Generate the reports and then store the reports in an Amazon S3 bucket that uses server-side encryption. Generate a presigned URL that contains an expiration date Provide the URL to customers through the web application. Add S3 Lifecycle configuration rules to the S3 bucket to delete old reports.\nD. Generate the reports and then store the reports in an Amazon RDS database with a date stamp. Generate an URL that retrieves the reports from the RDS database. Provide the URL to customers through the web application. Schedule an hourly AWS Lambda function to delete database records that have expired date stamps.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "gpt_test",
+      "selectedAnswer": "C",
+      "body": "Explanation: Storing the reports in an Amazon S3 bucket provides a cost-effective and scalable solution for handling files larger than 1 MB. Server-side encryption ensures data security. Generating a presigned URL with an expiration date allows the customer to access the report for 8 hours, and S3 Lifecycle configuration rules automatically delete the reports older than 2 days, reducing operational overhead.",
+      "reply": []
+    },
+    {
+      "user": "March2023",
+      "selectedAnswer": "C",
+      "body": "Presigned URL",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "C",
+      "body": "S3 Lifecycle rules can automatically delete objects after 2 days, reducing operational overhead by eliminating the need for custom cleanup logic\n\nA) Eliminated - DynamoDB is not designed to store large objects (e.g., reports larger than 1 MB).\n\nD) Eliminated - Storing large reports in a relational database like RDS is inefficient and costly compared to S3.",
+      "reply": [
+        {
+          "user": "sumanshu",
+          "body": "B) Eliminated - Attaching reports to SNS messages is impractical because SNS is not designed for large file attachments."
+        }
+      ]
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "",
+      "body": "B) Eliminated - Attaching reports to SNS messages is impractical because SNS is not designed for large file attachments.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "C",
+      "body": "The 1MB condition denies the TTL option so C is best",
+      "reply": []
+    },
+    {
+      "user": "LR2023",
+      "selectedAnswer": "",
+      "body": "C\npresigned and lifecycle rules to move",
+      "reply": []
+    },
+    {
+      "user": "ninomfr64",
+      "selectedAnswer": "",
+      "body": "A) DynamoDB cannot store object larger than 400K\nB) SNS cannot send email with attachment - https://repost.aws/questions/QUOvaKJVb3QzOqVENONBZUag/sns-send-file-attachment\nD) the nature or format of the report is not specified, however RDS doent look like a great place to store large document file. Also generating a url to the reports from the RDS database requires some work while it is a native capabilities in S3\n\nC) is a workable solution as S3 is designed to store file objects, it allows to easily generate pre-signed url, and provide lifecycle management rule that allows to expire objects",
+      "reply": []
+    },
+    {
+      "user": "imvb88",
+      "selectedAnswer": "C",
+      "body": "Dynamo DB cannot store object > 400KB -> option A is out immediately. \nLimited access to S3 calls for presigned URL which is option C. C also has lifecycle config to delete old object while B does not have that. \nD is possible but too much effort compared to design pattern in C.",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "C",
+      "body": "C\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html",
+      "reply": []
+    }
+  ]
+}

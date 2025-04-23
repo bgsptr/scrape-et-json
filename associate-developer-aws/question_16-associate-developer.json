@@ -1,0 +1,114 @@
+{
+  "id": "103444",
+  "question": "question-16",
+  "body": "A developer has written an AWS Lambda function. The function is CPU-bound. The developer wants to ensure that the function returns responses quickly.\nHow can the developer improve the function's performance?\nA. Increase the function's CPU core count.\nB. Increase the function's memory.\nC. Increase the function's reserved concurrency.\nD. Increase the function's timeout.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "ihta_2031",
+      "selectedAnswer": "B",
+      "body": "Cpu utilisation => increase memory",
+      "reply": []
+    },
+    {
+      "user": "Kashan6109",
+      "selectedAnswer": "B",
+      "body": "Option B is correct, the only adjustable parameter (in terms of hardware) is lambda memory. Increasing lambda memory will result in automatic adjustment of CPU.\n\nLambda memory is adjustable from 128 MB upto 10 GB",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "A) Eliminated - We cannot directly control the CPU core count.\nB) Correct - increasing memory not only gives more memory but also allocates more CPU power to the function.\nC) Eliminated - Reserved concurrency controls how many instances of the function can run at the same time, but it doesn’t improve the performance of a single function execution\nD) Eliminated - Increasing the timeout allows the function to run longer, but it doesn’t improve the speed of the function",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "B",
+      "body": "==> discard A: can't directly increase lambda CPU\n==> discard C: concurrecny for handling many tasks at same time capacibility, not increase speed response when CPU-bound\n=> discard D: be not relevant, increase maximum time to wait function to finish\n\nB: with lambda, you can increase memory, implicity CPU usage for lambda also up too",
+      "reply": []
+    },
+    {
+      "user": "rue_",
+      "selectedAnswer": "B",
+      "body": "the only way to adjust the vCPU assigned to your function, is through an increase in memory",
+      "reply": []
+    },
+    {
+      "user": "tgood",
+      "selectedAnswer": "B",
+      "body": "B is correct",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "leonardoliveros",
+      "selectedAnswer": "B",
+      "body": "If you increase the memory on a Lambda Function hence your vCPU also increased",
+      "reply": []
+    },
+    {
+      "user": "james2033",
+      "selectedAnswer": "B",
+      "body": "Quote 'If a function is CPU-, network- or memory-bound, then changing the memory setting can dramatically improve its performance.' at https://docs.aws.amazon.com/lambda/latest/operatorguide/computing-power.html",
+      "reply": []
+    },
+    {
+      "user": "Majong",
+      "selectedAnswer": "B",
+      "body": "Lambda allocates CPU power in proportion to the amount of memory configured. You can read more here:\n\nhttps://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console",
+      "reply": []
+    },
+    {
+      "user": "Devon_Fazekas",
+      "selectedAnswer": "",
+      "body": "Increasing the function's CPU core count is not an option in AWS Lambda. AWS Lambda automatically manages the allocation of CPU power and only allows scaling of memory.",
+      "reply": []
+    },
+    {
+      "user": "geekdamsel",
+      "selectedAnswer": "",
+      "body": "Correct answer is B.",
+      "reply": []
+    },
+    {
+      "user": "Bibay",
+      "selectedAnswer": "B",
+      "body": ". Increase the function's memory.\n\nThe performance of an AWS Lambda function is primarily determined by the amount of allocated memory. When you increase the memory, you also increase the available CPU and network resources. This can result in faster execution times, especially for CPU-bound functions. Increasing the CPU core count, reserved concurrency, or timeout may not have as significant an impact on performance as increasing memory.",
+      "reply": []
+    },
+    {
+      "user": "blathul",
+      "selectedAnswer": "B",
+      "body": "Adding more memory proportionally increases the amount of CPU, increasing the overall computational power available. If a function is CPU-, network- or memory-bound, then changing the memory setting can dramatically improve its performance.\nhttps://docs.aws.amazon.com/lambda/latest/operatorguide/computing-power.html",
+      "reply": []
+    },
+    {
+      "user": "Syre",
+      "selectedAnswer": "A",
+      "body": "On this particular question the answer is A.\nwhile increasing memory can indirectly improve CPU performance, it's not always the most effective solution for CPU-bound functions, and increasing the CPU core count is usually a better option for improving performance in such cases. Please note - CPU-Bound functions. This question is to trick you",
+      "reply": [
+        {
+          "user": "Majong",
+          "body": "In this particular question it is B. You are right that in normal question it might be A but for a Lambda function you are not able to change the CPU. Lambda allocates CPU power in proportion to the amount of memory configured. You can read more here:\n\nhttps://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console"
+        }
+      ]
+    },
+    {
+      "user": "Majong",
+      "selectedAnswer": "",
+      "body": "In this particular question it is B. You are right that in normal question it might be A but for a Lambda function you are not able to change the CPU. Lambda allocates CPU power in proportion to the amount of memory configured. You can read more here:\n\nhttps://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "B",
+      "body": "B\nhttps://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-memory-console",
+      "reply": []
+    }
+  ]
+}

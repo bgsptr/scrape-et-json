@@ -1,0 +1,49 @@
+{
+  "id": "103686",
+  "question": "question-65",
+  "body": "A developer is building a new application on AWS. The application uses an AWS Lambda function that retrieves information from an Amazon DynamoDB table. The developer hard coded the DynamoDB table name into the Lambda function code. The table name might change over time. The developer does not want to modify the Lambda code if the table name changes.\nWhich solution will meet these requirements MOST efficiently?\nA. Create a Lambda environment variable to store the table name. Use the standard method for the programming language to retrieve the variable.\nB. Store the table name in a file. Store the file in the /tmp folder. Use the SDK for the programming language to retrieve the table name.\nC. Create a file to store the table name. Zip the file and upload the file to the Lambda layer. Use the SDK for the programming language to retrieve the table name.\nD. Create a global variable that is outside the handler in the Lambda function to store the table name.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Dun6",
+      "selectedAnswer": "A",
+      "body": "You need to use environment variables",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "A",
+      "body": "A\nhttps://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "A",
+      "body": "Environment variables are a built-in feature of AWS Lambda",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "mma34",
+      "selectedAnswer": "A",
+      "body": "Why are some answers wrong on here?",
+      "reply": []
+    },
+    {
+      "user": "eberhe900",
+      "selectedAnswer": "A",
+      "body": "You can use environment variables to adjust your function's behavior without updating code. An environment variable is a pair of strings that is stored in a function's version-specific configuration. The Lambda runtime makes environment variables available to your code and sets additional environment variables that contain information about the function and invocation request.",
+      "reply": []
+    },
+    {
+      "user": "gpt_test",
+      "selectedAnswer": "A",
+      "body": "Explanation: Using Lambda environment variables allows you to store configuration information separate from your code, which makes it easy to update the table name without changing the Lambda function code. AWS Lambda provides built-in support for environment variables, making it the most efficient solution.",
+      "reply": []
+    }
+  ]
+}

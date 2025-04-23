@@ -1,0 +1,186 @@
+{
+  "id": "103807",
+  "question": "question-60",
+  "body": "An ecommerce company is using an AWS Lambda function behind Amazon API Gateway as its application tier. To process orders during checkout, the application calls a POST API from the frontend. The POST API invokes the Lambda function asynchronously. In rare situations, the application has not processed orders. The Lambda application logs show no errors or failures.\nWhat should a developer do to solve this problem?\nA. Inspect the frontend logs for API failures. Call the POST API manually by using the requests from the log file.\nB. Create and inspect the Lambda dead-letter queue. Troubleshoot the failed functions. Reprocess the events.\nC. Inspect the Lambda logs in Amazon CloudWatch for possible errors. Fix the errors.\nD. Make sure that caching is disabled for the POST API in API Gateway.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "[Removed]",
+      "selectedAnswer": "",
+      "body": "B. Create and inspect the Lambda dead-letter queue. Troubleshoot the failed functions. Reprocess the events.\n\nWhen Lambda functions are invoked asynchronously, there is a possibility that the function fails without logging errors if there is no proper error handling. Configuring a dead-letter queue (DLQ) allows you to capture and review events that were not processed successfully. By creating and inspecting the DLQ, you can identify and troubleshoot the issues with the failed Lambda invocations and reprocess those events if needed. This will help ensure that no orders are missed without leaving any errors in the Lambda logs.",
+      "reply": []
+    },
+    {
+      "user": "gpt_test",
+      "selectedAnswer": "B",
+      "body": "Explanation: By configuring a dead-letter queue (DLQ) for the Lambda function, you can capture asynchronous invocation events that were not successfully processed. This allows you to troubleshoot the failed functions and reprocess the events, ensuring that orders are not missed. The DLQ will hold information about the failed events, allowing you to analyze and resolve the issue.",
+      "reply": [
+        {
+          "user": "rlnd2000",
+          "body": "as you said \"... events that were not successfully processed.\" but there is not failure in Lambda log, so the lambda was not invoked by the POST API event. B is id not the answer."
+        },
+        {
+          "user": "kavi00203",
+          "body": "Its an asynchronous invocation events, that's y there is no log.\nBecause in asynchronous its not mandatory to get the result after invocation events."
+        },
+        {
+          "user": "TeeTheMan",
+          "body": "Asynchronous invocation means that the caller of the lambda does not wait for a response. The type of invocation has no effect on the lambda having logs or not. I picked A, because the lambda not having logs suggests something’s gone wrong upstream of the lambda."
+        }
+      ]
+    },
+    {
+      "user": "rlnd2000",
+      "selectedAnswer": "",
+      "body": "as you said \"... events that were not successfully processed.\" but there is not failure in Lambda log, so the lambda was not invoked by the POST API event. B is id not the answer.",
+      "reply": [
+        {
+          "user": "kavi00203",
+          "body": "Its an asynchronous invocation events, that's y there is no log.\nBecause in asynchronous its not mandatory to get the result after invocation events."
+        },
+        {
+          "user": "TeeTheMan",
+          "body": "Asynchronous invocation means that the caller of the lambda does not wait for a response. The type of invocation has no effect on the lambda having logs or not. I picked A, because the lambda not having logs suggests something’s gone wrong upstream of the lambda."
+        }
+      ]
+    },
+    {
+      "user": "kavi00203",
+      "selectedAnswer": "",
+      "body": "Its an asynchronous invocation events, that's y there is no log.\nBecause in asynchronous its not mandatory to get the result after invocation events.",
+      "reply": [
+        {
+          "user": "TeeTheMan",
+          "body": "Asynchronous invocation means that the caller of the lambda does not wait for a response. The type of invocation has no effect on the lambda having logs or not. I picked A, because the lambda not having logs suggests something’s gone wrong upstream of the lambda."
+        }
+      ]
+    },
+    {
+      "user": "TeeTheMan",
+      "selectedAnswer": "",
+      "body": "Asynchronous invocation means that the caller of the lambda does not wait for a response. The type of invocation has no effect on the lambda having logs or not. I picked A, because the lambda not having logs suggests something’s gone wrong upstream of the lambda.",
+      "reply": []
+    },
+    {
+      "user": "Dadasar",
+      "selectedAnswer": "B",
+      "body": "A.Eliminada: O problema ocorre no backend (Lambda), e não no frontend. Como a invocação é assíncrona, o frontend não tem controle sobre falhas no processamento.\nC. Eliminada: Já foi mencionado que os logs do Lambda não mostram erros ou falhas, então apenas inspecionar os logs do CloudWatch não ajudaria a encontrar a causa do problema.\nD. Eliminada: O cache no API Gateway não afeta requisições POST, pois o cache só é aplicado para métodos GET. Então essa alternativa não faz sentido.",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "since there are no logs of errors or failures, the issue is likely due to dropped asynchronous events. Configuring a DLQ will capture these dropped events for further analysis and reprocessing.\n\nA) Eliminated - While inspecting frontend logs can help diagnose client-side issues, the problem here involves unprocessed events in Lambda.\n\nC) Eliminated - The question states that there are no errors or failures in the Lambda logs\n\nD) Eliminated - API Gateway caching is not related to this issue. Even with caching enabled, events would still invoke the Lambda function.",
+      "reply": []
+    },
+    {
+      "user": "mallikarjun_angadi",
+      "selectedAnswer": "",
+      "body": "Answer : B\nLambda has a concurrency limit and in some cases, if the limit is reached, Lambda could throttle incoming requests without throwing an error, which means some invocations may be lost or delayed. Those will be moved to DLQ",
+      "reply": []
+    },
+    {
+      "user": "nbxyzd",
+      "selectedAnswer": "B",
+      "body": "Option A is obviously wrong. Remember, it's an asynchronous labmda, so replaying the POST API returns no info instrumental to issue diagnosis. If you know how AWS usually designs a quiz, you'll know B is definitely the answer.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "B",
+      "body": "https://aws.amazon.com/about-aws/whats-new/2016/12/aws-lambda-supports-dead-letter-queues/",
+      "reply": []
+    },
+    {
+      "user": "Jonalb",
+      "selectedAnswer": "B",
+      "body": "B. Crie e inspecione a fila de mensagens mortas do Lambda. Solucione os problemas das funções com falha. Reprocesse os eventos. Mais Votados",
+      "reply": []
+    },
+    {
+      "user": "mr_swal",
+      "selectedAnswer": "A",
+      "body": "The Lambda application logs show no errors or failures. - So Lambda function was not invoked at all",
+      "reply": [
+        {
+          "user": "daicoso",
+          "body": "if the application code doesn't log errors and doesn't throw exceptions, no error or failure will be logged"
+        }
+      ]
+    },
+    {
+      "user": "daicoso",
+      "selectedAnswer": "",
+      "body": "if the application code doesn't log errors and doesn't throw exceptions, no error or failure will be logged",
+      "reply": []
+    },
+    {
+      "user": "nmc12",
+      "selectedAnswer": "B",
+      "body": "The Lambda Dead Letter Queue is a feature that helps in troubleshooting events that failed processing by a Lambda function. When an asynchronous invocation of a Lambda function fails, AWS Lambda can direct the failed event to an Amazon SNS topic or an Amazon SQS queue (the dead-letter queue), where the event is stored and can be analyzed or reprocessed.",
+      "reply": []
+    },
+    {
+      "user": "norris81",
+      "selectedAnswer": "C",
+      "body": "I don't like B which has reprocess the errors, which will make a whole load of errors be process creating orders which could be months old",
+      "reply": []
+    },
+    {
+      "user": "misa27",
+      "selectedAnswer": "B",
+      "body": "B\nhttps://aws.amazon.com/what-is/dead-letter-queue/",
+      "reply": []
+    },
+    {
+      "user": "ninomfr64",
+      "selectedAnswer": "B",
+      "body": "A) asynchronous invocations doe not return result to the caller, thus I do not expect errors in frontend log\nC) the scenario question rules out the option to have error messages in the Lambda log\nD) I do not see how caching can have impact in this scenario\n\nB) having a dead-letter queue is a viable option to troubleshoot asynchronous lambda invocation error, another option would be using Destination",
+      "reply": []
+    },
+    {
+      "user": "backfringe",
+      "selectedAnswer": "C",
+      "body": "Option C is the appropriate choice because it involves inspecting the Lambda logs in Amazon CloudWatch to identify any potential issues or errors that might be causing the orders not to be processed\n\nOption B is not the most appropriate choice because the dead-letter queue is generally used to capture events that cannot be processed by a Lambda function. In this scenario, it seems that the Lambda function is executing without apparent errors. Thus, the issue might not be related to dead-letter queue failures.",
+      "reply": []
+    },
+    {
+      "user": "redfivedog",
+      "selectedAnswer": "D",
+      "body": "I think D should be the correct answer to this question. The logs have no indications of errors or failed events, so if some transactions are not being processed, that probably means that the lambda function wasn't invoked for those calls. One reason could be that caching is enabled in API gateway for the POST request, so the lambda function isn't triggered for any cache hits.\n\n- A is not correct as the frontend would be getting 202s for all asynchronous post requests.\n- B is not correct because lambda logs have no errors => no lambda execution errors => DLQ won't get any requests of interest if we enable it. A comment below mentioned that asynchronous lambda invocations don't generate logs, but that is not true.\n- C is obviously incorrect. The premise explicitly mentions that there aren't any errors in the logs.",
+      "reply": [
+        {
+          "user": "Saurabh04",
+          "body": "Caching is only for GET Requests not for POST Requests. Correct answer is B"
+        },
+        {
+          "user": "xdkonorek2",
+          "body": "Absolutely agree, D is the answer"
+        }
+      ]
+    },
+    {
+      "user": "Saurabh04",
+      "selectedAnswer": "",
+      "body": "Caching is only for GET Requests not for POST Requests. Correct answer is B",
+      "reply": []
+    },
+    {
+      "user": "xdkonorek2",
+      "selectedAnswer": "",
+      "body": "Absolutely agree, D is the answer",
+      "reply": []
+    },
+    {
+      "user": "gomurali",
+      "selectedAnswer": "",
+      "body": "https://aws.amazon.com/about-aws/whats-new/2016/12/aws-lambda-supports-dead-letter-queues/",
+      "reply": []
+    }
+  ]
+}

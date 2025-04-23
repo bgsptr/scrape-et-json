@@ -1,0 +1,131 @@
+{
+  "id": "103513",
+  "question": "question-31",
+  "body": "A developer has an application that stores data in an Amazon S3 bucket. The application uses an HTTP API to store and retrieve objects. When the PutObject API operation adds objects to the S3 bucket the developer must encrypt these objects at rest by using server-side encryption with Amazon S3 managed keys (SSE-S3).\nWhich solution will meet this requirement?\nA. Create an AWS Key Management Service (AWS KMS) key. Assign the KMS key to the S3 bucket.\nB. Set the x-amz-server-side-encryption header when invoking the PutObject API operation.\nC. Provide the encryption key in the HTTP header of every request.\nD. Apply TLS to encrypt the traffic to the S3 bucket.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Bibay",
+      "selectedAnswer": "",
+      "body": "B. Set the x-amz-server-side-encryption header when invoking the PutObject API operation.\n\nWhen using the PutObject API operation to store objects in an S3 bucket, the x-amz-server-side-encryption header can be set to specify the server-side encryption algorithm used to encrypt the object. Setting this header to \"AES256\" or \"aws:kms\" enables server-side encryption with SSE-S3 or SSE-KMS respectively.\n\nOption A is incorrect because assigning a KMS key to the S3 bucket will not enable SSE-S3 encryption.\n\nOption C is incorrect because providing the encryption key in the HTTP header of every request is not a valid way to enable SSE-S3 encryption.\n\nOption D is incorrect because applying TLS encryption to the traffic to the S3 bucket only encrypts the data in transit, but does not encrypt the objects at rest in the bucket.",
+      "reply": [
+        {
+          "user": "jipark",
+          "body": "I now got to know 'KMS key to S3 bucket will not enable S3 encryption'"
+        },
+        {
+          "user": "beekeeper0101",
+          "body": "Thank you!\nSetting the x-amz-server-side-encryption header to:\n- AES256 => SSE-S3\n- AWS:KMS => SSE-KMS"
+        }
+      ]
+    },
+    {
+      "user": "jipark",
+      "selectedAnswer": "",
+      "body": "I now got to know 'KMS key to S3 bucket will not enable S3 encryption'",
+      "reply": []
+    },
+    {
+      "user": "beekeeper0101",
+      "selectedAnswer": "",
+      "body": "Thank you!\nSetting the x-amz-server-side-encryption header to:\n- AES256 => SSE-S3\n- AWS:KMS => SSE-KMS",
+      "reply": []
+    },
+    {
+      "user": "svrnvtr",
+      "selectedAnswer": "B",
+      "body": "B https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "A) Eliminated - While AWS Key Management Service (KMS) keys can be used for encryption in S3 (SSE-KMS), this option refers to creating a custom KMS key, which is not required when using SSE-S3.\nB) Correct - The x-amz-server-side-encryption header is the correct way to specify the use of SSE-S3 when uploading objects to S3 via the PutObject API.\nC) Eliminated - Providing an encryption key in the HTTP header refers to client-side encryption or SSE-C\nD) Eliminated - TLS (Transport Layer Security) encrypts data in transit, not at rest.",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "B",
+      "body": "==> Discard A: SSE-KMS uses AWS KMS keys, not Amazon S3-managed keys required for SSE-S3. \n==> Discard C: SSE-C requires customer-provided keys, not Amazon S3-managed keys for SSE-S3. \n==> Discard D: TLS encrypts data in transit, not at rest as required by SSE-S3.\n\nB is correct because setting `x-amz-server-side-encryption: AES256` ensures Amazon S3 uses SSE-S3 to encrypt objects at rest automatically.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "badsati",
+      "selectedAnswer": "B",
+      "body": "Answer is B",
+      "reply": []
+    },
+    {
+      "user": "nderitunick",
+      "selectedAnswer": "",
+      "body": "Aren't objects on s3 encrypted using SSE-S3 by default? I don't understand why D is not the answer.",
+      "reply": [
+        {
+          "user": "nderitunick",
+          "body": "I misread the question. It's all good."
+        }
+      ]
+    },
+    {
+      "user": "nderitunick",
+      "selectedAnswer": "",
+      "body": "I misread the question. It's all good.",
+      "reply": []
+    },
+    {
+      "user": "aanataliya",
+      "selectedAnswer": "",
+      "body": "Answer for this question is changed starting January 5, 2023. Amazon S3 now applies server-side encryption with Amazon S3 managed keys (SSE-S3) as the base level of encryption for every bucket in Amazon S3.\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html",
+      "reply": [
+        {
+          "user": "fordiscussionstwo",
+          "body": "what is correct answer then?"
+        },
+        {
+          "user": "cucuff",
+          "body": "because it takes some time for exam questions to be updated"
+        }
+      ]
+    },
+    {
+      "user": "fordiscussionstwo",
+      "selectedAnswer": "",
+      "body": "what is correct answer then?",
+      "reply": [
+        {
+          "user": "cucuff",
+          "body": "because it takes some time for exam questions to be updated"
+        }
+      ]
+    },
+    {
+      "user": "cucuff",
+      "selectedAnswer": "",
+      "body": "because it takes some time for exam questions to be updated",
+      "reply": []
+    },
+    {
+      "user": "[Removed]",
+      "selectedAnswer": "B",
+      "body": "Header parameter \"s3:x-amz-server-side-encryption\": \"AES256\"",
+      "reply": []
+    },
+    {
+      "user": "tttamtttam",
+      "selectedAnswer": "B",
+      "body": "C is a way to use customer-provided keys not S3-managed keys.",
+      "reply": []
+    },
+    {
+      "user": "CisconAWSGURU",
+      "selectedAnswer": "C",
+      "body": "C is correct and hear is the reason from AWS docs.\nVisit AWS Regions and Endpoints in the AWS General Reference or the AWS Region Table to see the regional availability for ACM.\n\nCertificates in ACM are regional resources. To use a certificate with Elastic Load Balancing for the same fully qualified domain name (FQDN) or set of FQDNs in more than one AWS region, you must request or import a certificate for each region. For certificates provided by ACM, this means you must revalidate each domain name in the certificate for each region. You cannot copy a certificate between regions.\n\nTo use an ACM certificate with Amazon CloudFront, you must request or import the certificate in the US East (N. Virginia) region. ACM certificates in this region that are associated with a CloudFront distribution are distributed to all the geographic locations configured for that distribution.",
+      "reply": []
+    }
+  ]
+}

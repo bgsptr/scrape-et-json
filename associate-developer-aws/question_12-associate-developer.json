@@ -1,0 +1,73 @@
+{
+  "id": "103439",
+  "question": "question-12",
+  "body": "A developer is creating an application that will give users the ability to store photos from their cellphones in the cloud. The application needs to support tens of thousands of users. The application uses an Amazon API Gateway REST API that is integrated with AWS Lambda functions to process the photos. The application stores details about the photos in Amazon DynamoDB.\nUsers need to create an account to access the application. In the application, users must be able to upload photos and retrieve previously uploaded photos. The photos will range in size from 300 KB to 5 MB.\nWhich solution will meet these requirements with the LEAST operational overhead?\nA. Use Amazon Cognito user pools to manage user accounts. Create an Amazon Cognito user pool authorizer in API Gateway to control access to the API. Use the Lambda function to store the photos and details in the DynamoDB table. Retrieve previously uploaded photos directly from the DynamoDB table.\nB. Use Amazon Cognito user pools to manage user accounts. Create an Amazon Cognito user pool authorizer in API Gateway to control access to the API. Use the Lambda function to store the photos in Amazon S3. Store the object's S3 key as part of the photo details in the DynamoDB table. Retrieve previously uploaded photos by querying DynamoDB for the S3 key.\nC. Create an IAM user for each user of the application during the sign-up process. Use IAM authentication to access the API Gateway API. Use the Lambda function to store the photos in Amazon S3. Store the object's S3 key as part of the photo details in the DynamoDB table. Retrieve previously uploaded photos by querying DynamoDB for the S3 key.\nD. Create a users table in DynamoDB. Use the table to manage user accounts. Create a Lambda authorizer that validates user credentials against the users table. Integrate the Lambda authorizer with API Gateway to control access to the API. Use the Lambda function to store the photos in Amazon S3. Store the object's S3 key as par of the photo details in the DynamoDB table. Retrieve previously uploaded photos by querying DynamoDB for the S3 key.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Untamables",
+      "selectedAnswer": "B",
+      "body": "B\nhttps://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html\nhttps://aws.amazon.com/blogs/big-data/building-and-maintaining-an-amazon-s3-metadata-index-without-servers/",
+      "reply": []
+    },
+    {
+      "user": "jayvarma",
+      "selectedAnswer": "",
+      "body": "As it is not a good practice to create a new IAM user for each user that signs up for the application, Option C is ruled out. Amazon Cognito user pools primary purpose is to authenticate and authorize web and mobile applications.\n\nAs the solution requires the application to store images that are between 300KB and 5MB in size, The idea of storing the images in the DynamoDB is ruled out because the object size in a dynamoDb table cannot exceed 400kb. The ideal solution for this problem would be to store the photos in S3 and store the object's key in the DynamoDB table.\n\nSo, Option B is the right answer",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "A) Eliminated - DynamoDB is not optimized for large binary objects\nC) Eliminated - Creating IAM users for each application user is not scalable\nD) Eliminated - Using a custom table and Lambda authorizer for user authentication increases operational complexity.",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "B",
+      "body": "keyword: LEAST operational overhead, size from 300 KB to 5 MB.\n\n==> discard A: item limit upto 400kB only\n==> discard C: each user per IAM user --> really bad practice\n==> discard D: violate \"LEAST operational overhead\", you must build a lot (wriete lambda function), result in manage it alot \n\nB is best choice to use services: s3, dynamoDB, Amazon Cognito with maximum automatic build-in feature and least effort for operation",
+      "reply": []
+    },
+    {
+      "user": "Saudis",
+      "selectedAnswer": "",
+      "body": "The difference between B and C the key word create usr > cognito",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "badsati",
+      "selectedAnswer": "B",
+      "body": "No question, Answer is B",
+      "reply": []
+    },
+    {
+      "user": "TheFivePips",
+      "selectedAnswer": "B",
+      "body": "Definitly do not add all users manually, so that rules out C and D. \nYou wouldnt use DynamoDB to store the photos because DynamoDB limits the size of each item that you store in a table to 400 KB. So that rules out A",
+      "reply": []
+    },
+    {
+      "user": "leonardoliveros",
+      "selectedAnswer": "B",
+      "body": "It's easier if you leverage all pros of Amazon Cognito you don't need creating a IAM user by employeer",
+      "reply": []
+    },
+    {
+      "user": "ihta_2031",
+      "selectedAnswer": "B",
+      "body": "Cognito,\nItem size in dynamodb is less than this scenario",
+      "reply": []
+    },
+    {
+      "user": "pratchatcap",
+      "selectedAnswer": "B",
+      "body": "B is the most valid solution.\nA nearest, but invalid, because you cannot store object in Dynamo.",
+      "reply": []
+    }
+  ]
+}

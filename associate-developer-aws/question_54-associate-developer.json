@@ -1,0 +1,66 @@
+{
+  "id": "103757",
+  "question": "question-54",
+  "body": "A developer needs to migrate an online retail application to AWS to handle an anticipated increase in traffic. The application currently runs on two servers: one server for the web application and another server for the database. The web server renders webpages and manages session state in memory. The database server hosts a MySQL database that contains order details. When traffic to the application is heavy, the memory usage for the web server approaches 100% and the application slows down considerably.\nThe developer has found that most of the memory increase and performance decrease is related to the load of managing additional user sessions. For the web server migration, the developer will use Amazon EC2 instances with an Auto Scaling group behind an Application Load Balancer.\nWhich additional set of changes should the developer make to the application to improve the application's performance?\nA. Use an EC2 instance to host the MySQL database. Store the session data and the application data in the MySQL database.\nB. Use Amazon ElastiCache for Memcached to store and manage the session data. Use an Amazon RDS for MySQL DB instance to store the application data.\nC. Use Amazon ElastiCache for Memcached to store and manage the session data and the application data.\nD. Use the EC2 instance store to manage the session data. Use an Amazon RDS for MySQL DB instance to store the application data.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "clarksu",
+      "selectedAnswer": "B",
+      "body": "Option B ,\nhow can you image using an EC2 as cache ....",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "B",
+      "body": "B\nSession stores are easy to create with Amazon ElastiCache for Memcached.\nhttps://aws.amazon.com/elasticache/memcached/\nWith Amazon RDS, you can deploy scalable MySQL servers in minutes with cost-efficient and resizable hardware capacity.\nhttps://aws.amazon.com/rds/mysql/",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "B) - in-memory data store for managing session state\nC) Eliminated - ElastiCache is not a suitable replacement for a relational database like MySQL when dealing with structured data and complex queries.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "B",
+      "body": "The additional requirement for the faster retrieval of data",
+      "reply": []
+    },
+    {
+      "user": "Aws_aspr",
+      "selectedAnswer": "B",
+      "body": "B is correct",
+      "reply": []
+    },
+    {
+      "user": "nkelesidis",
+      "selectedAnswer": "A",
+      "body": "I choose A.\nIt says that the most of the memory increase is related to the load of managing additional user sessions. So I think Memcached doesn't make sense.\nAlso, isn't bad practice to store session information in db.",
+      "reply": [
+        {
+          "user": "ninomfr64",
+          "body": "Session Store is one of the main use case for ElastiCache for Memcached as pwe AWS website https://aws.amazon.com/elasticache/memcached/#:~:text=ElastiCache%20for%20Memcached.-,Session%20Store,-Session%20stores%20are"
+        }
+      ]
+    },
+    {
+      "user": "ninomfr64",
+      "selectedAnswer": "",
+      "body": "Session Store is one of the main use case for ElastiCache for Memcached as pwe AWS website https://aws.amazon.com/elasticache/memcached/#:~:text=ElastiCache%20for%20Memcached.-,Session%20Store,-Session%20stores%20are",
+      "reply": []
+    },
+    {
+      "user": "Dun6",
+      "selectedAnswer": "B",
+      "body": "B it is",
+      "reply": []
+    }
+  ]
+}

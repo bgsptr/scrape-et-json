@@ -1,0 +1,120 @@
+{
+  "id": "103708",
+  "question": "question-45",
+  "body": "A developer is writing an AWS Lambda function. The developer wants to log key events that occur while the Lambda function runs. The developer wants to include a unique identifier to associate the events with a specific function invocation. The developer adds the following code to the Lambda function:\n\nWhich solution will meet this requirement?\nA. Obtain the request identifier from the AWS request ID field in the context object. Configure the application to write logs to standard output.\nB. Obtain the request identifier from the AWS request ID field in the event object. Configure the application to write logs to a file.\nC. Obtain the request identifier from the AWS request ID field in the event object. Configure the application to write logs to standard output.\nD. Obtain the request identifier from the AWS request ID field in the context object. Configure the application to write logs to a file.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "ninomfr64",
+      "selectedAnswer": "A",
+      "body": "Both A and D could work here, as both rely on the context object to get access to execution ID https://docs.aws.amazon.com/us_en/lambda/latest/dg/python-context.html \nWhile A uses stoud to send log to CloudWatch Log, D writes to a file. D is less specific (where is the file stored? A single file for each execution?) and looks more comples (manage file(s), manage concurrency access to the file ...), thus I'll go for A",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "A",
+      "body": "A\nhttps://docs.aws.amazon.com/lambda/latest/dg/nodejs-context.html\nhttps://docs.aws.amazon.com/lambda/latest/dg/nodejs-logging.html\nThere is no explicit information for the runtime, the code is written in Node.js.",
+      "reply": [
+        {
+          "user": "Pupina",
+          "body": "• https://docs.aws.amazon.com/prescriptive-guidance/latest/implementing-logging-monitoring-cloudwatch/lambda-logging-metrics.html\n• Lambda automatically streams standard output and standard error messages from a Lambda function to CloudWatch Logs, without requiring logging drivers."
+        }
+      ]
+    },
+    {
+      "user": "Pupina",
+      "selectedAnswer": "",
+      "body": "• https://docs.aws.amazon.com/prescriptive-guidance/latest/implementing-logging-monitoring-cloudwatch/lambda-logging-metrics.html\n• Lambda automatically streams standard output and standard error messages from a Lambda function to CloudWatch Logs, without requiring logging drivers.",
+      "reply": []
+    },
+    {
+      "user": "ProcureSense",
+      "selectedAnswer": "A",
+      "body": "https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "A",
+      "body": "A) Correct - The context object contains the AWS request ID, which uniquely identifies each function invocation. Writing logs to standard output ensures they are automatically captured by CloudWatch Logs.\n\n\nB) Eliminated - The event object contains input data passed to the Lambda function but does not include the AWS request ID. Writing logs to a file is not practical in Lambda because the filesystem is ephemeral, and logs stored in files would not persist beyond the function invocation.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "badsati",
+      "selectedAnswer": "A",
+      "body": "A should work",
+      "reply": []
+    },
+    {
+      "user": "james2033",
+      "selectedAnswer": "A",
+      "body": "See getAwsRequestId() at https://docs.aws.amazon.com/lambda/latest/dg/java-context.html",
+      "reply": []
+    },
+    {
+      "user": "rimaSamir",
+      "selectedAnswer": "",
+      "body": "Tricky question. Sure A and D both can do, but... The question is: why we need to get the request identifier if we will write logs to CloudWatch?\nSo, I will go with answer A.",
+      "reply": []
+    },
+    {
+      "user": "SD_CS",
+      "selectedAnswer": "",
+      "body": "I think it should be A. Also can anyone advise why the two answers are different ? \nhttps://www.examtopics.com/discussions/amazon/view/29007-exam-aws-certified-developer-associate-topic-1-question-26/",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "",
+      "body": "The Option A is correct because:\nThe second argument is the context object. A context object is passed to your function by Lambda at runtime. This object provides methods and properties that provide information about the invocation, function, and runtime environment.\nhttps://docs.aws.amazon.com/lambda/latest/dg/python-handler.html",
+      "reply": []
+    },
+    {
+      "user": "hsinchang",
+      "selectedAnswer": "",
+      "body": "invocation is in the Context object, and loggging into Standard output, which goes into CloudWatch(more durable, more scalable, etc.), is generally better than using temporary Files",
+      "reply": []
+    },
+    {
+      "user": "Pupina",
+      "selectedAnswer": "",
+      "body": "Selected Answer A: \nHandler function https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html\nContext object awsRequestId – The identifier of the invocation request. https://docs.aws.amazon.com/lambda/latest/dg/nodejs-context.html",
+      "reply": []
+    },
+    {
+      "user": "rlnd2000",
+      "selectedAnswer": "A",
+      "body": "In my opinion both options A and D can fulfill the requirement, since there is no requirement about any specific logging and monitoring tool I will go with defaults (A) because, simple is better than complex :)",
+      "reply": []
+    },
+    {
+      "user": "Prem28",
+      "selectedAnswer": "A",
+      "body": "The application can write logs to standard output or to a file. Standard output is the default destination for logs. Logs that are written to standard output are sent to Amazon CloudWatch Logs. Logs that are written to a file are stored on the Lambda function's execution environment.",
+      "reply": []
+    },
+    {
+      "user": "Nagendhar",
+      "selectedAnswer": "",
+      "body": "Ans: D\n\nThe code snippet provided in the question is obtaining the request identifier from the context.awsRequestId property, which is available in the context object provided to the Lambda function handler. Therefore, the correct option is:\n\nD. Obtain the request identifier from the AWS request ID field in the context object. Configure the application to write logs to a file.\n\nThis option meets the requirement of logging key events and including a unique identifier to associate the events with a specific function invocation.",
+      "reply": []
+    },
+    {
+      "user": "Rpod",
+      "selectedAnswer": "D",
+      "body": "Why not D ? Writing logs to a file seems more appropriate than stdout",
+      "reply": []
+    },
+    {
+      "user": "Watascript",
+      "selectedAnswer": "A",
+      "body": "https://docs.aws.amazon.com/us_en/lambda/latest/dg/python-context.html\nhttps://docs.aws.amazon.com/us_en/lambda/latest/dg/python-logging.html",
+      "reply": []
+    }
+  ]
+}

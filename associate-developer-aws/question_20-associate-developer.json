@@ -1,0 +1,79 @@
+{
+  "id": "103468",
+  "question": "question-20",
+  "body": "A developer wants to store information about movies. Each movie has a title, release year, and genre. The movie information also can include additional properties about the cast and production crew. This additional information is inconsistent across movies. For example, one movie might have an assistant director, and another movie might have an animal trainer.\nThe developer needs to implement a solution to support the following use cases:\nFor a given title and release year, get all details about the movie that has that title and release year.\nFor a given title, get all details about all movies that have that title.\nFor a given genre, get all details about all movies in that genre.\nWhich data store configuration will meet these requirements?\nA. Create an Amazon DynamoDB table. Configure the table with a primary key that consists of the title as the partition key and the release year as the sort key. Create a global secondary index that uses the genre as the partition key and the title as the sort key.\nB. Create an Amazon DynamoDB table. Configure the table with a primary key that consists of the genre as the partition key and the release year as the sort key. Create a global secondary index that uses the title as the partition key.\nC. On an Amazon RDS DB instance, create a table that contains columns for title, release year, and genre. Configure the title as the primary key.\nD. On an Amazon RDS DB instance, create a table where the primary key is the title and all other data is encoded into JSON format as one additional column.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Bibay",
+      "selectedAnswer": "A",
+      "body": "A. Create an Amazon DynamoDB table. Configure the table with a primary key that consists of the title as the partition key and the release year as the sort key. Create a global secondary index that uses the genre as the partition key and the title as the sort key.\n\nThis option is the best choice for the given requirements. By using DynamoDB, the developer can store the movie information in a flexible and scalable NoSQL database. The primary key can be set to the title and release year, allowing for efficient retrieval of information about a specific movie. The global secondary index can be created using the genre as the partition key, allowing for efficient retrieval of information about all movies in a specific genre. Additionally, the use of a NoSQL database like DynamoDB allows for the flexible storage of additional properties about the cast and crew, as each movie can have different properties without affecting the structure of the database.",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "A",
+      "body": "B) Eliminated - No efficient way to query by title + release year since the primary key is genre + release year, and the GSI only has the title\n\nC) Eliminated - Adding new columns for properties like assistant director or animal trainer becomes cumbersome and violates flexibility.\n\nD) Eliminated - JSON in RDS is harder to query",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "A",
+      "body": "keyword: (title + release year), title, genre, each film has differential cast and crew\n\n=> Discard C,D: when it store film by structure && option C must scan all data that is not primary key(title), seem be not flexible && option D is horrible way, when storing data as json structure, take time to extract this json\n==> discard B: querry (title + release year) must scan all item without combining them in primary key(partition key and sort key) at primary table or GSI",
+      "reply": []
+    },
+    {
+      "user": "ahadh7621",
+      "selectedAnswer": "A",
+      "body": "This question was on my exam July 23rd, 2024. Answer is A",
+      "reply": []
+    },
+    {
+      "user": "sid4510",
+      "selectedAnswer": "",
+      "body": "A is mostly correct , but I do see one problem there because in one year there can be same title movies can come which invalidate our primary key having title as partition key and year as a. Sort. key",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "leonardoliveros",
+      "selectedAnswer": "A",
+      "body": "If you create a primary key with title(pk) and release(sk) date you corvered two scenaries, and also you need a GSI by last scenary with genre so you should creating a GSI with genre (pk) and title (sk)",
+      "reply": []
+    },
+    {
+      "user": "Tony88",
+      "selectedAnswer": "A",
+      "body": "Go with A.\nNoSQL is good when data attributes are inconsistent -> DynamoDB\nPrimary key should be unique, go with title + release year.",
+      "reply": []
+    },
+    {
+      "user": "jayvarma",
+      "selectedAnswer": "",
+      "body": "As the schema for each entry of data into the database is not the same all the time, We would require a NoSQL database. So, RDS DB instance is ruled out. The answer is between A and B.\n\nAs we would need the partition key to be as unique as possible, we would like to have the title of the movie as the partition key. Because having the partition key as the genre will create a hot partition problem and our data stored in the DynamoDB will be skewed. \n\nSo option A is the answer.",
+      "reply": []
+    },
+    {
+      "user": "Krok",
+      "selectedAnswer": "A",
+      "body": "It's A - I totally agree. It's a single appropriate solution. But in my opinion genre isn't a quite good option as GSI partition key - it isn't high distribution and we can get a hot partition.",
+      "reply": []
+    },
+    {
+      "user": "shahs10",
+      "selectedAnswer": "A",
+      "body": "Option A because we have to search on the basis of title so it is better to partition by title. Also we have to search by genre so it is good option to make GSI using genre as partition key",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "A",
+      "body": "The correct answer is A.\nAmazon DynamoDB is suited for storing inconsistent attributes data across items.\nOption B is wrong. This solution does not help get items with the condition of the combination, title and release year.",
+      "reply": []
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "103850",
+  "question": "question-37",
+  "body": "A company has an Amazon S3 bucket that contains sensitive data. The data must be encrypted in transit and at rest. The company encrypts the data in the S3 bucket by using an AWS Key Management Service (AWS KMS) key. A developer needs to grant several other AWS accounts the permission to use the S3 GetObject operation to retrieve the data from the S3 bucket.\nHow can the developer enforce that all requests to retrieve the data provide encryption in transit?\nA. Define a resource-based policy on the S3 bucket to deny access when a request meets the condition “aws:SecureTransport”: “false”.\nB. Define a resource-based policy on the S3 bucket to allow access when a request meets the condition “aws:SecureTransport”: “false”.\nC. Define a role-based policy on the other accounts' roles to deny access when a request meets the condition of “aws:SecureTransport”: “false”.\nD. Define a resource-based policy on the KMS key to deny access when a request meets the condition of “aws:SecureTransport”: “false”.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Untamables",
+      "selectedAnswer": "A",
+      "body": "A\nhttps://repost.aws/knowledge-center/s3-bucket-policy-for-config-rule",
+      "reply": []
+    },
+    {
+      "user": "Watascript",
+      "selectedAnswer": "A",
+      "body": "A is correct.",
+      "reply": []
+    },
+    {
+      "user": "pratik7006",
+      "selectedAnswer": "A",
+      "body": "B. Allow access when \"aws:SecureTransport\": \"false\" ❌ This would allow HTTP instead of enforcing HTTPS.\nC. Role-based policy on other accounts' roles ❌ The bucket owner controls access, not external accounts. A bucket policy is required.\nD. Resource-based policy on the KMS key ❌ KMS policies control encryption keys, not transport security. HTTP/HTTPS enforcement must happen at the S3 bucket level.",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "A",
+      "body": "A) Correct - The condition “aws:SecureTransport”: “false” ensures that only secure requests (encrypted in transit) are allowed.\n\nB) Eliminated - This allows access only when the request does not use secure transport. This is opposite of the requirement\n\nC) Eliminated - Resource-based policies at the bucket level are better suited for cross-account access.\n\nD) Eliminated - The GetObject operation is specific to the S3 bucket, not the KMS key.",
+      "reply": []
+    },
+    {
+      "user": "rue_",
+      "selectedAnswer": "",
+      "body": "aws:SecureTransport condition does not apply to KMS key policies",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "ibratoev",
+      "selectedAnswer": "",
+      "body": "A is correct.",
+      "reply": []
+    },
+    {
+      "user": "CrescentShared",
+      "selectedAnswer": "D",
+      "body": "Hesitate between A and D.\nQuestion is not clear on weather we want to block all the information or only the sensitive part.",
+      "reply": [
+        {
+          "user": "KarBiswa",
+          "body": "Agree, but id we compare between A & D, A seems to be more accurate."
+        }
+      ]
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "",
+      "body": "Agree, but id we compare between A & D, A seems to be more accurate.",
+      "reply": []
+    },
+    {
+      "user": "winzzhhzzhh",
+      "selectedAnswer": "",
+      "body": "I know A is correct but D seems correct as well, since users will need access to the KMS key to decrypt the data in the bucket.",
+      "reply": []
+    },
+    {
+      "user": "Malkia",
+      "selectedAnswer": "A",
+      "body": "A is correct.",
+      "reply": []
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "103772",
+  "question": "question-51",
+  "body": "A developer has a legacy application that is hosted on-premises. Other applications hosted on AWS depend on the on-premises application for proper functioning. In case of any application errors, the developer wants to be able to use Amazon CloudWatch to monitor and troubleshoot all applications from one place.\nHow can the developer accomplish this?\nA. Install an AWS SDK on the on-premises server to automatically send logs to CloudWatch.\nB. Download the CloudWatch agent to the on-premises server. Configure the agent to use IAM user credentials with permissions for CloudWatch.\nC. Upload log files from the on-premises server to Amazon S3 and have CloudWatch read the files.\nD. Upload log files from the on-premises server to an Amazon EC2 instance and have the instance forward the logs to CloudWatch.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Untamables",
+      "selectedAnswer": "B",
+      "body": "B\nhttps://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html\nhttps://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-premise.html",
+      "reply": []
+    },
+    {
+      "user": "Dun6",
+      "selectedAnswer": "B",
+      "body": "We need cloudwatchagent",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "A) Eliminated - Using the AWS SDK means you must write custom code to capture and send logs to CloudWatch via the PutLogEvents API. This is not automatic as mentioned in option\n\nB) CloudWatch agent is specifically designed for collecting logs and metrics from both AWS and on-premises environments.\n\nC) Eliminated - unnecessary complexity.\n\nD) Eliminated - unnecessarily complex and costly.",
+      "reply": []
+    },
+    {
+      "user": "Saudis",
+      "selectedAnswer": "B",
+      "body": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Baba_Eni",
+      "selectedAnswer": "B",
+      "body": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html",
+      "reply": []
+    }
+  ]
+}

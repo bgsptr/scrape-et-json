@@ -1,0 +1,37 @@
+{
+  "id": "103858",
+  "question": "question-41",
+  "body": "A developer is building a web application that uses Amazon API Gateway to expose an AWS Lambda function to process requests from clients. During testing, the developer notices that the API Gateway times out even though the Lambda function finishes under the set time limit.\nWhich of the following API Gateway metrics in Amazon CloudWatch can help the developer troubleshoot the issue? (Choose two.)\nA. CacheHitCount\nB. IntegrationLatency\nC. CacheMissCount\nD. Latency\nE. Count\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Untamables",
+      "selectedAnswer": "BD",
+      "body": "B and D\nThe issue is caused by timeout. So the developer needs to know the latency information.\nhttps://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html\nhttps://repost.aws/knowledge-center/api-gateway-rest-api-504-errors",
+      "reply": []
+    },
+    {
+      "user": "Watascript",
+      "selectedAnswer": "BD",
+      "body": "https://docs.aws.amazon.com/apigateway/latest/developerguide/monitoring-cloudwatch.html",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "BD",
+      "body": "A) Eliminated - there is no mention of caching being involved in the problem, this metric is irrelevant for troubleshooting a timeout issue.\n\nB) Correct - A high value for IntegrationLatency can indicate that the API Gateway is experiencing delays in receiving responses from Lambda\n\nC) Eliminated - this metric is related to caching, which is not mentioned as part of the problem\n\nD) Correct - high value for Latency can indicate where delays are occurring overall, including the Lambda function's processing time and any overhead in API Gateway.\n\nE) Eliminated - While this metric provides information about the volume of requests, it does not help identify the cause of a timeout or latency issues.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "BD",
+      "body": "BD is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Jonalb",
+      "selectedAnswer": "BD",
+      "body": "As melhores opções são, portanto, B. IntegraçãoLatência e D. Latência. Ambas as métricas fornecerão insights sobre onde pode estar ocorrendo a latência ou o atraso, ajudando o desenvolvedor a solucionar o problema.",
+      "reply": []
+    }
+  ]
+}

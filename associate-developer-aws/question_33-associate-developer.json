@@ -1,0 +1,120 @@
+{
+  "id": "103664",
+  "question": "question-33",
+  "body": "A developer is creating an application that includes an Amazon API Gateway REST API in the us-east-2 Region. The developer wants to use Amazon CloudFront and a custom domain name for the API. The developer has acquired an SSL/TLS certificate for the domain from a third-party provider.\nHow should the developer configure the custom domain for the application?\nA. Import the SSL/TLS certificate into AWS Certificate Manager (ACM) in the same Region as the API. Create a DNS A record for the custom domain.\nB. Import the SSL/TLS certificate into CloudFront. Create a DNS CNAME record for the custom domain.\nC. Import the SSL/TLS certificate into AWS Certificate Manager (ACM) in the same Region as the API. Create a DNS CNAME record for the custom domain.\nD. Import the SSL/TLS certificate into AWS Certificate Manager (ACM) in the us-east-1 Region. Create a DNS CNAME record for the custom domain.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "brandon87",
+      "selectedAnswer": "D",
+      "body": "To use a certificate in AWS Certificate Manager (ACM) to require HTTPS between viewers and CloudFront, make sure you request (or import) the certificate in the US East (N. Virginia) Region (us-east-1).\n\nhttps://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html\nhttps://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html",
+      "reply": []
+    },
+    {
+      "user": "ancomedian",
+      "selectedAnswer": "D",
+      "body": "I have checked at various places\nAnswer is D\nReason: ACM just can only import certificate in us-east-1 and we need to associate the imported certificate with us-east-2\nThe caused confusion regarding it is because of import and associate\nCrux: we will import in us-east-1 but use in us-east-2",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "D",
+      "body": "ACM certificates must reside in us-east-1 for CloudFront, not the same Region as the API (us-east-2 in this case).",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "D",
+      "body": "D is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "fhuadeen",
+      "selectedAnswer": "D",
+      "body": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html",
+      "reply": []
+    },
+    {
+      "user": "AjeshA1990",
+      "selectedAnswer": "",
+      "body": "Import cert in the same region",
+      "reply": []
+    },
+    {
+      "user": "Jonalb",
+      "selectedAnswer": "",
+      "body": "D. Importe o certificado SSL/TLS para o AWS Certificate Manager (ACM) na região us-east-1. Crie um registro DNS CNAME para o domínio personalizado.",
+      "reply": []
+    },
+    {
+      "user": "fossil123",
+      "selectedAnswer": "D",
+      "body": "AWS Region for AWS Certificate Manager\nTo use a certificate in AWS Certificate Manager (ACM) to require HTTPS between viewers and CloudFront, make sure you request (or import) the certificate in the US East (N. Virginia) Region (us-east-1).",
+      "reply": []
+    },
+    {
+      "user": "acordovam",
+      "selectedAnswer": "D",
+      "body": "D\nIf you need to use CloudFront, then, you must import it into ue-east-1.\nhttps://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html",
+      "reply": []
+    },
+    {
+      "user": "Pupina",
+      "selectedAnswer": "",
+      "body": "Selected Answer: D\nA is not right because for cloudfront you create a CNMA not a DNS A https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html\nC is not right because ACM cannot import certificates in us-east-2 https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html\nB is not right. The certificate is for an external CA but can be uploaded to ACM or you must request a public certificate from AWS certificate Manager https://repost.aws/knowledge-center/install-ssl-cloudfront but you cannot import the certificate into CloudFront",
+      "reply": []
+    },
+    {
+      "user": "rlnd2000",
+      "selectedAnswer": "C",
+      "body": "C\nThe first statement of the question: A developer is creating an application that includes an Amazon API Gateway REST API in the us-east-2 Region. ... it is a Regional API, when using a Regional endpoint, the SSL/TLS certificate for the custom domain must be imported into AWS Certificate Manager (ACM) in the same Region as the API, only if we use g Edge-Optimized endpoint, the certificate must be in us-east-1.",
+      "reply": [
+        {
+          "user": "KarBiswa",
+          "body": "Initially I also thought but it is a specific hard core requirement \"To use an ACM certificate with CloudFront, make sure you request (or import) the certificate in the US East (N. Virginia) Region (us-east-1).\""
+        }
+      ]
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "",
+      "body": "Initially I also thought but it is a specific hard core requirement \"To use an ACM certificate with CloudFront, make sure you request (or import) the certificate in the US East (N. Virginia) Region (us-east-1).\"",
+      "reply": []
+    },
+    {
+      "user": "peterpain",
+      "selectedAnswer": "D",
+      "body": "The ACM has to be implemented at US-East-1",
+      "reply": []
+    },
+    {
+      "user": "Bibay",
+      "selectedAnswer": "C",
+      "body": "To use Amazon CloudFront and a custom domain name for an Amazon API Gateway REST API, the developer should import the SSL/TLS certificate into AWS Certificate Manager (ACM) in the same Region as the API, and create a DNS CNAME record for the custom domain. This is because AWS Certificate Manager can only issue SSL/TLS certificates in the same Region as the API, and a DNS CNAME record maps the custom domain to the CloudFront distribution.\n\nOption A is incorrect because a DNS A record is not sufficient to map the custom domain to the CloudFront distribution.\n\nOption B is incorrect because AWS Certificate Manager must issue the SSL/TLS certificate in the same Region as the API.\n\nOption D is incorrect because the SSL/TLS certificate must be issued in the same Region as the API, and a DNS CNAME record is required to map the custom domain to the CloudFront distribution.",
+      "reply": []
+    },
+    {
+      "user": "KhyatiChhajed",
+      "selectedAnswer": "C",
+      "body": "C. Import the SSL/TLS certificate into AWS Certificate Manager (ACM) in the same Region as the API. Create a DNS CNAME record for the custom domain.\nExplanation:\nAmazon CloudFront can use SSL/TLS certificates stored in AWS Certificate Manager (ACM) to provide secure HTTPS connections for custom domain names. In this scenario, the developer should import the SSL/TLS certificate acquired from a third-party provider into ACM in the same Region as the API (us-east-2 in this case). This allows the certificate to be used by CloudFront.",
+      "reply": []
+    },
+    {
+      "user": "hanJR",
+      "selectedAnswer": "",
+      "body": "It's D. It is trying to integrate with CloudFront, therefore it must upload certificates in us-east-1. If it was a regional API, then certificates must be uploaded in the same region of the API Gateway.",
+      "reply": []
+    },
+    {
+      "user": "March2023",
+      "selectedAnswer": "C",
+      "body": "I was thinking this answer would be C",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "D",
+      "body": "The correct answer is D.\nhttps://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html\nhttps://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html\nhttps://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html",
+      "reply": []
+    }
+  ]
+}

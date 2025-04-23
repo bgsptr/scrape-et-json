@@ -1,0 +1,72 @@
+{
+  "id": "103466",
+  "question": "question-18",
+  "body": "A company is building a serverless application on AWS. The application uses an AWS Lambda function to process customer orders 24 hours a day, 7 days a week. The Lambda function calls an external vendor's HTTP API to process payments.\nDuring load tests, a developer discovers that the external vendor payment processing API occasionally times out and returns errors. The company expects that some payment processing API calls will return errors.\nThe company wants the support team to receive notifications in near real time only when the payment processing external API error rate exceed 5% of the total number of transactions in an hour. Developers need to use an existing Amazon Simple Notification Service (Amazon SNS) topic that is configured to notify the support team.\nWhich solution will meet these requirements?\nA. Write the results of payment processing API calls to Amazon CloudWatch. Use Amazon CloudWatch Logs Insights to query the CloudWatch logs. Schedule the Lambda function to check the CloudWatch logs and notify the existing SNS topic.\nB. Publish custom metrics to CloudWatch that record the failures of the external payment processing API calls. Configure a CloudWatch alarm to notify the existing SNS topic when error rate exceeds the specified rate.\nC. Publish the results of the external payment processing API calls to a new Amazon SNS topic. Subscribe the support team members to the new SNS topic.\nD. Write the results of the external payment processing API calls to Amazon S3. Schedule an Amazon Athena query to run at regular intervals. Configure Athena to send notifications to the existing SNS topic when the error rate exceeds the specified rate.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Bibay",
+      "selectedAnswer": "B",
+      "body": "B. Publish custom metrics to CloudWatch that record the failures of the external payment processing API calls. Configure a CloudWatch alarm to notify the existing SNS topic when the error rate exceeds the specified rate is the best solution to meet the requirements.\n\nWith CloudWatch custom metrics, developers can publish and monitor custom data points, including the number of failed requests to the external payment processing API. A CloudWatch alarm can be configured to notify an SNS topic when the error rate exceeds the specified rate, allowing the support team to be notified in near real-time.\n\nOption A is not optimal since it involves scheduling a Lambda function to check the CloudWatch logs. Option C may not provide the desired functionality since it does not specify a rate at which to notify the support team. Option D is more complex than necessary, as it involves writing the results to S3 and configuring an Athena query to send notifications to an SNS topic.",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "B",
+      "body": "The correct answer is B.\nYou can use the Embedded Metrics format to embed custom metrics alongside detailed log event data. CloudWatch automatically extracts the custom metrics so you can visualize and alarm on them, for real-time incident detection.\nhttps://docs.aws.amazon.com/lambda/latest/operatorguide/custom-metrics.html",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "A) Eliminated - Requires manual log queries and a custom Lambda function to process logs, introducing operational overhead.\n\nB) Correct - CloudWatch Alarms can calculate error rates using metric math and automatically notify the SNS topic.\n\nC) Eliminated - This approach notifies the support team for every API failure, not just when the error rate exceeds 5%.\n\nD) Eliminated - Adds significant operational complexity (managing S3 storage, Athena queries, and scheduling).",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "B",
+      "body": "keyword: error rate exceed 5%, receive notifications in near real time \n\n==> discard A,: use lamdba or athena with schedule, violate ' receive notifications in near real time '\n==> discard C: die in spam of message if any, and don't know when error up 5%\n\nB is most good solution: CloudWatch Alarm can calculate 5% with setup, and notify righ away when reach thresold set-up",
+      "reply": []
+    },
+    {
+      "user": "rue_",
+      "selectedAnswer": "B",
+      "body": "It's B, allows you to customize the metrics as required in the question, and sends notification in near real time instead of polling",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Tony88",
+      "selectedAnswer": "B",
+      "body": "Require \"near real-time\" notification, so you should not use scheduled solution.\nCreating a new SNS topic is no sense.",
+      "reply": [
+        {
+          "user": "Ponyi",
+          "body": "In the question, it is also mentioned that \"Developer needs to use the existing SNS topic....\""
+        }
+      ]
+    },
+    {
+      "user": "Ponyi",
+      "selectedAnswer": "",
+      "body": "In the question, it is also mentioned that \"Developer needs to use the existing SNS topic....\"",
+      "reply": []
+    },
+    {
+      "user": "jayvarma",
+      "selectedAnswer": "",
+      "body": "Option B. Using custom metrics, Developers will be able to publish and monitor custom data points such as the no. of failed requests to the external payment processing API. Create a CloudWatch alarm and configure it to be triggered when the rate of error exceeds the specified number in the question.",
+      "reply": []
+    },
+    {
+      "user": "svrnvtr",
+      "selectedAnswer": "B",
+      "body": "It is B",
+      "reply": []
+    }
+  ]
+}

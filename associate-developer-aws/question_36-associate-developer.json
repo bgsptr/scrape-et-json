@@ -1,0 +1,108 @@
+{
+  "id": "103521",
+  "question": "question-36",
+  "body": "A development team maintains a web application by using a single AWS CloudFormation template. The template defines web servers and an Amazon RDS database. The team uses the Cloud Formation template to deploy the Cloud Formation stack to different environments.\nDuring a recent application deployment, a developer caused the primary development database to be dropped and recreated. The result of this incident was a loss of data. The team needs to avoid accidental database deletion in the future.\nWhich solutions will meet these requirements? (Choose two.)\nA. Add a CloudFormation Deletion Policy attribute with the Retain value to the database resource.\nB. Update the CloudFormation stack policy to prevent updates to the database.\nC. Modify the database to use a Multi-AZ deployment.\nD. Create a CloudFormation stack set for the web application and database deployments.\nE. Add a Cloud Formation DeletionPolicy attribute with the Retain value to the stack.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Mtho96",
+      "selectedAnswer": "",
+      "body": "A. Add a CloudFormation Deletion Policy attribute with the Retain value to the database resource: By adding a DeletionPolicy attribute with the Retain value to the database resource in the CloudFormation template, the database will not be deleted even if the CloudFormation stack is deleted. This helps prevent accidental database loss during stack deletion.\n\nB. Update the CloudFormation stack policy to prevent updates to the database: By updating the CloudFormation stack policy, the development team can restrict updates to the database resource. This prevents accidental modifications or recreations of the database during stack updates. The stack policy can define specific actions that are allowed or denied, providing an additional layer of protection against unintentional database changes.",
+      "reply": []
+    },
+    {
+      "user": "svrnvtr",
+      "selectedAnswer": "AB",
+      "body": "AB\nhttps://aws.amazon.com/ru/premiumsupport/knowledge-center/cloudformation-accidental-updates/",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "AB",
+      "body": "A) Correct - When a DeletionPolicy: Retain is applied to a resource, CloudFormation retains (does not delete) the resource even if the stack is deleted or updated.\n\nB) Correct - Preventing updates ensures that no actions (such as deletion or replacement) can accidentally impact the database. This is an effective safeguard to avoid both deletion and unintended modifications.\n\nC) Eliminated - Multi-AZ deployment is for ensuring database availability and durability, not to prevent accidental deletion. Even with Multi-AZ, the database can still be deleted.\n\nD) Eliminated - Stack sets are for multi-account/multi-region deployments and do not inherently prevent resource deletion.\n\nE) Eliminated - The DeletionPolicy attribute applies only to individual resources, not the entire stack.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "AB",
+      "body": "AB is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Vaibs099",
+      "selectedAnswer": "",
+      "body": "A and B, A is straightforward. For B, within stack policy you can deny update to logical resource for RDS DB. This will prevent any updates to stack resource which could also erase and create new RDS instance.",
+      "reply": []
+    },
+    {
+      "user": "Jonalb",
+      "selectedAnswer": "AB",
+      "body": "https://aws.amazon.com/ru/premiumsupport/knowledge-center/cloudformation-accidental-updates/",
+      "reply": []
+    },
+    {
+      "user": "magicjims",
+      "selectedAnswer": "AB",
+      "body": "This came up in the exam today, I chose A&B",
+      "reply": []
+    },
+    {
+      "user": "panoptica",
+      "selectedAnswer": "",
+      "body": "D & A for me",
+      "reply": []
+    },
+    {
+      "user": "nguyenta",
+      "selectedAnswer": "AB",
+      "body": "A and B",
+      "reply": []
+    },
+    {
+      "user": "marvel21",
+      "selectedAnswer": "",
+      "body": "A & B Correct Answer",
+      "reply": []
+    },
+    {
+      "user": "s50600822",
+      "selectedAnswer": "",
+      "body": "D because grandma said?",
+      "reply": []
+    },
+    {
+      "user": "Japanjot",
+      "selectedAnswer": "",
+      "body": "A B CORRECT",
+      "reply": []
+    },
+    {
+      "user": "ihebchorfi",
+      "selectedAnswer": "AB",
+      "body": "D is wrong, because while it still doesn't protect from the accidental deletion of the DB.",
+      "reply": [
+        {
+          "user": "ihebchorfi",
+          "body": "After more thinking, combining A & D is the correct answer, so i would go with AD"
+        }
+      ]
+    },
+    {
+      "user": "ihebchorfi",
+      "selectedAnswer": "",
+      "body": "After more thinking, combining A & D is the correct answer, so i would go with AD",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "AB",
+      "body": "A and B\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html",
+      "reply": []
+    },
+    {
+      "user": "March2023",
+      "selectedAnswer": "AB",
+      "body": "I agree it is AB",
+      "reply": []
+    }
+  ]
+}

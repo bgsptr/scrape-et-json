@@ -1,0 +1,67 @@
+{
+  "id": "103619",
+  "question": "question-50",
+  "body": "A developer is creating a mobile app that calls a backend service by using an Amazon API Gateway REST API. For integration testing during the development phase, the developer wants to simulate different backend responses without invoking the backend service.\nWhich solution will meet these requirements with the LEAST operational overhead?\nA. Create an AWS Lambda function. Use API Gateway proxy integration to return constant HTTP responses.\nB. Create an Amazon EC2 instance that serves the backend REST API by using an AWS CloudFormation template.\nC. Customize the API Gateway stage to select a response type based on the request.\nD. Use a request mapping template to select the mock integration response.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Untamables",
+      "selectedAnswer": "D",
+      "body": "D\nhttps://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-mock-integration.html",
+      "reply": []
+    },
+    {
+      "user": "Dun6",
+      "selectedAnswer": "",
+      "body": "Chatgpt said D",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "D",
+      "body": "C) Eliminated - Stages are not designed for selecting mock responses dynamically.\n\nD) Correct - API Gateway provides a mock integration feature where request mapping templates can simulate responses.",
+      "reply": []
+    },
+    {
+      "user": "tsangckl",
+      "selectedAnswer": "",
+      "body": "This appear at 17 Jun exam",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "D",
+      "body": "D is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Umuntu",
+      "selectedAnswer": "",
+      "body": "D. Use a request mapping template to select the mock integration response.\n\nOption D allows you to use a request mapping template in API Gateway to select the mock integration response. This approach allows you to simulate different backend responses without invoking the actual backend service. It provides flexibility and control over the responses without the need for additional AWS resources like Lambda functions or EC2 instances, thus minimizing operational overhead.",
+      "reply": []
+    },
+    {
+      "user": "hsinchang",
+      "selectedAnswer": "",
+      "body": "without invoking backend service -> mock",
+      "reply": []
+    },
+    {
+      "user": "ninomfr64",
+      "selectedAnswer": "D",
+      "body": "D as per doc https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-mock-integration.html\n\nWording confused me a bit, with mapping template you do not \"select\" a response, instead you actually craft it in this case",
+      "reply": []
+    },
+    {
+      "user": "KhyatiChhajed",
+      "selectedAnswer": "D",
+      "body": "it's D",
+      "reply": []
+    },
+    {
+      "user": "March2023",
+      "selectedAnswer": "D",
+      "body": "I'm going with D as well.",
+      "reply": []
+    }
+  ]
+}

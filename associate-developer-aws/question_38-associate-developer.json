@@ -1,0 +1,143 @@
+{
+  "id": "103522",
+  "question": "question-38",
+  "body": "An application that is hosted on an Amazon EC2 instance needs access to files that are stored in an Amazon S3 bucket. The application lists the objects that are stored in the S3 bucket and displays a table to the user. During testing, a developer discovers that the application does not show any objects in the list.\nWhat is the MOST secure way to resolve this issue?\nA. Update the IAM instance profile that is attached to the EC2 instance to include the S3:* permission for the S3 bucket.\nB. Update the IAM instance profile that is attached to the EC2 instance to include the S3:ListBucket permission for the S3 bucket.\nC. Update the developer's user permissions to include the S3:ListBucket permission for the S3 bucket.\nD. Update the S3 bucket policy by including the S3:ListBucket permission and by setting the Principal element to specify the account number of the EC2 instance.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Untamables",
+      "selectedAnswer": "B",
+      "body": "The correct answer is B.\nhttps://repost.aws/knowledge-center/ec2-instance-access-s3-bucket\nOption A also works, but it is not compliant to the AWS security practice of the least privilege permissions.",
+      "reply": [
+        {
+          "user": "yeacuz",
+          "body": "Option B only allows you to list the bucket - you will still not see the objects if only s3:ListBucket permission is configured."
+        }
+      ]
+    },
+    {
+      "user": "yeacuz",
+      "selectedAnswer": "",
+      "body": "Option B only allows you to list the bucket - you will still not see the objects if only s3:ListBucket permission is configured.",
+      "reply": []
+    },
+    {
+      "user": "yeacuz",
+      "selectedAnswer": "A",
+      "body": "Option A allows you to list buckets AND objects. Option B only allows you to list the bucket - you will still not see the objects if only s3:ListBucket permission is configured.",
+      "reply": [
+        {
+          "user": "nbxyzd",
+          "body": "Hey, don't mislead the others, please. Read the official document carefully before posting here."
+        },
+        {
+          "user": "Jeremy11",
+          "body": "Not true:\nhttps://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html\nTo use this action in an AWS Identity and Access Management (IAM) policy, you must have permission to perform the s3:ListBucket action."
+        },
+        {
+          "user": "ec8or",
+          "body": "Answer is A: The questions is not stating the the list of buckets cannot seen but the objects within the lists cannot be seen. Seems the dev already has the s3:ListBucket option its the objects part that is missing."
+        }
+      ]
+    },
+    {
+      "user": "nbxyzd",
+      "selectedAnswer": "",
+      "body": "Hey, don't mislead the others, please. Read the official document carefully before posting here.",
+      "reply": []
+    },
+    {
+      "user": "Jeremy11",
+      "selectedAnswer": "",
+      "body": "Not true:\nhttps://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html\nTo use this action in an AWS Identity and Access Management (IAM) policy, you must have permission to perform the s3:ListBucket action.",
+      "reply": [
+        {
+          "user": "ec8or",
+          "body": "Answer is A: The questions is not stating the the list of buckets cannot seen but the objects within the lists cannot be seen. Seems the dev already has the s3:ListBucket option its the objects part that is missing."
+        }
+      ]
+    },
+    {
+      "user": "ec8or",
+      "selectedAnswer": "",
+      "body": "Answer is A: The questions is not stating the the list of buckets cannot seen but the objects within the lists cannot be seen. Seems the dev already has the s3:ListBucket option its the objects part that is missing.",
+      "reply": []
+    },
+    {
+      "user": "aaaaatoz",
+      "selectedAnswer": "B",
+      "body": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html\n\nFor example, the s3:ListBucket permission allows the user to use the Amazon S3 ListObjectsV2 operation. (The s3:ListBucket permission is a case where the action name doesn't map directly to the operation name.)",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "A) Eliminated - Too permissive: Grants more permissions than needed (S3:*), violating the principle of least privilege.\n\nB) Correct - Minimal permissions: Only grants the permission needed for the application to perform the ListBucket operation. Permissions are tied to the EC2 instance's IAM instance profile, limiting access to that instance.\n\nC) Eliminated - The developer’s permissions are unrelated to the application running on the EC2 instance.\n\nD) Eliminated - Grants permissions at the S3 bucket policy level, which applies to all resources in the account, not just the EC2 instance.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Vaibs099",
+      "selectedAnswer": "",
+      "body": "B is correct, Question is asking for lists the objects that are stored in the S3 bucket. s3:ListBucket gives bucket level objects list.",
+      "reply": []
+    },
+    {
+      "user": "ibratoev",
+      "selectedAnswer": "",
+      "body": "The correct answer is B.\nOption A works as well but only listing the files is mentioned as requirement.",
+      "reply": []
+    },
+    {
+      "user": "ninomfr64",
+      "selectedAnswer": "B",
+      "body": "It is B, but I had to dig into docs to learn that to use ListObjectsV2, in an AWS Identity and Access Management (IAM) policy, you must have permission to perform the s3:ListBucket action.\n\nhttps://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html",
+      "reply": []
+    },
+    {
+      "user": "jipark",
+      "selectedAnswer": "",
+      "body": "are there anyone who can explain D ? - S3 bucket policy",
+      "reply": [
+        {
+          "user": "nmc12",
+          "body": "Option D is not the most secure choice, as utilizing bucket policies and specifying account numbers can potentially lead to overly complex and less secure configurations, especially if not managed carefully.\n\nTo implement option B, follow these and it most secure!!!\n{\n \"Version\": \"2012-10-17\",\n \"Statement\": [\n {\n \"Effect\": \"Allow\",\n \"Action\": \"s3:ListBucket\",\n \"Resource\": \"arn:aws:s3:::your-bucket-name\"\n }\n ]\n}"
+        }
+      ]
+    },
+    {
+      "user": "nmc12",
+      "selectedAnswer": "",
+      "body": "Option D is not the most secure choice, as utilizing bucket policies and specifying account numbers can potentially lead to overly complex and less secure configurations, especially if not managed carefully.\n\nTo implement option B, follow these and it most secure!!!\n{\n \"Version\": \"2012-10-17\",\n \"Statement\": [\n {\n \"Effect\": \"Allow\",\n \"Action\": \"s3:ListBucket\",\n \"Resource\": \"arn:aws:s3:::your-bucket-name\"\n }\n ]\n}",
+      "reply": []
+    },
+    {
+      "user": "s50600822",
+      "selectedAnswer": "",
+      "body": "A violated least privilege principle so B",
+      "reply": []
+    },
+    {
+      "user": "yashika2005",
+      "selectedAnswer": "B",
+      "body": "the s3:ListBucket permission allows the user to use the Amazon S3 GET Bucket (List Objects) operation.\nReference: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html",
+      "reply": []
+    },
+    {
+      "user": "yashika2005",
+      "selectedAnswer": "",
+      "body": "the s3:ListBucket permission allows the user to use the Amazon S3 GET Bucket (List Objects) operation. \nReference: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-policy-language-overview.html",
+      "reply": []
+    },
+    {
+      "user": "svrnvtr",
+      "selectedAnswer": "B",
+      "body": "It is B",
+      "reply": []
+    }
+  ]
+}

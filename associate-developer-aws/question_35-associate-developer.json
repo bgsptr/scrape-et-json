@@ -1,0 +1,55 @@
+{
+  "id": "103519",
+  "question": "question-35",
+  "body": "A developer wants to insert a record into an Amazon DynamoDB table as soon as a new file is added to an Amazon S3 bucket.\nWhich set of steps would be necessary to achieve this?\nA. Create an event with Amazon EventBridge that will monitor the S3 bucket and then insert the records into DynamoDB.\nB. Configure an S3 event to invoke an AWS Lambda function that inserts records into DynamoDB.\nC. Create an AWS Lambda function that will poll the S3 bucket and then insert the records into DynamoDB.\nD. Create a cron job that will run at a scheduled time and insert the records into DynamoDB.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Bibay",
+      "selectedAnswer": "",
+      "body": "The correct answer is B.\n\nTo insert a record into DynamoDB as soon as a new file is added to an S3 bucket, you can configure an S3 event notification to invoke an AWS Lambda function that inserts the records into DynamoDB. When a new file is added to the S3 bucket, the S3 event notification will trigger the Lambda function, which will insert the record into the DynamoDB table.\n\nOption A is incorrect because Amazon EventBridge is not necessary to achieve this. S3 event notifications can directly invoke a Lambda function to insert records into DynamoDB.\n\nOption C is incorrect because polling the S3 bucket periodically to check for new files is inefficient and not necessary with S3 event notifications.\n\nOption D is incorrect because running a cron job at a scheduled time is not real-time and would not insert the record into DynamoDB as soon as a new file is added to the S3 bucket.",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "B",
+      "body": "B\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/NotificationHowTo.html",
+      "reply": []
+    },
+    {
+      "user": "pratik7006",
+      "selectedAnswer": "B",
+      "body": "🔹 For simple automation → Use S3 Events.\n🔹 For advanced event-driven applications → Use EventBridge.",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "A) Eliminated - This approach introduces unnecessary complexity when S3 already supports native event notifications to Lambda.\n\nB) Correct - S3 has native support for event notifications to trigger Lambda functions\n\nC) Eliminated - Polling is inefficient and unnecessary\n\nD) Eliminated - This is a time-based solution, not event-driven, meaning there could be a delay between the file being added and the record being inserted.",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "B",
+      "body": "==> Discard A: EventBridge is unnecessary because S3 already provides direct event notifications. \n==> Discard C: Polling violates the \"as soon as\" requirement due to delay and inefficiency. \n==> Discard D: Cron jobs do not respond immediately, violating the \"as soon as\" requirement.\n\nB is correct because S3 event notifications can trigger a Lambda function immediately when a new file is added, ensuring real-time insertion into DynamoDB.\nB is better than A because S3 event notifications directly trigger a Lambda function, eliminating the need for additional configuration or services like EventBridge, making it simpler and more efficient.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "JohnPl",
+      "selectedAnswer": "B",
+      "body": "A is also a solution for this which is better if we want loose coupling but will introduce a slight latency. The key word here is \"as soon as\" so the correct answer will be B.",
+      "reply": []
+    },
+    {
+      "user": "svrnvtr",
+      "selectedAnswer": "",
+      "body": "It is B",
+      "reply": []
+    }
+  ]
+}

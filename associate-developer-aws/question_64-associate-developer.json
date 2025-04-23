@@ -1,0 +1,89 @@
+{
+  "id": "103687",
+  "question": "question-64",
+  "body": "A developer is migrating some features from a legacy monolithic application to use AWS Lambda functions instead. The application currently stores data in an Amazon Aurora DB cluster that runs in private subnets in a VPC. The AWS account has one VPC deployed. The Lambda functions and the DB cluster are deployed in the same AWS Region in the same AWS account.\nThe developer needs to ensure that the Lambda functions can securely access the DB cluster without crossing the public internet.\nWhich solution will meet these requirements?\nA. Configure the DB cluster's public access setting to Yes.\nB. Configure an Amazon RDS database proxy for he Lambda functions.\nC. Configure a NAT gateway and a security group for the Lambda functions.\nD. Configure the VPC, subnets, and a security group for the Lambda functions.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "jayvarma",
+      "selectedAnswer": "",
+      "body": "Option D is the right answer. When we want the lambda to privately access the DB cluster instead of moving the traffic over the public internet, we need to have the lambda and db cluster to be in the same VPC.\n\nWhen we configure the VPC, subnets, and a security group for the lambda function, the lambda function will be able to communicate with the db cluster using the private IPs that are associated to the VPC.\n\nNAT gateway comes into use when you have the lambda deployed in a private subnet and you would want to provide internet access to it.",
+      "reply": []
+    },
+    {
+      "user": "gpt_test",
+      "selectedAnswer": "D",
+      "body": "Explanation: To securely access the Amazon Aurora DB cluster without crossing the public internet, the Lambda functions need to be configured to run within the same VPC as the DB cluster. This involves configuring the VPC, subnets, and a security group for the Lambda functions. This setup ensures that the Lambda functions can communicate with the DB cluster using private IP addresses within the VPC.",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "D",
+      "body": "Lambda functions can be configured to run within a VPC. By assigning the Lambda functions to the same VPC and private subnets as the Aurora DB cluster, the communication remains internal to the VPC and does not cross the public internet. Configuring the security group ensures that the Lambda functions can securely connect to the Aurora DB cluster by allowing appropriate inbound/outbound rules.",
+      "reply": []
+    },
+    {
+      "user": "AmitRanchi",
+      "selectedAnswer": "D",
+      "body": "Ans is D.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "D",
+      "body": "D is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Wendy1113",
+      "selectedAnswer": "",
+      "body": "B\nhttps://repost.aws/questions/QULXSqEPGbQx6qiyBa1D1Udg/lambda-to-db-connectivity-best-practices",
+      "reply": [
+        {
+          "user": "maurice2005",
+          "body": "Actually Proxy should be on the same VPC as the database and since lambda is in another vpc it doesnt have access unless a connection happens between these two vpc or just option D"
+        }
+      ]
+    },
+    {
+      "user": "maurice2005",
+      "selectedAnswer": "",
+      "body": "Actually Proxy should be on the same VPC as the database and since lambda is in another vpc it doesnt have access unless a connection happens between these two vpc or just option D",
+      "reply": []
+    },
+    {
+      "user": "alex_heavy",
+      "selectedAnswer": "",
+      "body": "Selected Answer: B\nhttps://www.udemy.com/course/aws-certified-developer-associate-dva-c01/learn/lecture/36527788#overview\n\nhttps://aws.amazon.com/ru/blogs/compute/using-amazon-rds-proxy-with-aws-lambda/",
+      "reply": []
+    },
+    {
+      "user": "eberhe900",
+      "selectedAnswer": "C",
+      "body": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html",
+      "reply": [
+        {
+          "user": "ejlp",
+          "body": "After reading doc in the link that you mention, my conclusion is D\nNAT GW is required if Lamba in the user VPC need to access internet"
+        }
+      ]
+    },
+    {
+      "user": "ejlp",
+      "selectedAnswer": "",
+      "body": "After reading doc in the link that you mention, my conclusion is D\nNAT GW is required if Lamba in the user VPC need to access internet",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "D",
+      "body": "D\nhttps://docs.aws.amazon.com/lambda/latest/dg/foundation-networking.html",
+      "reply": []
+    },
+    {
+      "user": "Dun6",
+      "selectedAnswer": "D",
+      "body": "D is correct, NATGateway is for when we want Lambda to access the public when it is in a private VPC",
+      "reply": []
+    }
+  ]
+}

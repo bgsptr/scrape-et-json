@@ -1,0 +1,131 @@
+{
+  "id": "103510",
+  "question": "question-25",
+  "body": "A company is migrating an on-premises database to Amazon RDS for MySQL. The company has read-heavy workloads. The company wants to refactor the code to achieve optimum read performance for queries.\nWhich solution will meet this requirement with LEAST current and future effort?\nA. Use a multi-AZ Amazon RDS deployment. Increase the number of connections that the code makes to the database or increase the connection pool size if a connection pool is in use.\nB. Use a multi-AZ Amazon RDS deployment. Modify the code so that queries access the secondary RDS instance.\nC. Deploy Amazon RDS with one or more read replicas. Modify the application code so that queries use the URL for the read replicas.\nD. Use open source replication software to create a copy of the MySQL database on an Amazon EC2 instance. Modify the application code so that queries use the IP address of the EC2 instance.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Devon_Fazekas",
+      "selectedAnswer": "C",
+      "body": "Multi-AZ is for disaster recovery, not read scalability or performance.",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "C",
+      "body": "A) & B) - Eliminated - Multi-AZ deployments are designed for high availability and failover, not for scaling read performance.\n\nD) Eliminated - significant operational overhead to set up and maintain replication between the primary database and the EC2 instance",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "C",
+      "body": "keyword: read-heavy workloads, LEAST current and future effort\n\n==> discard A, B: multiAZ, just only make high availibity, option A: it make you can handler bigger cocurency request, option B you can access to secondary RDS in normal case by modifying code. Both are not help for 'read-heavy workloads'\n==> discard D: take time to execute, maintain, ... when use not-intergated source, violate 'LEAST current and future effort'\n\nC is best choice",
+      "reply": []
+    },
+    {
+      "user": "Piku2",
+      "selectedAnswer": "C",
+      "body": "It should be C as we need to update the URL of the rds endpoint as it is needed to connect the application to use the read replicas for read queries.",
+      "reply": []
+    },
+    {
+      "user": "tomchandler077",
+      "selectedAnswer": "",
+      "body": "Option C provides the most straightforward and effective solution for improving read performance with minimal changes to the current application code and the least ongoing maintenance effort. Deploying read replicas allows for scaling read capacity and distributing read traffic efficiently.",
+      "reply": []
+    },
+    {
+      "user": "nkroker",
+      "selectedAnswer": "",
+      "body": "Option C is wrong because deploying a read replica will be more effort then just enabling the multi-AZ with RDS and also the multi-AZ is meant for high availability that's why option B is correct.",
+      "reply": [
+        {
+          "user": "JonasKahnwald",
+          "body": "No, multi AZ is vor desaster recovery."
+        }
+      ]
+    },
+    {
+      "user": "JonasKahnwald",
+      "selectedAnswer": "",
+      "body": "No, multi AZ is vor desaster recovery.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Vaibs099",
+      "selectedAnswer": "",
+      "body": "Option A and B are both talking about Multi AZ RDS instance which gives Primary and Secondary(Non Read Replica). This is good for high availability but will not help in reads. Read replica or Multi AZ Cluster deployment is the only option to achieve high reads.",
+      "reply": []
+    },
+    {
+      "user": "Dikshika",
+      "selectedAnswer": "",
+      "body": "C it is as it clearly mentions they want to achieve optimum read performance",
+      "reply": []
+    },
+    {
+      "user": "dan_bj",
+      "selectedAnswer": "C",
+      "body": "C forever",
+      "reply": []
+    },
+    {
+      "user": "badsati",
+      "selectedAnswer": "C",
+      "body": "C... No Question",
+      "reply": []
+    },
+    {
+      "user": "vinfo",
+      "selectedAnswer": "C",
+      "body": "C. El uso de replicas de lectura, aliviana las consultas intensivas sobre la BD principal",
+      "reply": []
+    },
+    {
+      "user": "xdkonorek2",
+      "selectedAnswer": "B",
+      "body": "easiest solution is to use multi-az rds deployment with 2 readable standby instances\nsetting up read replica is more effort than checking a single option",
+      "reply": [
+        {
+          "user": "mghectorenjoyer69",
+          "body": "ni mada ra"
+        }
+      ]
+    },
+    {
+      "user": "mghectorenjoyer69",
+      "selectedAnswer": "",
+      "body": "ni mada ra",
+      "reply": []
+    },
+    {
+      "user": "Skywalker23",
+      "selectedAnswer": "C",
+      "body": "Read heavy access need read replicas as the right solution.",
+      "reply": []
+    },
+    {
+      "user": "Tony88",
+      "selectedAnswer": "C",
+      "body": "Keyword: heavy read",
+      "reply": []
+    },
+    {
+      "user": "Akash619",
+      "selectedAnswer": "C",
+      "body": "Read Replicas for high performance read operations",
+      "reply": []
+    },
+    {
+      "user": "jayvarma",
+      "selectedAnswer": "",
+      "body": "Keyword: Achieve Optimum read performance for queries.\nAnswer: Use Read Replicas and use that specific URL for read queries.",
+      "reply": []
+    }
+  ]
+}

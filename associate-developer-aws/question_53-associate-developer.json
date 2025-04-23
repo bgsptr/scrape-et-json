@@ -1,0 +1,176 @@
+{
+  "id": "103723",
+  "question": "question-53",
+  "body": "A developer is using an AWS Lambda function to generate avatars for profile pictures that are uploaded to an Amazon S3 bucket. The Lambda function is automatically invoked for profile pictures that are saved under the /original/ S3 prefix. The developer notices that some pictures cause the Lambda function to time out. The developer wants to implement a fallback mechanism by using another Lambda function that resizes the profile picture.\nWhich solution will meet these requirements with the LEAST development effort?\nA. Set the image resize Lambda function as a destination of the avatar generator Lambda function for the events that fail processing.\nB. Create an Amazon Simple Queue Service (Amazon SQS) queue. Set the SQS queue as a destination with an on failure condition for the avatar generator Lambda function. Configure the image resize Lambda function to poll from the SQS queue.\nC. Create an AWS Step Functions state machine that invokes the avatar generator Lambda function and uses the image resize Lambda function as a fallback. Create an Amazon EventBridge rule that matches events from the S3 bucket to invoke the state machine.\nD. Create an Amazon Simple Notification Service (Amazon SNS) topic. Set the SNS topic as a destination with an on failure condition for the avatar generator Lambda function. Subscribe the image resize Lambda function to the SNS topic.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "March2023",
+      "selectedAnswer": "A",
+      "body": "Wouldn't A be the Least Effort",
+      "reply": []
+    },
+    {
+      "user": "jingle4944",
+      "selectedAnswer": "A",
+      "body": "Previously, you needed to write the SQS/SNS/EventBridge handling code within your Lambda function and manage retries and failures yourself.\n\nWith Destinations, you can route asynchronous function results as an execution record to a destination resource without writing additional code.\n\nhttps://aws.amazon.com/ru/blogs/compute/introducing-aws-lambda-destinations/",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "A",
+      "body": "AWS Lambda supports Destinations for asynchronous invocations. You can configure a failure destination that triggers a fallback mechanism, such as invoking another Lambda function. This removes the need for additional services like SQS, SNS, or Step Functions, simplifying the architecture.",
+      "reply": []
+    },
+    {
+      "user": "f271c23",
+      "selectedAnswer": "B",
+      "body": "Least development effort does not mean incomplete solution. what happens when the number of such issues are high and request needs to be queued. does not sound convincing",
+      "reply": []
+    },
+    {
+      "user": "lambdaFun",
+      "selectedAnswer": "",
+      "body": "A is the correct Answer if we read the question in the last part \"The developer wants to implement a fallback mechanism by using another Lambda function\"",
+      "reply": []
+    },
+    {
+      "user": "PrinceMughal",
+      "selectedAnswer": "A",
+      "body": "I will go with A as it is the simplest solution among other three option",
+      "reply": []
+    },
+    {
+      "user": "fabiomonta18",
+      "selectedAnswer": "B",
+      "body": "This seems to be a tricky one. It's true that you can set Lambda destination, but you better set SQS as destination, exactly what the article suggests, go check it. The correct one is B.\nhttps://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "vipyodha",
+      "selectedAnswer": "",
+      "body": "B is right.\n A.wrong because \nLambda Function Chaining: While Lambda function chaining is possible, it would require modifying the avatar generation Lambda function to include the resize function as a destination for failed events. This might involve additional coding and potentially more complex error handling within the Lambda function.",
+      "reply": [
+        {
+          "user": "Tluszczyk",
+          "body": "With AWS Lambda destinations you don't need to interact with code to change this"
+        }
+      ]
+    },
+    {
+      "user": "Tluszczyk",
+      "selectedAnswer": "",
+      "body": "With AWS Lambda destinations you don't need to interact with code to change this",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "A",
+      "body": "Least development effort no emphasis on orchestration",
+      "reply": [
+        {
+          "user": "KarBiswa",
+          "body": "https://aws.amazon.com/ru/blogs/compute/introducing-aws-lambda-destinations/ this link justifies the answer"
+        },
+        {
+          "user": "fabiomonta18",
+          "body": "The article says \"For each execution status such as Success or Failure you can choose one of four destinations: another Lambda function, SNS, SQS, or EventBridge.\" It hink for this reason the correct one is B."
+        },
+        {
+          "user": "fabiomonta18",
+          "body": "I mean, which destination other then SQS can you set in this case?"
+        }
+      ]
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "",
+      "body": "https://aws.amazon.com/ru/blogs/compute/introducing-aws-lambda-destinations/ this link justifies the answer",
+      "reply": [
+        {
+          "user": "fabiomonta18",
+          "body": "The article says \"For each execution status such as Success or Failure you can choose one of four destinations: another Lambda function, SNS, SQS, or EventBridge.\" It hink for this reason the correct one is B."
+        },
+        {
+          "user": "fabiomonta18",
+          "body": "I mean, which destination other then SQS can you set in this case?"
+        }
+      ]
+    },
+    {
+      "user": "fabiomonta18",
+      "selectedAnswer": "",
+      "body": "The article says \"For each execution status such as Success or Failure you can choose one of four destinations: another Lambda function, SNS, SQS, or EventBridge.\" It hink for this reason the correct one is B.",
+      "reply": [
+        {
+          "user": "fabiomonta18",
+          "body": "I mean, which destination other then SQS can you set in this case?"
+        }
+      ]
+    },
+    {
+      "user": "fabiomonta18",
+      "selectedAnswer": "",
+      "body": "I mean, which destination other then SQS can you set in this case?",
+      "reply": []
+    },
+    {
+      "user": "Jonalb",
+      "selectedAnswer": "A",
+      "body": "A. Defina a função Lambda de redimensionamento de imagem como um destino da função Lambda do gerador de avatar para os eventos que falham no processamento",
+      "reply": []
+    },
+    {
+      "user": "appuNBablu",
+      "selectedAnswer": "",
+      "body": "A, because we can map another Lambda function as destination alongside (SQS, SNS, Event Bridge)",
+      "reply": []
+    },
+    {
+      "user": "ninomfr64",
+      "selectedAnswer": "A",
+      "body": "A is the easiest option \nhttps://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations",
+      "reply": []
+    },
+    {
+      "user": "jayvarma",
+      "selectedAnswer": "",
+      "body": "Option B is the right answer. Can someone say why B cannot be the right answer for this question?\n\nOption A fails when there are huge amounts of requests coming to the lambda functions. There is every chance for lambda to throw ProvisionedThrougputExceeded Exception because of the throttling issues. Which is almost the similar reason why Option C will also fail at some point.\n\nHowever, you could use SNS but it is not the best solution. \n\nDefinitely Option B.",
+      "reply": []
+    },
+    {
+      "user": "backfringe",
+      "selectedAnswer": "A",
+      "body": "least amount of effort to set up destination on failure events to REsize Lambda",
+      "reply": []
+    },
+    {
+      "user": "AWSdeveloper08",
+      "selectedAnswer": "B",
+      "body": "I agree with the explanation for option B. Scalability is the key",
+      "reply": []
+    },
+    {
+      "user": "[Removed]",
+      "selectedAnswer": "A",
+      "body": "A is a simplest solution\nhttps://aws.amazon.com/ru/blogs/compute/introducing-aws-lambda-destinations/\nhttps://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations",
+      "reply": [
+        {
+          "user": "jipark",
+          "body": "your explanation looks correct.\nLambda \"Denstination\" seems exact solution for this.\nit explains how to handle success, failed case."
+        }
+      ]
+    },
+    {
+      "user": "jipark",
+      "selectedAnswer": "",
+      "body": "your explanation looks correct.\nLambda \"Denstination\" seems exact solution for this.\nit explains how to handle success, failed case.",
+      "reply": []
+    }
+  ]
+}

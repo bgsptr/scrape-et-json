@@ -1,0 +1,168 @@
+{
+  "id": "103523",
+  "question": "question-40",
+  "body": "A company has deployed infrastructure on AWS. A development team wants to create an AWS Lambda function that will retrieve data from an Amazon Aurora database. The Amazon Aurora database is in a private subnet in company's VPC. The VPC is named VPC1. The data is relational in nature. The Lambda function needs to access the data securely.\nWhich solution will meet these requirements?\nA. Create the Lambda function. Configure VPC1 access for the function. Attach a security group named SG1 to both the Lambda function and the database. Configure the security group inbound and outbound rules to allow TCP traffic on Port 3306.\nB. Create and launch a Lambda function in a new public subnet that is in a new VPC named VPC2. Create a peering connection between VPC1 and VPC2.\nC. Create the Lambda function. Configure VPC1 access for the function. Assign a security group named SG1 to the Lambda function. Assign a second security group named SG2 to the database. Add an inbound rule to SG1 to allow TCP traffic from Port 3306.\nD. Export the data from the Aurora database to Amazon S3. Create and launch a Lambda function in VPC1. Configure the Lambda function query the data from Amazon S3.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "[Removed]",
+      "selectedAnswer": "",
+      "body": "ooooh this one was rough. I am going with A --> https://repost.aws/knowledge-center/connect-lambda-to-an-rds-instance\n\nI was between A and C... wording for both tricky. But the only way C would work is if the last portion of the sentence the read \"Add an inbound rule to SG2 to allow TCP traffic from port 3306\" or \"Add an outbound rule to SG1 to allow TCP traffic... \"",
+      "reply": [
+        {
+          "user": "9d8dd9c",
+          "body": "But aren't the routing on SGs state-full so allowing inbound allows outbound too? or am I confusing that with something else?"
+        },
+        {
+          "user": "Yuri_024",
+          "body": "SG1 is for the lambda, SG2 is for the database. In option C it says setting inbound traffic for the SG1 on TCP port 3306. But it should be setting inbound traffic for SG2 on TCP port 3306."
+        }
+      ]
+    },
+    {
+      "user": "9d8dd9c",
+      "selectedAnswer": "",
+      "body": "But aren't the routing on SGs state-full so allowing inbound allows outbound too? or am I confusing that with something else?",
+      "reply": [
+        {
+          "user": "Yuri_024",
+          "body": "SG1 is for the lambda, SG2 is for the database. In option C it says setting inbound traffic for the SG1 on TCP port 3306. But it should be setting inbound traffic for SG2 on TCP port 3306."
+        }
+      ]
+    },
+    {
+      "user": "Yuri_024",
+      "selectedAnswer": "",
+      "body": "SG1 is for the lambda, SG2 is for the database. In option C it says setting inbound traffic for the SG1 on TCP port 3306. But it should be setting inbound traffic for SG2 on TCP port 3306.",
+      "reply": []
+    },
+    {
+      "user": "shahs10",
+      "selectedAnswer": "A",
+      "body": "Correct Answer is Answer A\nFor B creating new VPC for lambda does not seems a suitable solution\nFor C Assigning differrent security groups to both will not work\nOption D will not be suitable for relational data and involve S3 in solution",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "A",
+      "body": "B) Eliminated - Placing the Lambda function in a public subnet compromises security\n\nC) Eliminated - The rule should allow traffic to SG2 (the database’s security group) from SG1 (the Lambda function’s security group), not the other way around.\n\nD) Eliminated - Adds significant operational complexity",
+      "reply": []
+    },
+    {
+      "user": "wh1t4k3r",
+      "selectedAnswer": "",
+      "body": "this one is badly written hehe\nI would say A, but they missed to mention that this only works securely if the secgroup is listed as destination of the rules.\nB would also work, but you need to properly configure it....",
+      "reply": []
+    },
+    {
+      "user": "Saurabh04",
+      "selectedAnswer": "",
+      "body": "Correction answer should be option C. Lambda function, configure VPC1 access, and assign separate security groups:\nLambda Function: Associate the Lambda function with VPC1.\nSecurity Group (SG1): Assign SG1 to the Lambda function.\nSecurity Group (SG2): Assign a second security group (SG2) to the Aurora database.\nInbound Rule: Add an inbound rule to SG1 to allow TCP traffic from Port 3306 (Aurora database port).\nThis approach ensures proper separation of concerns and simplifies security group management.",
+      "reply": []
+    },
+    {
+      "user": "tsangckl",
+      "selectedAnswer": "",
+      "body": "This appear at 17 Jun exam",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "ibratoev",
+      "selectedAnswer": "",
+      "body": "A seems the answer, although a single SG for both the DB and Lambda is not a great practice. I would go with 2 SGs.",
+      "reply": []
+    },
+    {
+      "user": "TheFivePips",
+      "selectedAnswer": "A",
+      "body": "Security groups are statefull so you dont need to specify both inbound and outbound rules. However, you should have security groups on both resources as a best practice, and I dont think it is enough to have an inbound rule just on the lambda security group in this case. \nThis would essentially give the DB access to send traffic to the lambda function, rather than the lambda function accessing data from the DB like we want. If the lambda function doesnt have a permission on its security group letting it access the DB, then it will never communicate with it unless the DB contacts it first.\nIf C had placed the inbound permission on the DB, or if it had placed the outbound permission on the lambda then I think it would be right.\nSo while the wording is a little confusing, I think A is correct",
+      "reply": []
+    },
+    {
+      "user": "quanghao",
+      "selectedAnswer": "B",
+      "body": "A Lambda function and RDS instance in different VPCs\nFirst, use VPC peering to connect the two VPCs. Then, use the networking configurations to connect the Lambda function in one VPC to the RDS instance in the other:",
+      "reply": []
+    },
+    {
+      "user": "hcsaba1982",
+      "selectedAnswer": "B",
+      "body": "This is the only one where lambda can reach the Database anyway, seems to me a prerequisite if the VPC was mentioned. Lambda by default, launched outside your VPC (in an AWS-owned VPC) so it cannot access resources.",
+      "reply": [
+        {
+          "user": "[Removed]",
+          "body": "if it were private maybe... but public so this answer definitely wrong"
+        }
+      ]
+    },
+    {
+      "user": "[Removed]",
+      "selectedAnswer": "",
+      "body": "if it were private maybe... but public so this answer definitely wrong",
+      "reply": []
+    },
+    {
+      "user": "dexdinh91",
+      "selectedAnswer": "B",
+      "body": "B is correct?",
+      "reply": []
+    },
+    {
+      "user": "quanbui",
+      "selectedAnswer": "C",
+      "body": "C, need 2 SG",
+      "reply": [
+        {
+          "user": "[Removed]",
+          "body": "C the wording throws me off... Because the inbound rule in the end of the statement should be to the database not SG1. so we want to allow lambda access to the DB... The way this option is worded is not really giving lambda access to the db... it's giving DB access to lambda but not the other way around which we need. So leaning with A"
+        }
+      ]
+    },
+    {
+      "user": "[Removed]",
+      "selectedAnswer": "",
+      "body": "C the wording throws me off... Because the inbound rule in the end of the statement should be to the database not SG1. so we want to allow lambda access to the DB... The way this option is worded is not really giving lambda access to the db... it's giving DB access to lambda but not the other way around which we need. So leaning with A",
+      "reply": []
+    },
+    {
+      "user": "sofiatian",
+      "selectedAnswer": "C",
+      "body": "Need two security groups. One is for Lambda function. The other one is for DB",
+      "reply": [
+        {
+          "user": "konieczny69",
+          "body": "nonsense\nwhy would anyone want sql application port access to lambda??\n\nA is the only naswer"
+        }
+      ]
+    },
+    {
+      "user": "konieczny69",
+      "selectedAnswer": "",
+      "body": "nonsense\nwhy would anyone want sql application port access to lambda??\n\nA is the only naswer",
+      "reply": []
+    },
+    {
+      "user": "hsinchang",
+      "selectedAnswer": "",
+      "body": "A. right\nB. public, unsecure\nC. excessive connections\nD. additional cost and complexity",
+      "reply": []
+    },
+    {
+      "user": "love777",
+      "selectedAnswer": "A",
+      "body": "VPC Configuration:\n\nEnsure that your Lambda function is configured to run within the same VPC where your Amazon Aurora database resides (VPC1 in this case).\nConfigure the Lambda function to use the appropriate subnets within VPC1, which are associated with the private subnet where your Amazon Aurora database is located.\nSecurity Groups:\n\nAttach a security group (SG1) to both the Lambda function and the Amazon Aurora database.\nConfigure the security group inbound rules for SG1 to allow incoming TCP traffic on Port 3306, which is the default port for MySQL (used by Aurora). This will allow communication between the Lambda function and the database.\nOutbound rules should be allowed by default, so you don't need to make any changes there.",
+      "reply": []
+    },
+    {
+      "user": "ninomfr64",
+      "selectedAnswer": "A",
+      "body": "There isn't the ideal solution to the use case among the options.\n\nB) no need to create a new VPC and also you need to add route tables and configure SGs to make it works\nC) this could work if the rule on SG1 was outbound instead of inbound (the connection is initiated from Lambda to Aurora)\nD) export data to S3 is overkill and if you do that you no longer need to deploy the lambda in the VPC\n\nA) works, as SG1 is attached to both Lambda and Aurora we need outbound rule to 3306 (Lambda initiate communication to Aurora) and also inbound rule from 3306 (to allow Aurora accept connection from Lambda). I don't like to have the same SG1 for both the Lambda and the Aurora",
+      "reply": []
+    }
+  ]
+}

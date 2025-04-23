@@ -1,0 +1,93 @@
+{
+  "id": "103656",
+  "question": "question-26",
+  "body": "A developer is creating an application that will be deployed on IoT devices. The application will send data to a RESTful API that is deployed as an AWS Lambda function. The application will assign each API request a unique identifier. The volume of API requests from the application can randomly increase at any given time of day.\nDuring periods of request throttling, the application might need to retry requests. The API must be able to handle duplicate requests without inconsistencies or data loss.\nWhich solution will meet these requirements?\nA. Create an Amazon RDS for MySQL DB instance. Store the unique identifier for each request in a database table. Modify the Lambda function to check the table for the identifier before processing the request.\nB. Create an Amazon DynamoDB table. Store the unique identifier for each request in the table. Modify the Lambda function to check the table for the identifier before processing the request.\nC. Create an Amazon DynamoDB table. Store the unique identifier for each request in the table. Modify the Lambda function to return a client error response when the function receives a duplicate request.\nD. Create an Amazon ElastiCache for Memcached instance. Store the unique identifier for each request in the cache. Modify the Lambda function to check the cache for the identifier before processing the request.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Devon_Fazekas",
+      "selectedAnswer": "B",
+      "body": "I originally thought ElastiCache would provide the sufficient session management of the unique identifiers with the least latency. But apparently, the scope of this question revolves around durability, not latency. Hence, a persistent storage is better suited. And while RDS is a viable solution for durability and performance, the question specifies IoT devices which typically produce unstructured data that is better handled by No-SQL services like DynamoDB.",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "B",
+      "body": "B\nThe resolution is to make the Lambda function idempotent.\nhttps://repost.aws/knowledge-center/lambda-function-idempotent\nhttps://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "A) Eliminated - RDS is not as scalable as DynamoDB for handling unpredictable spikes in traffic.\n\nD) Eliminated - Memcached is an in-memory cache that is not designed for persistence or durability. If the instance is restarted or the data is evicted due to memory constraints, the identifiers could be lost",
+      "reply": [
+        {
+          "user": "sumanshu",
+          "body": "C) Eliminated - Returning a client error response for duplicate requests is not a good approach"
+        }
+      ]
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "",
+      "body": "C) Eliminated - Returning a client error response for duplicate requests is not a good approach",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "B",
+      "body": "keyword:\n- AWS Lambda function\n- increase at any given time\n- retry requests\n- handle duplicate requests\n\n==> Discard A, D: violate 'increase at any given time', it is not automatically, because it is not fit with serverless service 'AWS Lambda function'\n==> Discard C: violate 'retry requests + handle duplicate requests', => different response from success vs. error error, make it is non-idempotency \n=> Discard D: violate 'inconsistencies or data loss.' it doest not store persistent data.\n\nB is best solution",
+      "reply": []
+    },
+    {
+      "user": "f271c23",
+      "selectedAnswer": "C",
+      "body": "I think C has the merits to be a right answer. It has more specific handling to duplicate requests . The answer B does the same but the langugage is more explicite in option C",
+      "reply": []
+    },
+    {
+      "user": "ElFaramawi",
+      "selectedAnswer": "",
+      "body": "Why not C?\nAccording to the question \"During periods of request throttling, the application might need to retry requests\", this indicate that lambda should returns client error, so the application can make another retry request to fix the problem",
+      "reply": [
+        {
+          "user": "queekao",
+          "body": "because c don't mention about retry actions"
+        },
+        {
+          "user": "cocolavayen",
+          "body": "same doubt"
+        }
+      ]
+    },
+    {
+      "user": "queekao",
+      "selectedAnswer": "",
+      "body": "because c don't mention about retry actions",
+      "reply": []
+    },
+    {
+      "user": "cocolavayen",
+      "selectedAnswer": "",
+      "body": "same doubt",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Abdullah22",
+      "selectedAnswer": "B",
+      "body": "Consistency: Memcached does not provide built-in support for atomic operations or conditional writes like DynamoDB does. Handling duplicate requests and ensuring consistency would require additional application logic and complexity.",
+      "reply": []
+    },
+    {
+      "user": "Tony88",
+      "selectedAnswer": "B",
+      "body": "Cache topic.\nSo Elastic Redis and DynamoDB both can be used as a cache solution. \nIf you want high performance, low latency, go with Redis\nIf you want persistent storage, go with DyanmoDB.",
+      "reply": []
+    }
+  ]
+}

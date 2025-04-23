@@ -1,0 +1,136 @@
+{
+  "id": "103646",
+  "question": "question-24",
+  "body": "A company wants to deploy and maintain static websites on AWS. Each website's source code is hosted in one of several version control systems, including AWS CodeCommit, Bitbucket, and GitHub.\nThe company wants to implement phased releases by using development, staging, user acceptance testing, and production environments in the AWS Cloud. Deployments to each environment must be started by code merges on the relevant Git branch. The company wants to use HTTPS for all data exchange. The company needs a solution that does not require servers to run continuously.\nWhich solution will meet these requirements with the LEAST operational overhead?\nA. Host each website by using AWS Amplify with a serverless backend. Conned the repository branches that correspond to each of the desired environments. Start deployments by merging code changes to a desired branch.\nB. Host each website in AWS Elastic Beanstalk with multiple environments. Use the EB CLI to link each repository branch. Integrate AWS CodePipeline to automate deployments from version control code merges.\nC. Host each website in different Amazon S3 buckets for each environment. Configure AWS CodePipeline to pull source code from version control. Add an AWS CodeBuild stage to copy source code to Amazon S3.\nD. Host each website on its own Amazon EC2 instance. Write a custom deployment script to bundle each website's static assets. Copy the assets to Amazon EC2. Set up a workflow to run the script when code is merged.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Bibay",
+      "selectedAnswer": "",
+      "body": "a\nThe solution that will meet these requirements with the LEAST operational overhead is option A: Host each website by using AWS Amplify with a serverless backend. AWS Amplify is a fully managed service that allows developers to build and deploy web applications and static websites. With Amplify, developers can easily connect their repositories, such as AWS CodeCommit, Bitbucket, and GitHub, to automatically build and deploy changes to the website based on code merges. Amplify also supports phased releases with multiple environments, including development, staging, user acceptance testing, and production, which can be linked to specific branches in the repository. Additionally, Amplify uses HTTPS for all data exchange by default and has a serverless backend, which means there are no servers to maintain. Overall, this solution provides the least operational overhead while meeting all the specified requirements.",
+      "reply": [
+        {
+          "user": "yashika2005",
+          "body": "thanks a ton for all the explanations!"
+        }
+      ]
+    },
+    {
+      "user": "yashika2005",
+      "selectedAnswer": "",
+      "body": "thanks a ton for all the explanations!",
+      "reply": []
+    },
+    {
+      "user": "Untamables",
+      "selectedAnswer": "A",
+      "body": "The correct answer is A.\nAWS Amplify is an all in one service for the requirement.\nhttps://docs.aws.amazon.com/amplify/latest/userguide/welcome.html\nOption C is almost correct, but it does not mention how to implement HTTPS.\nOption B and D are wrong. They need to keep running servers.",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "B",
+      "body": "A) AWS Amplify is purpose-built for deploying and hosting static websites and serverless backends with minimal operational overhead.\n\nB) Eliminated - Elastic Beanstalk is overkill for hosting static websites since it is designed for running full-stack web applications with servers \n\nC) Eliminated : S3 does not natively support branch-to-environment linking\n\nD) Eliminated: Using EC2 instances is entirely unnecessary for hosting static websites. It involves the highest operational overhead",
+      "reply": [
+        {
+          "user": "sumanshu",
+          "body": "Sorry - By mistake Select \"B\", should be A"
+        },
+        {
+          "user": "sumanshu",
+          "body": "C) Eliminated - Additional steps needed to configure CloudFront for HTTPS. Also need multiple S3 buckets (for dev, stg, prod etc).\n\nThough S3 is great choice, but as compare to Amplify, more effort"
+        }
+      ]
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "",
+      "body": "Sorry - By mistake Select \"B\", should be A",
+      "reply": [
+        {
+          "user": "sumanshu",
+          "body": "C) Eliminated - Additional steps needed to configure CloudFront for HTTPS. Also need multiple S3 buckets (for dev, stg, prod etc).\n\nThough S3 is great choice, but as compare to Amplify, more effort"
+        }
+      ]
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "",
+      "body": "C) Eliminated - Additional steps needed to configure CloudFront for HTTPS. Also need multiple S3 buckets (for dev, stg, prod etc).\n\nThough S3 is great choice, but as compare to Amplify, more effort",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "A",
+      "body": "keyword: \n- static websites\n- version control systems, including AWS CodeCommit, Bitbucket, and GitHub.\n- phased releases by using development, staging, user acceptance testing, and production environments\n- use HTTPS for all data exchange\n- not require servers to run continuously.\n- LEAST operational overhead\n\n==> discard D: EC2 instance is not serverless, violate 'not require servers to run continuously'\n==> discard C: you must set up many thing manually, create each bucket for each stage,... .Violate 'LEAST operational overhead'\n==> Discard B: it excess capacity for 'static websites', usually using when deploy dynamic complexity backend, you must manage EC2, ELB, Auto Scaling, ... so violate 'LEAST operational overhead'\n\nA fits all requirement above",
+      "reply": []
+    },
+    {
+      "user": "Saurabh04",
+      "selectedAnswer": "A",
+      "body": "Amplify hosting provides a git based workflow for hosting full stack server less applications with continuous deployment.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Vaibs099",
+      "selectedAnswer": "",
+      "body": "Amplify is the best option here to host website / static site as well with Hosting Environment option which can pull code from github, codecommit and bitbucket. Webapp Hosting can be for different envs like Prod, Dev etc. This gives serverless hosting option along with HTTPS. S3 static website hosting has no HTTPS and EB and EC2 are running instances.",
+      "reply": []
+    },
+    {
+      "user": "Cerakoted",
+      "selectedAnswer": "A",
+      "body": "Check About AWS Amplify Hosting",
+      "reply": []
+    },
+    {
+      "user": "jayvarma",
+      "selectedAnswer": "",
+      "body": "Option A is the answer. Ofcourse, until now we have been used to the fact that we need to use S3 for static website hosting. \n\nBut there are a lot of requirements described in the question like the source code hosting, phased releases with different environments and HTTPS for all data exchange (which is not possible with S3 Hosting).\n\nAWS Amplify does all of this for you with the least operational overhead.",
+      "reply": []
+    },
+    {
+      "user": "Devon_Fazekas",
+      "selectedAnswer": "",
+      "body": "For fellow ACloudGurus, I was taught to associate static website hosting to S3 buckets. But apparently, \"least operational overhead\" is achieved using Amplify, as it natively supports deployment to various environments and seamlessly integrates with version control systems. Whereas, S3 requires configuring multiple buckets, configuring CodePipeline and integrating with each bucket.",
+      "reply": []
+    },
+    {
+      "user": "Rpod",
+      "selectedAnswer": "C",
+      "body": "Static Website should be C ..using S3",
+      "reply": [
+        {
+          "user": "Arnaud92",
+          "body": "Sadly Static Web Hosting on S3 does not supports HTTPS . So Response is A ;-) \n\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html"
+        },
+        {
+          "user": "jipark",
+          "body": "that is critical key !! thanks a lot."
+        }
+      ]
+    },
+    {
+      "user": "Arnaud92",
+      "selectedAnswer": "",
+      "body": "Sadly Static Web Hosting on S3 does not supports HTTPS . So Response is A ;-) \n\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html",
+      "reply": [
+        {
+          "user": "jipark",
+          "body": "that is critical key !! thanks a lot."
+        }
+      ]
+    },
+    {
+      "user": "jipark",
+      "selectedAnswer": "",
+      "body": "that is critical key !! thanks a lot.",
+      "reply": []
+    }
+  ]
+}

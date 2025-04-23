@@ -1,0 +1,120 @@
+{
+  "id": "103334",
+  "question": "question-9",
+  "body": "A company wants to share information with a third party. The third party has an HTTP API endpoint that the company can use to share the information. The company has the required API key to access the HTTP API.\nThe company needs a way to manage the API key by using code. The integration of the API key with the application code cannot affect application performance.\nWhich solution will meet these requirements MOST securely?\nA. Store the API credentials in AWS Secrets Manager. Retrieve the API credentials at runtime by using the AWS SDK. Use the credentials to make the API call.\nB. Store the API credentials in a local code variable. Push the code to a secure Git repository. Use the local code variable at runtime to make the API call.\nC. Store the API credentials as an object in a private Amazon S3 bucket. Restrict access to the S3 object by using IAM policies. Retrieve the API credentials at runtime by using the AWS SDK. Use the credentials to make the API call.\nD. Store the API credentials in an Amazon DynamoDB table. Restrict access to the table by using resource-based policies. Retrieve the API credentials at runtime by using the AWS SDK. Use the credentials to make the API call.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Kristijan92",
+      "selectedAnswer": "A",
+      "body": "answer A",
+      "reply": []
+    },
+    {
+      "user": "elfinka9",
+      "selectedAnswer": "A",
+      "body": "Why B is marked as correct ????",
+      "reply": [
+        {
+          "user": "ACurryDeveloper",
+          "body": "Why is developer being a benchod? A, b, c or d?"
+        }
+      ]
+    },
+    {
+      "user": "ACurryDeveloper",
+      "selectedAnswer": "",
+      "body": "Why is developer being a benchod? A, b, c or d?",
+      "reply": []
+    },
+    {
+      "user": "anandkg",
+      "selectedAnswer": "A",
+      "body": "most secure approach",
+      "reply": []
+    },
+    {
+      "user": "ocharo",
+      "selectedAnswer": "A",
+      "body": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html",
+      "reply": []
+    },
+    {
+      "user": "sumanshu",
+      "selectedAnswer": "A",
+      "body": "AWS Secrets Manager is purpose-built for securely managing sensitive data such as API keys",
+      "reply": []
+    },
+    {
+      "user": "trieudo",
+      "selectedAnswer": "A",
+      "body": "keyword: MOST securely\n\n==> discard B first: If the code repository is compromised, the API key could be exposed. \n==> discard C, D after: this requires setting up and managing the DynamoDB table and resource-based policies ==> can make mistake from ppl, then creating issue about security\n\nA: AWS Secrets Manager is a specialized service designed to securely store sensitive information like API keys.",
+      "reply": []
+    },
+    {
+      "user": "Bibay",
+      "selectedAnswer": "A",
+      "body": "The MOST secure solution to manage the API key while ensuring that the integration of the API key with the application code does not affect application performance is to store the API key in AWS Secrets Manager. The API key can be retrieved at runtime by using the AWS SDK, which does not impact application performance. Therefore, option A is the correct answer.\n\nOption B is not secure as it exposes the API key to anyone with access to the code repository, which increases the risk of unauthorized access.\n\nOption C and D may work, but they require additional configuration and permissions management. Storing the API key in an S3 bucket or a DynamoDB table could expose the key to unauthorized users if proper IAM policies are not in place. Therefore, option A is the most secure and simple solution to manage the API key while not affecting the application's performance.",
+      "reply": []
+    },
+    {
+      "user": "nkroker",
+      "selectedAnswer": "",
+      "body": "B is certainly a wrong answer because if you read the application development with AWS case study and also the best practices then in it the AWS itself does not encourage the developer to store the sensitive API and license keys in code on the other hand it encourages to use the provided solutions like KMS, Secrets Manager and Parameter Store.",
+      "reply": []
+    },
+    {
+      "user": "297dfbb",
+      "selectedAnswer": "A",
+      "body": "A is correct. B is wrong because you never store credentials in source control.",
+      "reply": []
+    },
+    {
+      "user": "c949c84",
+      "selectedAnswer": "A",
+      "body": "Most secure",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Prosen2522",
+      "selectedAnswer": "",
+      "body": "A is it",
+      "reply": []
+    },
+    {
+      "user": "badsati",
+      "selectedAnswer": "",
+      "body": "Straight A",
+      "reply": []
+    },
+    {
+      "user": "bednark",
+      "selectedAnswer": "A",
+      "body": "A is correct",
+      "reply": []
+    },
+    {
+      "user": "leonardoliveros",
+      "selectedAnswer": "A",
+      "body": "B isn't secury\nA is the best option for this scenary",
+      "reply": []
+    },
+    {
+      "user": "gullyboy77",
+      "selectedAnswer": "A",
+      "body": "Secret Manager is the safest way to store secrets in AWS.",
+      "reply": []
+    },
+    {
+      "user": "chvtejaswi",
+      "selectedAnswer": "A",
+      "body": "Answer A",
+      "reply": []
+    }
+  ]
+}
