@@ -53,6 +53,8 @@ async function scraper() {
 
           questionContent.question = titleText.split(" ").slice(9, 11).join("-").toLowerCase();
 
+          let replied = 0;
+
           const commentContainers = await driver.findElements(By.css(".comment-container"));
           for (const comment of commentContainers) {
             const commentData = {
@@ -61,6 +63,11 @@ async function scraper() {
               body: "",
               reply: [],
             };
+
+            if (replied > 0) {
+              replied = replied - 1;
+              continue;
+            }
 
             try {
               const headComment = await comment.findElement(By.css(".comment-head .comment-username"));
@@ -87,6 +94,8 @@ async function scraper() {
                     user: await replyUser.getText(),
                     body: await replyBody.getText(),
                   });
+
+                  replied = replied + 1;
                 } catch {}
               }
             } catch {}
