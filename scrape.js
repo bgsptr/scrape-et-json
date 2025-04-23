@@ -22,8 +22,8 @@ async function scraper() {
 
   const scrapedQuestions = [];
 
-  const startId = 102905; // set as you want
-  const latestId = 103905; // latest updated id in exam web
+  const startId = 122622; // set as you want
+  const latestId = 124000; // latest updated id in exam web
 
   try {
     for (let i = startId; i <= latestId; i++) {
@@ -126,7 +126,7 @@ async function scraper() {
         console.warn(`Failed to scrape ${targetUrl}:`, innerErr.message);
       }
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   } catch (error) {
     console.error("Error while scraping:", error);
