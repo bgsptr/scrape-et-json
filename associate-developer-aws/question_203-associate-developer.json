@@ -1,0 +1,129 @@
+{
+  "id": "122625",
+  "question": "question-203",
+  "body": "An IT department uses Amazon S3 to store sensitive images. After more than 1 year, the company moves the images into archival storage. The company rarely accesses the images, but the company wants a storage solution that maximizes resiliency. The IT department needs access to the images that have been moved to archival storage within 24 hours.\n\nWhich solution will meet these requirements MOST cost-effectively?\nA. Use S3 Standard-Infrequent Access (S3 Standard-IA) to store the images. Use S3 Glacier Deep Archive with standard retrieval to store and retrieve archived images.\nB. Use S3 Standard-Infrequent Access (S3 Standard-IA) to store the images. Use S3 Glacier Deep Archive with bulk retrieval to store and retrieve archived images.\nC. Use S3 Intelligent-Tiering to store the images. Use S3 Glacier Deep Archive with standard retrieval to store and retrieve archived images.\nD. Use S3 One Zone-Infrequent Access (S3 One Zone-IA) to store the images. Use S3 Glacier Deep Archive with bulk retrieval to store and retrieve archived images.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Learning4life",
+      "selectedAnswer": "",
+      "body": "A is correct. The requirement of maximizing resiliency rules out One Zone. Standard recover is within 12 hours, which fits the requirement of within 24 hours. https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects-retrieval-options.html",
+      "reply": []
+    },
+    {
+      "user": "f271c23",
+      "selectedAnswer": "A",
+      "body": "I had incorrectly selected B but the right option is A. the main reason is the retrieval time in the standard way is within 12 hours which meets the requirement",
+      "reply": []
+    },
+    {
+      "user": "MasoudK",
+      "selectedAnswer": "",
+      "body": "Option A is not most Cost effective the standard approach maximize resiliency but is more expensive than Option B. Option B handles both goals.",
+      "reply": []
+    },
+    {
+      "user": "albert_kuo",
+      "selectedAnswer": "B",
+      "body": "The average retrieval time for bulk retrievals typically ranges from 5 to 12 hours, but it can take up to 48 hours. This method is suitable for cold storage data, making it a highly cost-effective option when retrieval frequency is low, and there are no stringent requirements on retrieval time.",
+      "reply": [
+        {
+          "user": "lambdaFun",
+          "body": "bulk retrievals take 48 hours\nstandard retrievals take 24hours\nhttps://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects-retrieval-options.html\nRefer the table 2 row"
+        }
+      ]
+    },
+    {
+      "user": "Saurabh04",
+      "selectedAnswer": "B",
+      "body": "MOST cost-effective solution is:\n\nB. Use S3 Standard-Infrequent Access (S3 Standard-IA) to store the images. Use S3 Glacier Deep Archive with bulk retrieval to store and retrieve archived images.\n\nHere’s why:\n\nS3 Standard-Infrequent Access (S3 Standard-IA):\nProvides a balance between cost and retrieval speed.\nSuitable for long-lived, less frequently accessed data.\nAccessible within hours.",
+      "reply": []
+    },
+    {
+      "user": "Anandesh",
+      "selectedAnswer": "A",
+      "body": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html#archival-storage",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "C",
+      "body": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/restoring-objects-retrieval-options.html#:~:text=Deep%20Archive%20or-,S3%20Intelligent%2DTiering%20Deep%20Archive%20Access,-Not%20available",
+      "reply": [
+        {
+          "user": "DeaconStJohn",
+          "body": "Initially I thought C also. However, lifecycle policies seem to be better for this use case. S3-IT will start at standard pricing, after 30 days > IA, after 90 days > archive instant retrieval. None of these are the most cost effective. S3-IT works well for use cases were there is no defined policy in place, i.e. after 1 year move to archive. reqs state archive after 365 days. s3-IT will action this after 90 days depending on access patterns."
+        }
+      ]
+    },
+    {
+      "user": "SerialiDr",
+      "selectedAnswer": "A",
+      "body": "S3 Standard-IA is designed for data that is accessed less frequently but requires rapid access when needed. It offers a lower storage cost while still providing high durability, availability, and performance.\nS3 Glacier Deep Archive is the most cost-effective option for archival storage in AWS and is designed for data that is accessed very rarely. The standard retrieval option in Glacier Deep Archive typically returns data within 12 hours, meeting the requirement of access within 24 hours.",
+      "reply": []
+    },
+    {
+      "user": "_YaWeb",
+      "selectedAnswer": "",
+      "body": "ChatGPT goes with B",
+      "reply": [
+        {
+          "user": "DeaconStJohn",
+          "body": "As a society we need to learn to challenge AI models.\n\nhttps://aws.amazon.com/s3/faqs/#Amazon_S3_Glacier_Deep_Archive\nWhen restoring an archived object, you can specify one of the following options in the Tier element of the request body: Standard is the default tier and lets you access any of your archived objects within 12 hours, with retrievals typically starting within 9 hours when initiated using S3 Batch Operations. Bulk lets you retrieve large amounts of data, even petabytes of data, inexpensively and typically completes within 48 hours."
+        }
+      ]
+    },
+    {
+      "user": "dostonbekabdullaev",
+      "selectedAnswer": "A",
+      "body": "AAAAAAAAA",
+      "reply": []
+    },
+    {
+      "user": "Certified101",
+      "selectedAnswer": "A",
+      "body": "A is correct -Bulk retrival is 48hours",
+      "reply": []
+    },
+    {
+      "user": "TanTran04",
+      "selectedAnswer": "B",
+      "body": "With Option A: Standard retrieval would provide faster access to the archived images (typically within 3-5 hours), it is more expensive than Bulk retrieval. Since the company has indicated they can wait up to 24 hours for access, the slower but cheaper\n\n=> Option B is the best choice.",
+      "reply": []
+    },
+    {
+      "user": "Hanny",
+      "selectedAnswer": "C",
+      "body": "C. Use S3 Intelligent-Tiering to store the images. Use S3 Glacier Deep Archive with standard retrieval to store and retrieve archived images.",
+      "reply": []
+    },
+    {
+      "user": "tqiu654",
+      "selectedAnswer": "B",
+      "body": "GPT: B. Use S3 Standard-Infrequent Access (S3 Standard-IA) to store the images. Use S3 Glacier Deep Archive and select Batch Retrieval to store and retrieve archived images.",
+      "reply": []
+    },
+    {
+      "user": "hcsaba1982",
+      "selectedAnswer": "C",
+      "body": "A : Glacier Deep Archive is cheaper than Standard-IA. \nC : Standard archival is 12h.\nB : bulk retrieval is 48h\nD : S3 One Zone-IA - cross-out due to \"maximizes resiliency\"",
+      "reply": [
+        {
+          "user": "ut18",
+          "body": "Check the requirement : \n The IT department needs access to the images that have been moved to archival storage within 24 hours."
+        }
+      ]
+    },
+    {
+      "user": "Cerakoted",
+      "selectedAnswer": "A",
+      "body": "It is A",
+      "reply": []
+    }
+  ]
+}

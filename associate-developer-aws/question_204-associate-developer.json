@@ -1,0 +1,109 @@
+{
+  "id": "122626",
+  "question": "question-204",
+  "body": "A developer is building a serverless application by using the AWS Serverless Application Model (AWS SAM). The developer is currently testing the application in a development environment. When the application is nearly finished, the developer will need to set up additional testing and staging environments for a quality assurance team.\n\nThe developer wants to use a feature of the AWS SAM to set up deployments to multiple environments.\n\nWhich solution will meet these requirements with the LEAST development effort?\nA. Add a configuration file in TOML format to group configuration entries to every environment. Add a table for each testing and staging environment. Deploy updates to the environments by using the sam deploy command and the --config-env flag that corresponds to each environment.\nB. Create additional AWS SAM templates for each testing and staging environment. Write a custom shell script that uses the sam deploy command and the --template-file flag to deploy updates to the environments.\nC. Create one AWS SAM configuration file that has default parameters. Perform updates to the testing and staging environments by using the --parameter-overrides flag in the AWS SAM CLI and the parameters that the updates will override.\nD. Use the existing AWS SAM template. Add additional parameters to configure specific attributes for the serverless function and database table resources that are in each environment. Deploy updates to the testing and staging environments by using the sam deploy command.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "SerialiDr",
+      "selectedAnswer": "A",
+      "body": "To set up deployments to multiple environments with the least development effort in a serverless application using the AWS Serverless Application Model (AWS SAM), the developer can utilize a configuration file in TOML format with grouped configuration entries for each environment. This approach allows for easy management of different environment configurations and streamlines the deployment process. The specific steps would include:\n\nCreating a configuration file in TOML format: This file will include a table for each testing and staging environment, where each table contains the specific configuration for that environment.\nUsing the sam deploy command with the --config-env flag: This flag allows specifying which environment configuration to use for the deployment, corresponding to the tables defined in the configuration file.\nThis solution aligns with Option A:",
+      "reply": []
+    },
+    {
+      "user": "Jing2023",
+      "selectedAnswer": "A",
+      "body": "A should be correct\nreference this stackoverflow post https://stackoverflow.com/questions/68826108/how-to-deploy-to-different-environments-with-aws-sam",
+      "reply": []
+    },
+    {
+      "user": "albert_kuo",
+      "selectedAnswer": "A",
+      "body": "sam deploy --config-env default\nsam deploy --config-env testing\nsam deploy --config-env production",
+      "reply": []
+    },
+    {
+      "user": "KennethNg923",
+      "selectedAnswer": "A",
+      "body": "AWS SAM supports configuration files in TOML format, which allows you to define multiple environments in a single file.",
+      "reply": []
+    },
+    {
+      "user": "Anandesh",
+      "selectedAnswer": "C",
+      "body": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html#serverless-sam-cli-config-default",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "41eb566",
+      "selectedAnswer": "C",
+      "body": "C. Create one AWS SAM configuration file that has default parameters. Perform updates to the testing and staging environments by using the --parameter-overrides flag in the AWS SAM CLI and the parameters that the updates will override.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "A",
+      "body": "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html",
+      "reply": []
+    },
+    {
+      "user": "Certified101",
+      "selectedAnswer": "C",
+      "body": "C with least development overhead",
+      "reply": []
+    },
+    {
+      "user": "TanTran04",
+      "selectedAnswer": "C",
+      "body": "With at LEAST development effort, Option C is better than A\n\nWhile this approach may work, it introduces additional complexity with the need for a separate configuration file, and it may not be as straightforward as using parameter overrides, as suggested in option C. The use of TOML format might be more suited for certain scenarios, but in the context of AWS SAM, which commonly relies on YAML or JSON configurations, it might be an extra layer of complexity that isn't necessary.\n\nOption C, on the other hand, recommends using a single AWS SAM configuration file with default parameters and updating testing and staging environments using the --parameter-overrides flag. This approach is more aligned with typical AWS SAM practices and is simpler and more straightforward than managing multiple configuration files.",
+      "reply": []
+    },
+    {
+      "user": "TanTran04",
+      "selectedAnswer": "",
+      "body": "With at LEAST development effort, Option C is better than A\n\nWhile this approach may work, it introduces additional complexity with the need for a separate configuration file, and it may not be as straightforward as using parameter overrides, as suggested in option C. The use of TOML format might be more suited for certain scenarios, but in the context of AWS SAM, which commonly relies on YAML or JSON configurations, it might be an extra layer of complexity that isn't necessary.\n\nOption C, on the other hand, recommends using a single AWS SAM configuration file with default parameters and updating testing and staging environments using the --parameter-overrides flag. This approach is more aligned with typical AWS SAM practices and is simpler and more straightforward than managing multiple configuration files.",
+      "reply": []
+    },
+    {
+      "user": "Hanny",
+      "selectedAnswer": "",
+      "body": "C. Create one AWS SAM configuration file that has default parameters. Perform updates to the testing and staging environments by using the --parameter-overrides flag in the AWS SAM CLI and the parameters that the updates will override.",
+      "reply": []
+    },
+    {
+      "user": "NinjaCloud",
+      "selectedAnswer": "",
+      "body": "Correct Answer: C, \nYou can create a single AWS SAM configuration file with default parameters and then use the --parameter-overrides flag with the AWS SAM CLI to specify parameters that override the defaults for each testing and staging environment. This approach keeps the AWS SAM template file (the infrastructure-as-code) consistent and minimizes duplication. It's a clean and simple way to manage multiple environments without having to create separate templates or custom scripts.",
+      "reply": []
+    },
+    {
+      "user": "Rameez1",
+      "selectedAnswer": "C",
+      "body": "Here all the options can do the Job but option C does it with least effort.",
+      "reply": []
+    },
+    {
+      "user": "PrakashM14",
+      "selectedAnswer": "C",
+      "body": "Options A and B introduce additional complexities such as configuration files in TOML format or writing custom shell scripts. These might require more effort and maintenance.\n\nOption D involves adding additional parameters to the existing AWS SAM template, which can work but may lead to a more complex and less maintainable template as the number of environments grows.\n\nTherefore, option C is a straightforward and efficient solution for deploying to multiple environments with AWS SAM.",
+      "reply": []
+    },
+    {
+      "user": "dilleman",
+      "selectedAnswer": "A",
+      "body": "A is correct",
+      "reply": []
+    },
+    {
+      "user": "Digo30sp",
+      "selectedAnswer": "D",
+      "body": "The correct answer is (D).\n\nUsing the existing AWS SAM template is the option that requires the LEAST development effort. To configure deployments across multiple environments, you can add additional parameters to your AWS SAM template to configure specific attributes for the serverless function and database table resources that are in each environment.",
+      "reply": []
+    }
+  ]
+}

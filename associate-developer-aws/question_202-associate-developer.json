@@ -1,0 +1,31 @@
+{
+  "id": "122624",
+  "question": "question-202",
+  "body": "A developer must provide an API key to an AWS Lambda function to authenticate with a third-party system. The Lambda function will run on a schedule. The developer needs to ensure that the API key remains encrypted at rest.\n\nWhich solution will meet these requirements?\nA. Store the API key as a Lambda environment variable by using an AWS Key Management Service (AWS KMS) customer managed key.\nB. Configure the application to prompt the user to provide the password to the Lambda function on the first run.\nC. Store the API key as a value in the application code.\nD. Use Lambda@Edge and only communicate over the HTTPS protocol.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Digo30sp",
+      "selectedAnswer": "A",
+      "body": "The correct answer is (A).\n\nStoring the API key as a Lambda environment variable using an AWS Key Management Service (AWS KMS) customer-managed key is the most secure solution. AWS KMS is a managed encryption service that provides customer-managed keys. Customer-managed keys are encrypted with an AWS KMS master key, which is stored in an AWS KMS vault.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "SerialiDr",
+      "selectedAnswer": "A",
+      "body": "Lambda environment variables can be encrypted using a customer managed key in AWS KMS. This approach ensures that the API key is encrypted at rest and seamlessly integrated into the Lambda function. When the function is executed, it can access the decrypted value of the API key for authenticating with the third-party system.",
+      "reply": []
+    },
+    {
+      "user": "fordiscussionstwo",
+      "selectedAnswer": "",
+      "body": "AAAAAAAAAA",
+      "reply": []
+    }
+  ]
+}

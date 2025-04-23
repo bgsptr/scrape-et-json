@@ -1,0 +1,31 @@
+{
+  "id": "122629",
+  "question": "question-207",
+  "body": "A developer is building a serverless application that connects to an Amazon Aurora PostgreSQL database. The serverless application consists of hundreds of AWS Lambda functions. During every Lambda function scale out, a new database connection is made that increases database resource consumption.\n\nThe developer needs to decrease the number of connections made to the database. The solution must not impact the scalability of the Lambda functions.\n\nWhich solution will meet these requirements?\nA. Configure provisioned concurrency for each Lambda function by setting the ProvisionedConcurrentExecutions parameter to 10.\nB. Enable cluster cache management for Aurora PostgreSQL. Change the connection string of each Lambda function to point to cluster cache management.\nC. Use Amazon RDS Proxy to create a connection pool to manage the database connections. Change the connection string of each Lambda function to reference the proxy.\nD. Configure reserved concurrency for each Lambda function by setting the ReservedConcurrentExecutions parameter to 10.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "dilleman",
+      "selectedAnswer": "C",
+      "body": "C: Amazon RDS Proxy is designed to improve application scalability and resilience by pooling and reusing database connections. This can significantly reduce the number of connections each Lambda function has to establish",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Digo30sp",
+      "selectedAnswer": "C",
+      "body": "The correct answer is (C).\n\nAmazon RDS Proxy is a solution that allows you to create a connection pool to manage database connections. This can help reduce the number of connections made to the database.",
+      "reply": []
+    },
+    {
+      "user": "fordiscussionstwo",
+      "selectedAnswer": "",
+      "body": "CCCCCCCCCCCCCCC",
+      "reply": []
+    }
+  ]
+}

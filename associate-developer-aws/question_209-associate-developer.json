@@ -1,0 +1,55 @@
+{
+  "id": "122631",
+  "question": "question-209",
+  "body": "A developer is creating an AWS CloudFormation stack. The stack contains IAM resources with custom names. When the developer tries to deploy the stack, they receive an InsufficientCapabilities error.\n\nWhat should the developer do to resolve this issue?\nA. Specify the CAPABILITY_AUTO_EXPAND capability in the CloudFormation stack.\nB. Use an administrators role to deploy IAM resources with CloudFormation.\nC. Specify the CAPABILITY_IAM capability in the CloudFormation stack.\nD. Specify the CAPABILITY_NAMED_IAM capability in the CloudFormation stack.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Digo30sp",
+      "selectedAnswer": "D",
+      "body": "The correct answer is (D).\n\nTo deploy IAM resources with custom names, you must specify the CAPABILITY_NAMED_IAM resource in the CloudFormation stack.\n\nThe CAPABILITY_IAM resource allows CloudFormation to create and modify IAM resources. The CAPABILITY_NAMED_IAM resource allows CloudFormation to create IAM resources with custom names.\n\nTo resolve the issue, the developer must specify the CAPABILITY_NAMED_IAM resource in the CloudFormation stack.",
+      "reply": []
+    },
+    {
+      "user": "Learning4life",
+      "selectedAnswer": "",
+      "body": "D.\n If you have IAM resources with custom names, you must specify CAPABILITY_NAMED_IAM. See more details in this link https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_CreateStack.html",
+      "reply": []
+    },
+    {
+      "user": "albert_kuo",
+      "selectedAnswer": "D",
+      "body": "aws cloudformation create-stack \\\n --stack-name my-iam-stack \\\n --template-body file://my-template.yaml \\\n --capabilities CAPABILITY_NAMED_IAM",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "D",
+      "body": "D is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "SerialiDr",
+      "selectedAnswer": "D",
+      "body": "This capability is required when you are deploying IAM resources with custom names using CloudFormation, as it acknowledges that you're creating IAM resources that might affect permissions in your AWS environment.",
+      "reply": []
+    },
+    {
+      "user": "dilleman",
+      "selectedAnswer": "D",
+      "body": "D is correct",
+      "reply": []
+    },
+    {
+      "user": "Patel_ajay745",
+      "selectedAnswer": "",
+      "body": "CCC\nccccccc",
+      "reply": []
+    },
+    {
+      "user": "fordiscussionstwo",
+      "selectedAnswer": "",
+      "body": "DDDDDDDDDD",
+      "reply": []
+    }
+  ]
+}

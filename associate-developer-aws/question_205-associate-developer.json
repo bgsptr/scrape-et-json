@@ -1,0 +1,87 @@
+{
+  "id": "122627",
+  "question": "question-205",
+  "body": "A developer is working on an application that processes operating data from IoT devices. Each IoT device uploads a data file once every hour to an Amazon S3 bucket. The developer wants to immediately process each data file when the data file is uploaded to Amazon S3.\n\nThe developer will use an AWS Lambda function to process the data files from Amazon S3. The Lambda function is configured with the S3 bucket information where the files are uploaded. The developer wants to configure the Lambda function to immediately invoke after each data file is uploaded.\n\nWhich solution will meet these requirements?\nA. Add an asynchronous invocation to the Lambda function. Select the S3 bucket as the source.\nB. Add an Amazon EventBridge event to the Lambda function. Select the S3 bucket as the source.\nC. Add a trigger to the Lambda function. Select the S3 bucket as the source.\nD. Add a layer to the Lambda function. Select the S3 bucket as the source.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Digo30sp",
+      "selectedAnswer": "C",
+      "body": "The correct answer is (C).\n\nAdding a trigger to your Lambda function is the solution that will meet these requirements. A trigger is an event that can invoke a Lambda function. In the case of this issue, the trigger must be an Amazon S3 event that fires when a new file is uploaded to the bucket.",
+      "reply": []
+    },
+    {
+      "user": "Saurabh04",
+      "selectedAnswer": "B",
+      "body": "Option B is quicker than Option C, because S3 bucket trigger does not guarantee immediate invocation. It relies on event notification from S3.",
+      "reply": []
+    },
+    {
+      "user": "BrainFried",
+      "selectedAnswer": "B",
+      "body": "You cannot add a Trigger directly to Lambda. If you want to choose C, then the answer should state: \"Add a trigger to S3, select Lambda as the destination\"\n\nSince C states \"Add trigger to Lambda\" (which isn't possible), I will select answer B.\n\nSee https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html\n\"The trigger is actually stored and managed by the service that generates the events, not by Lambda.\"",
+      "reply": []
+    },
+    {
+      "user": "Anandesh",
+      "selectedAnswer": "C",
+      "body": "https://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "1dfed2b",
+      "selectedAnswer": "B",
+      "body": "sure that B, give me a link why everyone want C.",
+      "reply": [
+        {
+          "user": "tsangckl",
+          "body": "https://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html"
+        },
+        {
+          "user": "BrainFried",
+          "body": "From what I've read, you do not add a trigger to a lambda, you add it else-where (in this case, you add the trigger to S3). The answer says \"Add a trigger to Lambda\" - this isn't possible!\n\nRead: https://docs.aws.amazon.com/lambda/latest/dg/lambda-services.html\n\"The trigger is actually stored and managed by the service that generates the events, not by Lambda.\"\n\nThe answer should be B then, since EventBridge can monitor S3 bucket and invoke Lambda with the new data."
+        }
+      ]
+    },
+    {
+      "user": "SerialiDr",
+      "selectedAnswer": "C",
+      "body": "To meet the requirement of processing data files immediately after they are uploaded to an Amazon S3 bucket, the best solution is to add a trigger to the AWS Lambda function with the S3 bucket as the source. This will configure the Lambda function to be automatically invoked when a new file is uploaded to the specified S3 bucket.",
+      "reply": []
+    },
+    {
+      "user": "Certified101",
+      "selectedAnswer": "C",
+      "body": "C using S3 Events, no need for EventBridge here.",
+      "reply": []
+    },
+    {
+      "user": "LR2023",
+      "selectedAnswer": "B",
+      "body": "EventBridge can be employed to collect real-time data streams from various sources like IoT devices, mobile apps, or web applications. Lambda functions can then process this data to perform analytics, generate alerts, or update dashboards.",
+      "reply": [
+        {
+          "user": "LR2023",
+          "body": "You can use Amazon EventBridge to monitor an S3 bucket for new image uploads. When a new image is detected, EventBridge triggers a Lambda function that processes the image, applies filters, and generates thumbnails, all without manual intervention"
+        }
+      ]
+    },
+    {
+      "user": "dilleman",
+      "selectedAnswer": "C",
+      "body": "C is correct",
+      "reply": []
+    },
+    {
+      "user": "fordiscussionstwo",
+      "selectedAnswer": "",
+      "body": "CCCCCCCCCCCCCC",
+      "reply": []
+    }
+  ]
+}

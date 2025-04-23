@@ -1,0 +1,60 @@
+{
+  "id": "122632",
+  "question": "question-210",
+  "body": "A company uses Amazon API Gateway to expose a set of APIs to customers. The APIs have caching enabled in API Gateway. Customers need a way to invalidate the cache for each API when they test the API.\n\nWhat should a developer do to give customers the ability to invalidate the API cache?\nA. Ask the customers to use AWS credentials to call the InvalidateCache API operation.\nB. Attach an InvalidateCache policy to the IAM execution role that the customers use to invoke the API. Ask the customers to send a request that contains the Cache-Control:max-age=0 HTTP header when they make an API call.\nC. Ask the customers to use the AWS SDK API Gateway class to invoke the InvalidateCache API operation.\nD. Attach an InvalidateCache policy to the IAM execution role that the customers use to invoke the API. Ask the customers to add the INVALIDATE_CACHE query string parameter when they make an API call.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Digo30sp",
+      "selectedAnswer": "B",
+      "body": "B) https://www.examtopics.com/discussions/amazon/view/4166-exam-aws-certified-developer-associate-topic-1-question-69/",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "B",
+      "body": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html#:~:text=A%20client%20of,the%20integration%20endpoint.",
+      "reply": []
+    },
+    {
+      "user": "KillThemWithKindness",
+      "selectedAnswer": "B",
+      "body": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html",
+      "reply": []
+    },
+    {
+      "user": "Mimi666",
+      "selectedAnswer": "",
+      "body": "invalidate an API Gateway cache entry\nA client of your API can invalidate an existing cache entry and reload it from the integration endpoint for individual requests. The client must send a request that contains the Cache-Control: max-age=0 header. The client receives the response directly from the integration endpoint instead of the cache, provided that the client is authorized to do so. This replaces the existing cache entry with the new response, which is fetched from the integration endpoint. https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html",
+      "reply": []
+    },
+    {
+      "user": "dezoito",
+      "selectedAnswer": "",
+      "body": "Seems to be B but policies/roles have nothing to do with cache",
+      "reply": []
+    },
+    {
+      "user": "Patel_ajay745",
+      "selectedAnswer": "",
+      "body": "it is DDDDDD",
+      "reply": [
+        {
+          "user": "fordiscussionstwo",
+          "body": "why? because chatGPDUMP said that? all your anwers are wrong."
+        }
+      ]
+    },
+    {
+      "user": "fordiscussionstwo",
+      "selectedAnswer": "",
+      "body": "BBBBBBBBBBBBBB",
+      "reply": []
+    }
+  ]
+}

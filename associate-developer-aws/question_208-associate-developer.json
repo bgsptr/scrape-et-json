@@ -1,0 +1,37 @@
+{
+  "id": "122630",
+  "question": "question-208",
+  "body": "A developer is preparing to begin development of a new version of an application. The previous version of the application is deployed in a production environment. The developer needs to deploy fixes and updates to the current version during the development of the new version of the application. The code for the new version of the application is stored in AWS CodeCommit.\n\nWhich solution will meet these requirements?\nA. From the main branch, create a feature branch for production bug fixes. Create a second feature branch from the main branch for development of the new version.\nB. Create a Git tag of the code that is currently deployed in production. Create a Git tag for the development of the new version. Push the two tags to the CodeCommit repository.\nC. From the main branch, create a branch of the code that is currently deployed in production. Apply an IAM policy that ensures no other users can push or merge to the branch.\nD. Create a new CodeCommit repository for development of the new version of the application. Create a Git tag for the development of the new version.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "SerialiDr",
+      "selectedAnswer": "A",
+      "body": "The best option here is:\n\nA. From the main branch, create a feature branch for production bug fixes. Create a second feature branch from the main branch for development of the new version.\n\nHere’s why this solution is the most suitable:\n\nSeparation of Concerns: Creating separate branches for bug fixes and new feature development ensures that changes made for the current production version and the new version do not interfere with each other. This separation is crucial to avoid introducing new bugs into the production version from the development version.\n\nContinuous Integration and Delivery (CI/CD): This approach supports CI/CD practices. Bug fixes can be developed, tested, and merged into the main branch and deployed without impacting the ongoing development of the new version.",
+      "reply": []
+    },
+    {
+      "user": "dilleman",
+      "selectedAnswer": "A",
+      "body": "A is a common code version control strategy",
+      "reply": []
+    },
+    {
+      "user": "Digo30sp",
+      "selectedAnswer": "A",
+      "body": "A resposta correta é (A).\n\nCriar uma ramificação de recursos para correções de bugs de produção e uma segunda ramificação de recursos para desenvolvimento da nova versão é a solução que atenderá a esses requisitos.\n\nA primeira ramificação de recursos pode ser usada para corrigir bugs ou implementar atualizações para a versão atual do aplicativo. A segunda ramificação de recursos pode ser usada para desenvolver a nova versão do aplicativo.",
+      "reply": []
+    },
+    {
+      "user": "fordiscussionstwo",
+      "selectedAnswer": "",
+      "body": "AAAAAAAAAAAAAA",
+      "reply": []
+    }
+  ]
+}

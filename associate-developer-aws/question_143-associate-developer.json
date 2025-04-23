@@ -1,0 +1,25 @@
+{
+  "id": "122655",
+  "question": "question-143",
+  "body": "A company’s website runs on an Amazon EC2 instance and uses Auto Scaling to scale the environment during peak times. Website users across the world are experiencing high latency due to static content on the EC2 instance, even during non-peak hours.\n\nWhich combination of steps will resolve the latency issue? (Choose two.)\nA. Double the Auto Scaling group’s maximum number of servers.\nB. Host the application code on AWS Lambda.\nC. Scale vertically by resizing the EC2 instances.\nD. Create an Amazon CloudFront distribution to cache the static content.\nE. Store the application’s static content in Amazon S3.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "65703c1",
+      "selectedAnswer": "DE",
+      "body": "DE is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "SerialiDr",
+      "selectedAnswer": "DE",
+      "body": "D. Create an Amazon CloudFront distribution to cache the static content: This is an effective solution. Amazon CloudFront is a content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency and high transfer speeds. Using CloudFront to cache static content closer to users can significantly reduce latency.\n\nE. Store the application’s static content in Amazon S3: This is another effective solution. Amazon S3 can serve as a highly durable and scalable storage solution for static content. When combined with Amazon CloudFront, it provides an efficient way to manage and deliver static content with reduced latency.\n\nThe combination of steps that will best resolve the latency issue is:\n\nD. Create an Amazon CloudFront distribution to cache the static content.\nE. Store the application’s static content in Amazon S3.",
+      "reply": []
+    },
+    {
+      "user": "Digo30sp",
+      "selectedAnswer": "DE",
+      "body": "Option (D), creating an Amazon CloudFront distribution to cache static content, is the most recommended solution. CloudFront is a global content delivery network (CDN) that can cache static content on servers distributed around the world. This can help significantly reduce latency for users around the world. Option (E), storing your application's static content in Amazon S3, can also help reduce latency. S3 is a high-performance object storage service that can be used to store static content.",
+      "reply": []
+    }
+  ]
+}

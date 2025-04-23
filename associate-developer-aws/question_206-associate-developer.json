@@ -1,0 +1,61 @@
+{
+  "id": "122628",
+  "question": "question-206",
+  "body": "A developer is setting up infrastructure by using AWS CloudFormation. If an error occurs when the resources described in the Cloud Formation template are provisioned, successfully provisioned resources must be preserved. The developer must provision and update the CloudFormation stack by using the AWS CLI.\n\nWhich solution will meet these requirements?\nA. Add an --enable-termination-protection command line option to the create-stack command and the update-stack command.\nB. Add a --disable-rollback command line option to the create-stack command and the update-stack command.\nC. Add a --parameters ParameterKey=PreserveResources,ParameterValue=True command line option to the create-stack command and the update-stack command.\nD. Add a --tags Key=PreserveResources,Value=True command line option to the create-stack command and the update-stack command.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Digo30sp",
+      "selectedAnswer": "B",
+      "body": "The correct answer is (B).\n\nThe --disable-rollback command-line option will prevent CloudFormation from rolling back the stack to the previous state if an error occurs. This will ensure that successfully provisioned resources are preserved.",
+      "reply": []
+    },
+    {
+      "user": "albert_kuo",
+      "selectedAnswer": "B",
+      "body": "aws cloudformation create-stack \\\n --stack-name my-app-stack \\\n --template-body file://my-template.yaml \\\n --parameters ParameterKey=InstanceType,ParameterValue=t2.micro \\\n --disable-rollback\n\n\naws cloudformation update-stack \\\n --stack-name my-app-stack \\\n --template-body file://my-template-updated.yaml \\\n --parameters ParameterKey=InstanceType,ParameterValue=t2.medium \\\n --disable-rollback",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "B",
+      "body": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stack-failure-options.html",
+      "reply": []
+    },
+    {
+      "user": "joshnort",
+      "selectedAnswer": "B",
+      "body": "It should look like this:\n\naws cloudformation create-stack --stack-name myteststack --template-body file://DOC-EXAMPLE-BUCKET.json --disable-rollback\n\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stack-failure-options.html#stack-failure-options-cli",
+      "reply": []
+    },
+    {
+      "user": "kaes",
+      "selectedAnswer": "B",
+      "body": "\"Specify the disable-rollback option or on-failure DO_NOTHING enumeration during a create-stack operation\"\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stack-failure-options.html",
+      "reply": []
+    },
+    {
+      "user": "dilleman",
+      "selectedAnswer": "B",
+      "body": "B is correct",
+      "reply": []
+    },
+    {
+      "user": "kashtelyan",
+      "selectedAnswer": "B",
+      "body": "https://www.cloudhesive.com/blog-posts/cloudformation-disable-rollback/",
+      "reply": []
+    },
+    {
+      "user": "fordiscussionstwo",
+      "selectedAnswer": "",
+      "body": "BBBBBBBBBBBBBBBBB",
+      "reply": []
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "122623",
+  "question": "question-201",
+  "body": "A company has an application that stores data in Amazon RDS instances. The application periodically experiences surges of high traffic that cause performance problems. During periods of peak traffic, a developer notices a reduction in query speed in all database queries.\n\nThe team’s technical lead determines that a multi-threaded and scalable caching solution should be used to offload the heavy read traffic. The solution needs to improve performance.\n\nWhich solution will meet these requirements with the LEAST complexity?\nA. Use Amazon ElastiCache for Memcached to offload read requests from the main database.\nB. Replicate the data to Amazon DynamoDSet up a DynamoDB Accelerator (DAX) cluster.\nC. Configure the Amazon RDS instances to use Multi-AZ deployment with one standby instance. Offload read requests from the main database to the standby instance.\nD. Use Amazon ElastiCache for Redis to offload read requests from the main database.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "kashtelyan",
+      "selectedAnswer": "A",
+      "body": "When deciding between Memcached and Redis, here are a few questions to consider:\n\nIs object caching your primary goal, for example to offload your database? If so, use Memcached.\n\nhttps://docs.aws.amazon.com/whitepapers/latest/scale-performance-elasticache/memcached-vs.-redis.html",
+      "reply": []
+    },
+    {
+      "user": "albert_kuo",
+      "selectedAnswer": "A",
+      "body": "option A (using ElastiCache for Memcached) provides the best balance of meeting the requirements (multi-threaded, scalable caching to improve performance) while maintaining the least complexity.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "tsdsmth",
+      "selectedAnswer": "A",
+      "body": "A. If you're looking for a multi-threaded solution, then ElastiCache for Memcached (not Redis) is the solution.",
+      "reply": []
+    },
+    {
+      "user": "SerialiDr",
+      "selectedAnswer": "A",
+      "body": "A. Use Amazon ElastiCache for Memcached to offload read requests from the main database.\n\nElastiCache for Memcached is a good fit for this scenario. It's a high-performance, distributed, in-memory caching system that can easily scale to manage surges in read traffic. It's simple to set up and integrate with an existing RDS instance.\nD. Use Amazon ElastiCache for Redis to offload read requests from the main database.\n\nElastiCache for Redis also offers high performance and is capable of handling surges in read traffic. Redis provides more advanced data structures and features compared to Memcached, like persistence, built-in replication, and support for complex data types. However, it might be more complex to set up and manage than Memcached, depending on the use case.",
+      "reply": []
+    },
+    {
+      "user": "Digo30sp",
+      "selectedAnswer": "A",
+      "body": "The correct answer is (A).\n\nAmazon ElastiCache for Memcached is a scalable, multithreaded caching solution that can be used to offload heavy read traffic from Amazon RDS instances. ElastiCache for Memcached is easy to configure and manage, making it a low-effort solution to meet technical lead requirements.",
+      "reply": []
+    },
+    {
+      "user": "fordiscussionstwo",
+      "selectedAnswer": "",
+      "body": "AAAAAAAAA",
+      "reply": []
+    }
+  ]
+}
