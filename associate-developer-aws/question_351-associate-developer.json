@@ -1,0 +1,43 @@
+{
+  "id": "136972",
+  "question": "question-351",
+  "body": "A company has an internal website that contains sensitive data. The company wants to make the website public. The company must ensure that only employees who authenticate through the company's OpenID Connect (OIDC) identity provider (IdP) can access the website. A developer needs to implement authentication without editing the website.\n\nWhich combination of steps will meet these requirements? (Choose two.)\nA. Create a public Network Load Balancer.\nB. Create a public Application Load Balancer.\nC. Configure a listener for the load balancer that listens on HTTPS port 443. Add a default authenticate action providing the OIDC IdP configuration.\nD. Configure a listener for the load balancer that listens on HTTP port 80. Add a default authenticate action providing the OIDC IdP configuration.\nE. Configure a listener for the load balancer that listens on HTTPS port 443. Add a default AWS Lambda action providing an Amazon Resource Name (ARN) to a Lambda authentication function.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "aws_god",
+      "selectedAnswer": "BC",
+      "body": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-authenticate-users.html#configure-user-authentication",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "BC",
+      "body": "BC is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "jane_doe_1",
+      "selectedAnswer": "",
+      "body": "BC. Since website contains sensitive data, I would use HTTPS port 433, instead of HTTP port 80.",
+      "reply": []
+    },
+    {
+      "user": "be1dca8",
+      "selectedAnswer": "",
+      "body": "BD, The company wants to make the application public so we using HTTP will allow it to be public.",
+      "reply": []
+    },
+    {
+      "user": "seetpt",
+      "selectedAnswer": "BC",
+      "body": "BC is correct",
+      "reply": []
+    },
+    {
+      "user": "komorebi",
+      "selectedAnswer": "",
+      "body": "The correct answer to ChetGPT is B, C",
+      "reply": []
+    }
+  ]
+}

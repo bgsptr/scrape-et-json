@@ -1,0 +1,37 @@
+{
+  "id": "136962",
+  "question": "question-339",
+  "body": "A company stores all personally identifiable information (PII) in an Amazon DynamoDB table named PII in Account A. Developers are working on an application that is running on Amazon EC2 instances in Account B. The application in Account B requires access to the PII table.\n\nAn administrator in Account A creates an IAM role named AccessPII that has permission to access the PII table. The administrator also creates a trust policy that specifies Account B as a principal that can assume the role.\n\nWhich combination of steps should the developers take in Account B to allow their application to access the PII table? (Choose two.)\nA. Allow the EC2 IAM role the permission to assume the AccessPII role.\nB. Allow the EC2 IAM role the permission to access the PII table.\nC. Include the AWS API in the application code logic to obtain temporary credentials from the EC2 IAM role to access the PII table.\nD. Include the AssumeRole API operation in the application code logic to obtain temporary credentials to access the PII table.\nE. Include the GetSessionToken API operation in the application code logic to obtain temporary credentials to access the PII table.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "trungtd",
+      "selectedAnswer": "AD",
+      "body": "AssumeRole\n\n-- Returns a set of temporary security credentials that you can use to access AWS resources.\n-- These temporary credentials consist of an access key ID, a secret access key, and a security token.\n-- Typically, you use AssumeRole within your account or for cross-account access.\n\nhttps://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "AD",
+      "body": "AD is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "jerry118118",
+      "selectedAnswer": "AD",
+      "body": "https://www.examtopics.com/discussions/amazon/view/96243-exam-aws-certified-developer-associate-topic-1-question-434/",
+      "reply": []
+    },
+    {
+      "user": "koltysh",
+      "selectedAnswer": "AD",
+      "body": "a d answer",
+      "reply": []
+    },
+    {
+      "user": "komorebi",
+      "selectedAnswer": "BD",
+      "body": "The correct answer to ChetGPT is B, D",
+      "reply": []
+    }
+  ]
+}

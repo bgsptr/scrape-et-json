@@ -1,0 +1,37 @@
+{
+  "id": "136644",
+  "question": "question-335",
+  "body": "A developer is using an AWS CodePipeline pipeline to provide continuous integration and continuous delivery (CI/CD) support for a Java application. The developer needs to update the pipeline to support the introduction of a new application dependency .jar file. The pipeline must start a build when a new version of the .jar file becomes available.\n\nWhich solution will meet these requirements?\nA. Create an Amazon S3 bucket to store the dependency .jar file. Publish the dependency .jar file to the S3 bucket. Use an Amazon Simple Notification Service (Amazon SNS) notification to start a CodePipeline pipeline build.\nB. Create an Amazon Elastic Container Registry (Amazon ECR) private repository. Publish the dependency .jar file to the repository. Use an ECR source action to start a CodePipeline pipeline build.\nC. Create an Amazon Elastic Container Registry (Amazon ECR) private repository. Publish the dependency .jar file to the repository. Use an Amazon Simple Notification Service (Amazon SNS) notification to start a CodePipeline pipeline build.\nD. Create an AWS CodeArtifact repository. Publish the dependency .jar file to the repository. Use an Amazon EventBridge rule to start a CodePipeline pipeline build.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Anandesh",
+      "selectedAnswer": "D",
+      "body": "https://docs.aws.amazon.com/codeartifact/latest/ug/configure-service-events-codepipeline.html",
+      "reply": []
+    },
+    {
+      "user": "Alabi",
+      "selectedAnswer": "D",
+      "body": "D is correct\nKeyword for using CodeArtifact is Dependency",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "D",
+      "body": "D is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "trungtd",
+      "selectedAnswer": "D",
+      "body": "AWS CodeArtifact is a managed artifact repository service that lets you securely store, publish, and share software packages.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "D",
+      "body": "https://docs.aws.amazon.com/codeartifact/latest/ug/configure-service-events-codepipeline.html#configure-service-events-codepipeline-create-rule",
+      "reply": []
+    }
+  ]
+}

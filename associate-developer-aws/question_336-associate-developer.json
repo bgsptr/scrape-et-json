@@ -1,0 +1,48 @@
+{
+  "id": "136959",
+  "question": "question-336",
+  "body": "A company with multiple branch locations has an analytics and reporting application. Each branch office pushes a sales report to a shared Amazon S3 bucket at a predefined time each day. The company has developed an AWS Lambda function that analyzes the reports from all branch offices in a single pass. The Lambda function stores the results in a database.\n\nThe company needs to start the analysis once each day at a specific time.\n\nWhich solution will meet these requirements MOST cost-effectively?\nA. Configure an S3 event notification to invoke the Lambda function when a branch office uploads a sales report.\nB. Create an AWS Step Functions state machine that invokes the Lambda function once each day at the predefined time.\nC. Configure the Lambda function to run continuously and to begin analysis only at the predefined time each day.\nD. Create an Amazon EventBridge scheduled rule that invokes the Lambda function once each day at the predefined time.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "examuserss",
+      "selectedAnswer": "D",
+      "body": "Correct Answer:\nD. Create an Amazon EventBridge scheduled rule that invokes the Lambda function once each day at the predefined time.\n\nThis solution allows you to trigger the Lambda function at the desired time each day without unnecessary compute usage and cost. EventBridge is ideal for time-based scheduling and provides a low-cost, highly efficient way to run tasks on a predefined schedule.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "D",
+      "body": "D is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "trungtd",
+      "selectedAnswer": "D",
+      "body": "Best practice for cronjob in Lamda",
+      "reply": []
+    },
+    {
+      "user": "seetpt",
+      "selectedAnswer": "D",
+      "body": "D is right",
+      "reply": []
+    },
+    {
+      "user": "DeaconStJohn",
+      "selectedAnswer": "D",
+      "body": "A - This does not meet the criteria. it will trigger with every report upload which is multiple invocations. the requirement is a single invocation that analyses all reports at a predefined time. these invocations will be firing off all over the place as every report comes in.\nB - Step functions is over the top for this use case.\nC - lambda to run continuously...\nD - This is a single invocation that triggers the lambda function at a predefined time using CRON. Eventbridge was developed for this use case.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "A",
+      "body": "Least cost involved and simple",
+      "reply": [
+        {
+          "user": "albert_kuo",
+          "body": "analyzes the reports from all branch offices in a single pass"
+        }
+      ]
+    }
+  ]
+}

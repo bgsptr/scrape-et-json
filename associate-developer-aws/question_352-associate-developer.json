@@ -1,0 +1,25 @@
+{
+  "id": "136973",
+  "question": "question-352",
+  "body": "A developer is working on a web application that requires selective activation of specific features. The developer wants to keep the features hidden from end users until the features are ready for public access.\n\nWhich solution will meet these requirements?\nA. Create a feature flag configuration profile in AWS AppSync. Store the feature flag values in the configuration profile. Activate and deactivate feature flags as needed.\nB. Store prerelease data in an Amazon DynamoDB table. Enable Amazon DynamoDB Streams in the table. Toggle between hidden and visible states by using DynamoDB Streams.\nC. Create a feature flag configuration profile in AWS AppConfig. Store the feature flag values in the configuration profile. Activate and deactivate feature flags as needed.\nD. Store prerelease data in AWS Amplify DataStore. Toggle between hidden and visible states by using Amplify DataStore cloud synchronization.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "C",
+      "body": "https://aws.amazon.com/blogs/mt/using-aws-appconfig-feature-flags/",
+      "reply": []
+    },
+    {
+      "user": "albert_kuo",
+      "selectedAnswer": "C",
+      "body": "create a Configuration Profile, then edit feature flags\n{\n \"featureA\": true,\n \"featureB\": false,\n \"featureC\": true\n}",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    }
+  ]
+}

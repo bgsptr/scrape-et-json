@@ -1,0 +1,31 @@
+{
+  "id": "136966",
+  "question": "question-342",
+  "body": "A company uses an AWS Lambda function to call a third-party service. The third-party service has a limit of requests each minute. If the number of requests exceeds the limit, the third-party service returns rate-limiting errors.\n\nA developer needs to configure the Lambda function to avoid receiving rate limiting errors from the third-party service.\n\nWhich solution will meet these requirements?\nA. Set the reserved concurrency on the Lambda function to match the number of concurrent requests that the third-party service allows.\nB. Decrease the memory that is allocated to the Lambda function.\nC. Set the provisioned concurrency on the Lambda function to match the number of concurrent requests that the third-party service allows.\nD. Increase the timeout value that is specified on the Lambda function.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "DeaconStJohn",
+      "selectedAnswer": "A",
+      "body": "Correct answer is A. This will limit the lambda function to a defined concurrency which can be set to match the third party vendor limits.\nB - will lower the cpu of the function, not limit the invocations.\nC - Provisioned concurrency is a minimum value to keep lambda function execution environments on warm standby for critical workloads.\nD - Issue isn't with timeouts or lack of processing power",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "A",
+      "body": "https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "D",
+      "body": "https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html",
+      "reply": []
+    }
+  ]
+}

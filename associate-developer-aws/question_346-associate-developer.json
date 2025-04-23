@@ -1,0 +1,37 @@
+{
+  "id": "136970",
+  "question": "question-346",
+  "body": "A company is building a serverless application. The application uses an API key to authenticate with a third-party application. The company wants to store the external API key as a part of an AWS Lambda configuration. The company needs to have full control over the AWS Key Management Service (AWS KMS) keys that will encrypt the API key and should be visible only to authorized entities.\n\nWhich solution will meet these requirements?\nA. Store the API key in AWS Systems Manager Parameter Store as a string parameter. Use the default AWS KMS key that AWS provides to encrypt the API key.\nB. Store the API key in AWS Lambda environment variables. Create an AWS KMS customer managed key to encrypt the API key.\nC. Store the API key in the code repository. Use an AWS managed key to encrypt the code repository.\nD. Store the API key as an Amazon DynamoDB table record. Use an AWS managed key to encrypt the API key.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "B",
+      "body": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption:~:text=If%20you%20prefer,on%20the%20function.",
+      "reply": []
+    },
+    {
+      "user": "albert_kuo",
+      "selectedAnswer": "B",
+      "body": "The company needs to have full control over the AWS Key Management Service (AWS KMS) => customer managed key in AWS Key Management Service (KMS)",
+      "reply": []
+    },
+    {
+      "user": "preachr",
+      "selectedAnswer": "B",
+      "body": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars-encryption.html",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Lucky4Life",
+      "selectedAnswer": "B",
+      "body": "By creating a customer managed key in AWS Key Management Service (KMS), you gain full control over the encryption process.",
+      "reply": []
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "136964",
+  "question": "question-340",
+  "body": "A gaming website gives users the ability to trade game items with each other on the platform. The platform requires both users' records to be updated and persisted in one transaction. If any update fails, the transaction must roll back.\n\nWhich AWS solutions can provide the transactional capability that is required for this feature? (Choose two.)\nA. Amazon DynamoDB with operations made with the ConsistentRead parameter set to true\nB. Amazon ElastiCache for Memcached with operations made within a transaction block\nC. Amazon DynamoDB with reads and writes made by using Transact* operations\nD. Amazon Aurora MySQL with operations made within a transaction block\nE. Amazon Athena with operations made within a transaction block\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "65703c1",
+      "selectedAnswer": "CD",
+      "body": "CD is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "seetpt",
+      "selectedAnswer": "CD",
+      "body": "CD is right",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "",
+      "body": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html",
+      "reply": []
+    }
+  ]
+}

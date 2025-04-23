@@ -1,0 +1,25 @@
+{
+  "id": "136628",
+  "question": "question-329",
+  "body": "A developer is storing many objects in a single Amazon S3 bucket. The developer needs to optimize the S3 bucket for high request rates.\n\nHow should the developer store the objects to meet this requirement?\nA. Store the objects by using S3 Intelligent-Tiering.\nB. Store the objects at the root of the S3 bucket.\nC. Store the objects by using object key names distributed across multiple prefixes.\nD. Store each object with an object tag named \"prefix\" that contains a unique value.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "cachac",
+      "selectedAnswer": "C",
+      "body": "By distributing object key names across multiple prefixes, you can ensure that the load is spread across many partitions.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "C",
+      "body": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html",
+      "reply": []
+    }
+  ]
+}

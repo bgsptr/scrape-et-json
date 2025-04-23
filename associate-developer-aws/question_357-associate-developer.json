@@ -1,0 +1,31 @@
+{
+  "id": "136975",
+  "question": "question-357",
+  "body": "A developer is publishing critical log data to a log group in Amazon CloudWatch Logs. The log group was created 2 months ago. The developer must encrypt the log data by using an AWS Key Management Service (AWS KMS) key so that future data can be encrypted to comply with the company's security policy.\n\nWhich solution will meet this requirement with the LEAST effort?\nA. Use the AWS Encryption SDK for encryption and decryption of the data before writing to the log group.\nB. Use the AWS KMS console to associate the KMS key with the log group.\nC. Use the AWS CLI aws logs create-log-group command, and specify the key Amazon Resource Name (ARN).\nD. Use the AWS CLI aws logs associate-kms-key command, and specify the key Amazon Resource Name (ARN).\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "albert_kuo",
+      "selectedAnswer": "D",
+      "body": "aws logs associate-kms-key --log-group-name <LogGroupName> --kms-key-id <KMSKeyARN>",
+      "reply": []
+    },
+    {
+      "user": "cachac",
+      "selectedAnswer": "D",
+      "body": "associate-kms-key command.\n\nThis command specifically associates a KMS key with an existing log group, which is exactly what the developer needs to do.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "D",
+      "body": "D is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "D",
+      "body": "https://docs.aws.amazon.com/cli/latest/reference/logs/associate-kms-key.html",
+      "reply": []
+    }
+  ]
+}

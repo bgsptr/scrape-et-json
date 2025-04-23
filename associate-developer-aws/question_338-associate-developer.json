@@ -1,0 +1,31 @@
+{
+  "id": "136645",
+  "question": "question-338",
+  "body": "A company is using AWS CloudFormation templates to deploy AWS resources. The company needs to update one of its AWS CloudFormation stacks.\n\nWhat can the company do to find out how the changes will impact the resources that are running?\nA. Investigate the change sets.\nB. Investigate the stack policies.\nC. Investigate the Metadata section.\nD. Investigate the Resources section.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "4f3e02e",
+      "selectedAnswer": "A",
+      "body": "Change sets provide a summary of proposed changes to your stack that allows you to see how those changes might impact existing resources before implementing them.",
+      "reply": []
+    },
+    {
+      "user": "[Removed]",
+      "selectedAnswer": "",
+      "body": "A is correct",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "A",
+      "body": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html",
+      "reply": []
+    }
+  ]
+}

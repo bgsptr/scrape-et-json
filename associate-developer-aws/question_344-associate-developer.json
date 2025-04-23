@@ -1,0 +1,36 @@
+{
+  "id": "136968",
+  "question": "question-344",
+  "body": "A developer is creating a new application for a pet store. The application will manage customer rewards points. The developer will use Amazon DynamoDB to store the data for the application. The developer needs to optimize query performance and limit partition overload before actual performance analysis.\n\nWhich option should the developer use for a partition key to meet these requirements?\nA. A randomly generated universally unique identifier (UUID)\nB. The customer's full name\nC. The date when the customer signed up for the rewards program\nD. The name of the customer's pet\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "trungtd",
+      "selectedAnswer": "A",
+      "body": "Think of it as CustomerID",
+      "reply": []
+    },
+    {
+      "user": "DeaconStJohn",
+      "selectedAnswer": "A",
+      "body": "This is the only feasible option for a partition key..\n\nB - Two John Smith's sign up for the programme\nC - Both John Smith's signed up on the same day\nD - Both John Smith's signed up on the same day with a poodle called Betsy May.\n\nCant rule it out.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "C",
+      "body": "The start date for the rewards program",
+      "reply": [
+        {
+          "user": "tirthyakamaldasgupta",
+          "body": "Based on my understanding, using the start date as a Partition Key could result in partition overload if a large number of sign-ups occur on the same date. In contrast, choosing a randomly generated UUID as a Partition Key would prevent this issue, as each ID is unique, ensuring even distribution and eliminating the risk of creating a hot partition. Please correct me if my understanding is incorrect, as I am still learning."
+        }
+      ]
+    }
+  ]
+}

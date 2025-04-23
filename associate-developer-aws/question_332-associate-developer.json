@@ -1,0 +1,43 @@
+{
+  "id": "136634",
+  "question": "question-332",
+  "body": "A company recently deployed a new serverless user portal. Users have reported that part of the portal is slow. The initial analysis found a single Amazon API Gateway endpoint that is responsible for the performance issues. The endpoint integrates with an AWS Lambda function. However, the Lambda function interacts with other APIs and AWS services.\n\nHow can a developer find the source of the increased response time by using operational best practices?\nA. Update the Lambda function by adding logging statements with high-precision timestamps before and after each external request. Deploy the updated Lambda function. After accumulating enough usage data, examine the Amazon CloudWatch logs for the Lambda function to determine the likely sources for the increased response time.\nB. Instrument the Lambda function with the AWS X-Ray SDK. Add HTTP and HTTPS interceptors and SDK client handlers. Deploy the updated Lambda function. Turn on X-Ray tracing. After accumulating enough usage data, use the X-Ray service map to examine the average response times to determine the likely sources.\nC. Review the Lambda function's Amazon CloudWatch metrics by using the metrics explorer. Apply anomaly detection to the Duration metric and the Throttles metric. Review the anomalies to determine the likely sources.\nD. Use Amazon CloudWatch Synthetics to create a new canary. Turn on AWS X-Ray tracing on the canary. Configure the canary to scan the user portal. After accumulating enough usage data, use the CloudWatch Synthetics canary dashboard to view the metrics from the canary.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Saudis",
+      "selectedAnswer": "B",
+      "body": "increased response => Tracing so B is the best choice",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "B",
+      "body": "B is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "DeaconStJohn",
+      "selectedAnswer": "B",
+      "body": "I have to agree B for this one and not because chatGPT told me so.\n\nupon research the canary seems to be the best option to capture issues before your customer sees them. As we already have reports of performance issues here I think the more long winded canary option is less feasible. \nthe canary checks for broken links and compares screenshots to baseline images, it also checks for heart beats and whether API's read/write functionality is working.\nI feel like Xray would be the better tool as the SDK with provide higher quality metrics and highlight latency, bottlenecks or other performance issues at any point in the service map. It is a single tool as opposed to option D's needing two tools and ultimately if option D requires X-ray to add granularity to canary results why not just start with X-ray.",
+      "reply": []
+    },
+    {
+      "user": "Prastuti55",
+      "selectedAnswer": "B",
+      "body": "X-Ray for investigating performance issues.",
+      "reply": []
+    },
+    {
+      "user": "outrageous7",
+      "selectedAnswer": "B",
+      "body": "gpt & makes sense",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "D",
+      "body": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries.html",
+      "reply": []
+    }
+  ]
+}

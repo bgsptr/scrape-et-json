@@ -1,0 +1,37 @@
+{
+  "id": "136974",
+  "question": "question-355",
+  "body": "A developer is writing a web application that is deployed on Amazon EC2 instances behind an internet-facing Application Load Balancer (ALB). The developer must add an Amazon CloudFront distribution in front of the ALB. The developer also must ensure that customer data from outside the VPC is encrypted in transit.\n\nWhich combination of CloudFront configuration settings should the developer use to meet these requirements? (Choose two.)\nA. Restrict viewer access by using signed URLs.\nB. Set the Origin Protocol Policy setting to Match Viewer.\nC. Enable field-level encryption.\nD. Enable automatic object compression.\nE. Set the Viewer Protocol Policy setting to Redirect HTTP to HTTPS.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "BE",
+      "body": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-cloudfront-to-custom-origin.html",
+      "reply": []
+    },
+    {
+      "user": "aws_god",
+      "selectedAnswer": "BE",
+      "body": "Choose Match Viewer only if you specify Redirect HTTP to HTTPS or HTTPS Only for Viewer Protocol Policy.\nCloudFront caches the object only once even if viewers make requests using both HTTP and HTTPS protocols.\n\nhttps://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-cloudfront-to-custom-origin.html",
+      "reply": []
+    },
+    {
+      "user": "KennethNg923",
+      "selectedAnswer": "BE",
+      "body": "B. Set the Origin Protocol Policy setting to Match Viewer. then if it is HTTP, Viewer Protocol Policy setting can Redirect HTTP to HTTPS (Option E).",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "BE",
+      "body": "BE is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "chigs508",
+      "selectedAnswer": "",
+      "body": "https://www.examtopics.com/discussions/amazon/view/88225-exam-aws-certified-developer-associate-topic-1-question-171/",
+      "reply": []
+    }
+  ]
+}

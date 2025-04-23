@@ -1,0 +1,31 @@
+{
+  "id": "136961",
+  "question": "question-337",
+  "body": "A developer has an application that asynchronously invokes an AWS Lambda function. The developer wants to store messages that resulted in failed invocations of the Lambda function so that the application can retry the call later.\n\nWhat should the developer do to accomplish this goal with the LEAST operational overhead?\nA. Set up Amazon CloudWatch Logs log groups to filter and store the messages in an Amazon S3 bucket. Import the messages in Lambda. Run the Lambda function again.\nB. Configure Amazon EventBridge to send the messages to Amazon Simple Notification Service (Amazon SNS) to initiate the Lambda function again.\nC. Implement a dead-letter queue for discarded messages. Set the dead-letter queue as an event source for the Lambda function.\nD. Send Amazon EventBridge events to an Amazon Simple Queue Service (Amazon SQS) queue. Configure the Lambda function to pull messages from the SQS queue. Run the Lambda function again.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "DeaconStJohn",
+      "selectedAnswer": "C",
+      "body": "Async allows DLQ to be created from lambda function\nSync requires DLQ to be created by SQS.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "seetpt",
+      "selectedAnswer": "C",
+      "body": "C is correct",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "C",
+      "body": "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq",
+      "reply": []
+    }
+  ]
+}

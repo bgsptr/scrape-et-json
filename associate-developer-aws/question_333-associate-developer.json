@@ -1,0 +1,48 @@
+{
+  "id": "136958",
+  "question": "question-333",
+  "body": "A developer is building an event-driven application by using AWS Lambda and Amazon EventBridge. The Lambda function needs to push events to an EventBridge event bus. The developer uses an SDK to run the PutEvents EventBridge action and specifies no credentials in the code. After deploying the Lambda function, the developer notices that the function is failing and there are AccessDeniedException errors in the logs.\n\nHow should the developer resolve this issue?\nA. Configure a VPC peering connection between the Lambda function and EventBridge.\nB. Modify their AWS credentials to include permissions for the PutEvents EventBridge action.\nC. Modify the Lambda function execution role to include permissions for the PutEvents EventBridge action.\nD. Add a resource-based policy to the Lambda function to include permissions for the PutEvents EventBridge action.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "examuserss",
+      "selectedAnswer": "C",
+      "body": "Correct Answer:\nC. Modify the Lambda function execution role to include permissions for the PutEvents EventBridge action.\n\nThe developer should update the Lambda function's execution role to include the necessary permissions for the PutEvents action on the EventBridge event bus. This will resolve the AccessDeniedException errors and allow the Lambda function to push events to EventBridge.",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "be1dca8",
+      "selectedAnswer": "",
+      "body": "C\nyou use IAM roles on the sender event bus to give the sender event bus permission to send events to the receiver event bus. You use Resource-based policies on the receiver event bus to give the receiver event bus permission to receive events from the sender event bus.\n\nhttps://docs.aws.amazon.com/eventbridge/latest/userguide/eb-bus-to-bus.html",
+      "reply": [
+        {
+          "user": "albert_kuo",
+          "body": "{\n \"Version\": \"2012-10-17\",\n \"Statement\": [\n {\n \"Effect\": \"Allow\",\n \"Action\": \"events:PutEvents\",\n \"Resource\": \"*\"\n }\n ]\n}"
+        }
+      ]
+    },
+    {
+      "user": "DeaconStJohn",
+      "selectedAnswer": "C",
+      "body": "As lambda is initiating the action (push), permission must be attached the the execution role.",
+      "reply": []
+    },
+    {
+      "user": "outrageous7",
+      "selectedAnswer": "C",
+      "body": "Lambda Execution Role (IAM Role)\n• Grants the Lambda function permissions to AWS services / resources",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "D",
+      "body": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus-perms.html",
+      "reply": []
+    }
+  ]
+}

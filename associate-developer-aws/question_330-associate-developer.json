@@ -1,0 +1,31 @@
+{
+  "id": "136632",
+  "question": "question-330",
+  "body": "A company deploys a new application to AWS. The company is streaming application logs to Amazon CloudWatch Logs. The company's development team must receive notification by email when the word \"ERROR\" appears in any log lines. A developer sets up an Amazon Simple Notification Service (Amazon SNS) topic and subscribes the development team to the topic.\n\nWhat should the developer do next to meet the requirements?\nA. Select the appropriate log group. Create a CloudWatch metric filter with \"ERROR\" as the search term. Create an alarm on this metric that notifies the SNS topic when the metric is 1 or higher.\nB. In CloudWatch Logs Insights, select the appropriate log group. Create a metric query to search for the term \"ERROR\" in the logs. Create an alarm on this metric that notifies the SNS topic when the metric is 1 or higher.\nC. Select the appropriate log group. Create an SNS subscription filter with \"ERROR\" as the filter pattern. Select the SNS topic as the destination.\nD. Create a CloudWatch alarm that includes \"ERROR\" as a filter pattern, a log group dimension that defines the appropriate log group, and a destination that notifies the SNS topic.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "DeaconStJohn",
+      "selectedAnswer": "A",
+      "body": "Just clicked through the console to achieve this. \nC. SNS subscription filtering is not supported on cloudwatch log groups.\nB. Log insights lets me jump into the logs and not create a metric that can be pushed to SNS.\nD. Cloudwatch alarm works off a predefined metric and not a pattern such as ERROR. We need to create the metric to create the alarm",
+      "reply": []
+    },
+    {
+      "user": "albert_kuo",
+      "selectedAnswer": "A",
+      "body": "aws logs put-metric-filter --log-group-name /aws/lambda/my-log-group \\\n--filter-name ErrorFilter --filter-pattern \"ERROR\" \\\n--metric-transformations metricName=ErrorCount,metricNamespace=MyAppNamespace,metricValue=1",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "A",
+      "body": "https://docs.aws.amazon.com/sns/latest/dg/sns-monitoring-using-cloudwatch.html",
+      "reply": []
+    }
+  ]
+}

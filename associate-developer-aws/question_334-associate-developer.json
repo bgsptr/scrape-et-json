@@ -1,0 +1,49 @@
+{
+  "id": "136640",
+  "question": "question-334",
+  "body": "A company's application has an AWS Lambda function that processes messages from IoT devices. The company wants to monitor the Lambda function to ensure that the Lambda function is meeting its required service level agreement (SLA).\n\nA developer must implement a solution to determine the application's throughput in near real time. The throughput must be based on the number of messages that the Lambda function receives and processes in a given time period. The Lambda function performs initialization and post-processing steps that must not factor into the throughput measurement.\n\nWhat should the developer do to meet these requirements?\nA. Use the Lambda function's ConcurrentExecutions metric in Amazon CloudWatch to measure the throughput.\nB. Modify the application to log the calculated throughput to Amazon CloudWatch Logs. Use Amazon EventBridge to invoke a separate Lambda function to process the logs on a schedule.\nC. Modify the application to publish custom Amazon CloudWatch metrics when the Lambda function receives and processes each message. Use the metrics to calculate the throughput.\nD. Use the Lambda function's Invocations metric and Duration metric to calculate the throughput in Amazon CloudWatch.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "Alagong",
+      "selectedAnswer": "C",
+      "body": "Use the metrics to calculate the throughput. This is because custom metrics can provide a more accurate measure of throughput, as they can be configured to only increment when a message is received and processed by the Lambda function. This would exclude the time spent on initialization and post-processing, which are not part of the throughput measurement.",
+      "reply": []
+    },
+    {
+      "user": "examuserss",
+      "selectedAnswer": "C",
+      "body": "Correct Answer:\nC. Modify the application to publish custom Amazon CloudWatch metrics when the Lambda function receives and processes each message. Use the metrics to calculate the throughput.\n\nThis solution allows the developer to focus on the specific parts of the Lambda function that are responsible for processing messages, providing the most accurate and real-time measurement of throughput. By publishing custom metrics, the developer can ensure the throughput is tracked exactly as required, excluding any irrelevant steps.",
+      "reply": []
+    },
+    {
+      "user": "albert_kuo",
+      "selectedAnswer": "C",
+      "body": "import boto3\nimport time\n\ncloudwatch = boto3.client('cloudwatch')\n\ndef lambda_handler(event, context):\n # Process the IoT message\n process_message(event)\n \n # Publish custom CloudWatch metric for throughput\n cloudwatch.put_metric_data(\n Namespace='IoTMessageProcessing',\n MetricData=[\n {\n 'MetricName': 'MessagesProcessed',\n 'Timestamp': time.time(),\n 'Value': 1,\n 'Unit': 'Count'\n },\n ]\n )",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "trungtd",
+      "selectedAnswer": "C",
+      "body": "Because this requirement provides its own definition of how throughput is measured, you must use custom metrics.",
+      "reply": []
+    },
+    {
+      "user": "seetpt",
+      "selectedAnswer": "C",
+      "body": "I think C",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "A",
+      "body": "https://aws.amazon.com/blogs/compute/understanding-aws-lambda-scaling-and-throughput/",
+      "reply": []
+    }
+  ]
+}

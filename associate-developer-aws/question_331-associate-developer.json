@@ -1,0 +1,31 @@
+{
+  "id": "136633",
+  "question": "question-331",
+  "body": "A company uses Amazon Simple Queue Service (Amazon SQS) to decouple its microservices architecture. Some messages in an SQS queue contain sensitive information. A developer must implement a solution that encrypts all the data at rest.\n\nWhich solution will meet this requirement?\nA. Enable server-side encryption for the SQS queue by using an SQS managed encryption key (SSE-SQS).\nB. Use the aws:SecureTransport condition in the queue policy to ensure that only HTTPS (TLS) is used for all requests to the SQS queue.\nC. Use AWS Certificate Manager (ACM) to generate an SSL/TLS certificate. Reference the certificate when messages are sent to the queue.\nD. Set a message attribute in the SQS SendMessage request for messages that are sent to the queue. Set the Name to ENCRYPT. Set the Value to TRUE.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "preachr",
+      "selectedAnswer": "A",
+      "body": "Server-side encryption (SSE) lets you transmit sensitive data in encrypted queues. SSE protects the contents of messages in queues using SQS-managed encryption keys (SSE-SQS) or keys managed in the AWS Key Management Service (SSE-KMS).",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "Dzok5050",
+      "selectedAnswer": "A",
+      "body": "It's A it's a valid option to enable.\nC, D is related to in transit",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "A",
+      "body": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html",
+      "reply": []
+    }
+  ]
+}

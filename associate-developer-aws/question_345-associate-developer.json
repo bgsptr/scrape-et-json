@@ -1,0 +1,25 @@
+{
+  "id": "136969",
+  "question": "question-345",
+  "body": "A developer uses AWS IAM Identity Center (AWS Single Sign-On) to interact with the AWS CLI and AWS SDKs on a local workstation. API calls to AWS services were working when the SSO access was first configured. However, the developer is now receiving Access Denied errors. The developer has not changed any configuration files or scripts that were previously working on the workstation.\n\nWhat is the MOST likely cause of the developer's access issue?\nA. The access permissions to the developer's AWS CLI binary file have changed.\nB. The permission set that is assumed by IAM Identity Center does not have the necessary permissions to complete the API call.\nC. The credentials from the IAM Identity Center federated role have expired.\nD. The developer is attempting to make API calls to the incorrect AWS account.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "cachac",
+      "selectedAnswer": "C",
+      "body": "AWS SSO credentials are temporary and typically have an expiration time",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "C",
+      "body": "C is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "C",
+      "body": "https://docs.aws.amazon.com/IAM/latest/UserGuide/security-creds.html",
+      "reply": []
+    }
+  ]
+}

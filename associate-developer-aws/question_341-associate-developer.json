@@ -1,0 +1,49 @@
+{
+  "id": "136965",
+  "question": "question-341",
+  "body": "A developer is deploying an application in the AWS Cloud by using AWS CloudFormation. The application will connect to an existing Amazon RDS database. The hostname of the RDS database is stored in AWS Systems Manager Parameter Store as a plaintext value. The developer needs to incorporate the database hostname into the CloudFormation template to initialize the application when the stack is created.\n\nHow should the developer reference the parameter that contains the database hostname?\nA. Use the ssm dynamic reference.\nB. Use the Ref intrinsic function.\nC. Use the Fn::ImportValue intrinsic function.\nD. Use the ssm-secure dynamic reference.\nShow Suggested Answer",
+  "comments": [
+    {
+      "user": "DeaconStJohn",
+      "selectedAnswer": "A",
+      "body": "As it is the DB hostname and not sensitive credentials I think ssm dynamic is the correct answer. \nOption D - is for secure string whereas this parameter is currently stored in plain text.\nFor option C, I opted against this because for an import value, I believe there needs to be an export value from another template. The question didn't state that anything else was created via CF template.\nOption B - I understand to be used to reference another resource block that is in the same YAML template.",
+      "reply": []
+    },
+    {
+      "user": "teban0130",
+      "selectedAnswer": "A",
+      "body": "Parameters:\n Environment:\n Type: AWS::SSM::Parameter::Value<String>\n Default: env",
+      "reply": []
+    },
+    {
+      "user": "preachr",
+      "selectedAnswer": "A",
+      "body": "To reference a plaintext value stored in Parameter Store in your template, you use the ssm dynamic reference pattern. This pattern allows you to reference values from parameters of type String or StringList in Parameter Store.",
+      "reply": []
+    },
+    {
+      "user": "Anandesh",
+      "selectedAnswer": "A",
+      "body": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic-references.html",
+      "reply": []
+    },
+    {
+      "user": "65703c1",
+      "selectedAnswer": "A",
+      "body": "A is the correct answer.",
+      "reply": []
+    },
+    {
+      "user": "be1dca8",
+      "selectedAnswer": "",
+      "body": "A since the question stated that the value is just plain text, not a secureString type",
+      "reply": []
+    },
+    {
+      "user": "KarBiswa",
+      "selectedAnswer": "D",
+      "body": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic-references.html#dynamic-references-ssm-secure-strings",
+      "reply": []
+    }
+  ]
+}
