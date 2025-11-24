@@ -59,7 +59,8 @@ function parseNetscapeCookies(filePath) {
   //const phone = "81238502355";
   //const phone = "81259900142";
   const phone = "81336160863";
-
+  const phone = "81326058284";
+ 
   const authUrl = "https://my.telkomsel.com/login/web";
   await page.goto(authUrl, { waitUntil: "networkidle2" });
 
@@ -111,8 +112,9 @@ function parseNetscapeCookies(filePath) {
   //const rewardId = "SS25UUHQ4P15"; //samsung s25
   //const rewardId = "VLXUUHQ4P15"; //vespa
   //const rewardId = "BEAUUHQ4P15"; //honda beat cbs
-  const rewardId = "CBRUUHQ4P15"; //moge cbr
-
+  //const rewardId = "CBRUUHQ4P15"; //moge cbr
+  const rewardId = "IP16UUHQ4P15"; //iphone
+    
   await page.goto(`https://my.telkomsel.com/app/loyalty-reward-details/${rewardId}`);
 
   //poinAmount = 1591
